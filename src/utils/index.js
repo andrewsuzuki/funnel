@@ -265,10 +265,10 @@ export function expandThemeValue(s) {
  * properties set with dependencies on the others
  */
 export const shorthandPropertiesStatic = {
-  absolute: mixins.positionAbsolute(),
-  relative: mixins.positionRelative(),
-  static: mixins.positionStatic(),
-  fixed: mixins.positionFixed(),
+  absolute: mixins.position('absolute'),
+  relative: mixins.position('relative'),
+  static: mixins.position('static'),
+  fixed: mixins.position('fixed'),
 
   atTop: mixins.top(0),
   atLeft: mixins.left(0),
@@ -331,6 +331,7 @@ export const shorthandPropertiesValued = {
   // visibility
   o: mixins.opacity,
   z: mixins.zIndex,
+  visibility: mixins.visibility,
 
   // border
   bordS: mixins.borderStyle,
