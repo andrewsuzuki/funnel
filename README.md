@@ -1,4 +1,4 @@
-# funnel
+# otep
 
 User interface library for React.
 
@@ -12,10 +12,10 @@ User interface library for React.
 
 ```
 # Yarn
-yarn add funnel
+yarn add otep
 
 # NPM
-npm install --save funnel
+npm install --save otep
 ```
 
 # Usage
