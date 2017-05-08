@@ -1,4 +1,4 @@
-# mecanique
+# funnel
 
 User interface library for React.
 
@@ -12,10 +12,10 @@ User interface library for React.
 
 ```
 # Yarn
-yarn add mecanique
+yarn add funnel
 
 # NPM
-npm install --save mecanique
+npm install --save funnel
 ```
 
 # Usage
