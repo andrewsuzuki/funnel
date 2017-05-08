@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import { Alert } from '../../dist'
+
 import './App.css'
 
 
@@ -13,6 +15,7 @@ class App extends Component {
         </div>
         <div className="App-content">
           TODO
+          <Alert brand="primary" bold>Hello world!</Alert>
         </div>
       </div>
     )
