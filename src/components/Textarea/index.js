@@ -5,8 +5,8 @@ import canConnectField from '../Field/canConnectField'
 import {
   styled,
   expandStyles,
-  propIsBrand,
-  propIsSize,
+  propTypeBrand,
+  propTypeSize,
   propTypeFieldMeta,
 } from '../../utils'
 
@@ -19,8 +19,8 @@ const Textarea = styled('textarea', (props) => expandStyles(
 ))
 
 Textarea.propTypes = {
-  brand: propIsBrand,
-  size: propIsSize,
+  brand: propTypeBrand,
+  size: propTypeSize,
   disabled: PropTypes.bool,
   focus: PropTypes.bool,
 

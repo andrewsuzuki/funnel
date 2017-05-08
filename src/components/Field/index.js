@@ -19,9 +19,9 @@ import PropTypes from 'prop-types'
 
 import {
   propTypeFieldContext,
-  propIsSize,
-  propIsBrand,
-  propIsColumnBreakpoint,
+  propTypeSize,
+  propTypeBrand,
+  propTypeColumnBreakpoint,
 } from '../../utils'
 
 import Structure from './Structure'
@@ -153,12 +153,12 @@ Field.propTypes = {
 
   // passed down via field context meta:
 
-  horizontal: propIsColumnBreakpoint,
-  grouped: propIsColumnBreakpoint,
+  horizontal: propTypeColumnBreakpoint,
+  grouped: propTypeColumnBreakpoint,
   addons: PropTypes.bool,
 
-  size: propIsSize,
-  brand: propIsBrand,
+  size: propTypeSize,
+  brand: propTypeBrand,
   disabled: PropTypes.bool,
 }
 

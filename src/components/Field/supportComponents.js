@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-import { styled, expandStyles, propIsBreakpoint } from '../../utils'
+import { styled, expandStyles, propTypeBreakpoint } from '../../utils'
 
 import * as mixins from '../../mixins'
 
@@ -31,7 +31,7 @@ export const HorizontalWrapper = styled('div', ({ breakpoint }) =>
 )
 
 HorizontalWrapper.propTypes = {
-  breakpoint: propIsBreakpoint.isRequired,
+  breakpoint: propTypeBreakpoint.isRequired,
 }
 
 
@@ -50,7 +50,7 @@ export const HorizontalLeft = styled('div', ({ breakpoint }) =>
 )
 
 HorizontalLeft.propTypes = {
-  breakpoint: propIsBreakpoint.isRequired,
+  breakpoint: propTypeBreakpoint.isRequired,
 }
 
 
@@ -63,7 +63,7 @@ export const HorizontalRight = styled('div', ({ breakpoint }) =>
 )
 
 HorizontalRight.propTypes = {
-  breakpoint: propIsBreakpoint.isRequired,
+  breakpoint: propTypeBreakpoint.isRequired,
 }
 
 
@@ -80,7 +80,7 @@ export const GroupedRow = styled('div', ({ breakpoint }) => expandStyles(
 ))
 
 GroupedRow.propTypes = {
-  breakpoint: propIsBreakpoint.isRequired,
+  breakpoint: propTypeBreakpoint.isRequired,
 }
 
 

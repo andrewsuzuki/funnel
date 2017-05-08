@@ -9,8 +9,8 @@ import PropTypes from 'prop-types'
 import {
   styled,
   expandStyles,
-  propIsSize,
-  propIsBrandOrDefaultOrLightOrDark,
+  propTypeSize,
+  propTypeBrandOrDefaultOrLightOrDark,
 } from '../../utils'
 
 import BrandBackground from '../BrandBackground'
@@ -53,8 +53,8 @@ export default function Hero({ fluid, size, bold, brand, children }) {
 
 Hero.propTypes = {
   fluid: PropTypes.bool,
-  size: propIsSize,
-  brand: propIsBrandOrDefaultOrLightOrDark,
+  size: propTypeSize,
+  brand: propTypeBrandOrDefaultOrLightOrDark,
   bold: PropTypes.bool,
 
   children: PropTypes.node,

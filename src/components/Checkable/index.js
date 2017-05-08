@@ -5,8 +5,8 @@ import {
   styled,
   expandStyles,
   capitalize,
-  propIsCheckableType,
-  propIsBrand,
+  propTypeCheckableType,
+  propTypeBrand,
 } from '../../utils'
 
 
@@ -51,11 +51,11 @@ export default function Checkable({ name, type, value, label, brand, disabled })
 
 Checkable.propTypes = {
   name: PropTypes.string,
-  type: propIsCheckableType.isRequired,
+  type: propTypeCheckableType.isRequired,
   label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired, // has default (blank)
 
-  brand: propIsBrand,
+  brand: propTypeBrand,
   disabled: PropTypes.bool,
 }
 

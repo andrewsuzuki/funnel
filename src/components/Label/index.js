@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 
 import canConnectField from '../Field/canConnectField'
 
-import { styled, expandStyles, propIsSize, propIsColumnBreakpoint } from '../../utils'
+import { styled, expandStyles, propTypeSize, propTypeColumnBreakpoint } from '../../utils'
 
 import { breakpoint } from '../../mixins'
 
@@ -32,9 +32,9 @@ const Label = styled('label', ({ size, horizontal, disabled }) => expandStyles(
 ))
 
 Label.propTypes = {
-  size: propIsSize.isRequired, // has default
+  size: propTypeSize.isRequired, // has default
 
-  horizontal: propIsColumnBreakpoint,
+  horizontal: propTypeColumnBreakpoint,
   disabled: PropTypes.bool,
 }
 

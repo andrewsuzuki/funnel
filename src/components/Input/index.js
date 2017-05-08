@@ -4,10 +4,10 @@ import canConnectField from '../Field/canConnectField'
 
 import {
   styled,
-  propIsInputType,
+  propTypeInputType,
   propTypeFieldMeta,
-  propIsBrand,
-  propIsSize,
+  propTypeBrand,
+  propTypeSize,
 } from '../../utils'
 
 import { makeInputStyles } from '../../mixins'
@@ -16,12 +16,12 @@ import { makeInputStyles } from '../../mixins'
 const Input = styled('input', makeInputStyles)
 
 Input.propTypes = {
-  type: propIsInputType.isRequired, // has default
+  type: propTypeInputType.isRequired, // has default
 
   fieldMeta: propTypeFieldMeta,
 
-  brand: propIsBrand,
-  size: propIsSize,
+  brand: propTypeBrand,
+  size: propTypeSize,
   disabled: PropTypes.bool,
   focus: PropTypes.bool,
 

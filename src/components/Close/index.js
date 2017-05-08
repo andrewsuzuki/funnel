@@ -1,4 +1,4 @@
-import { styled, expandStyles, propIsSize } from '../../utils'
+import { styled, expandStyles, propTypeSize } from '../../utils'
 
 
 const beforeAndAfterCommonStyles = [
@@ -62,7 +62,7 @@ const Close = styled('button', ({ size }) => {
 })
 
 Close.propTypes = {
-  size: propIsSize.isRequired, // has default
+  size: propTypeSize.isRequired, // has default
 }
 
 Close.defaultProps = {

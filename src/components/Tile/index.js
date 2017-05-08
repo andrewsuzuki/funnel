@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 import {
   styled,
   expandStyles,
-  propIsBrandOrDefaultOrLightOrDark,
+  propTypeBrandOrDefaultOrLightOrDark,
 } from '../../utils'
 
 import BrandBackground from '../BrandBackground'
@@ -25,7 +25,7 @@ const Tile = styled(BrandBackground, ({ hasRadius, hasShadow }) => expandStyles(
 
 
 Tile.propTypes = {
-  brand: propIsBrandOrDefaultOrLightOrDark.isRequired, // has default
+  brand: propTypeBrandOrDefaultOrLightOrDark.isRequired, // has default
 
   hasRadius: PropTypes.bool,
   hasShadow: PropTypes.bool,

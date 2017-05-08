@@ -19,7 +19,7 @@ import PropTypes from 'prop-types'
 import get from 'lodash.get'
 import uniq from 'lodash.uniq'
 
-import { warn, propTypeFieldMeta, propIsBrand } from '../../utils'
+import { warn, propTypeFieldMeta, propTypeBrand } from '../../utils'
 
 import canConnectField from '../Field/canConnectField'
 
@@ -53,8 +53,8 @@ const FieldFeedbackSet = ({ fieldMeta, brand, brands, ...texts }) => {
 
 FieldFeedbackSet.propTypes = {
   fieldMeta: propTypeFieldMeta,
-  brand: propIsBrand,
-  brands: PropTypes.arrayOf(propIsBrand),
+  brand: propTypeBrand,
+  brands: PropTypes.arrayOf(propTypeBrand),
   success: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([false])]),
   info: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([false])]),
   warning: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([false])]),

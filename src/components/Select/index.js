@@ -5,8 +5,8 @@ import canConnectField from '../Field/canConnectField'
 import {
   styled,
   expandStyles,
-  propIsBrand,
-  propIsSize,
+  propTypeBrand,
+  propTypeSize,
   propTypeFieldMeta,
 } from '../../utils'
 
@@ -60,8 +60,8 @@ export default function Select(props) {
 Select.propTypes = {
   expanded: PropTypes.bool,
 
-  brand: propIsBrand,
-  size: propIsSize,
+  brand: propTypeBrand,
+  size: propTypeSize,
   disabled: PropTypes.bool,
   focus: PropTypes.bool,
 

@@ -12,8 +12,8 @@ import invariant from 'invariant'
 import {
   styled,
   expandStyles,
-  propIsBreakpoint,
-  propIsAlignItems,
+  propTypeBreakpoint,
+  propTypeAlignItems,
 } from '../../utils'
 
 import * as mixins from '../../mixins'
@@ -31,8 +31,8 @@ const LevelWrapper = styled('div', ({ breakpoint: bkpt, alignItems }) =>
   )))
 
 LevelWrapper.propTypes = {
-  breakpoint: propIsBreakpoint.isRequired,
-  alignItems: propIsAlignItems.isRequired,
+  breakpoint: propTypeBreakpoint.isRequired,
+  alignItems: propTypeAlignItems.isRequired,
 }
 
 
@@ -50,7 +50,7 @@ const LevelSpacer = styled('div', ({ breakpoint: bkpt }) => expandStyles(
 ))
 
 LevelSpacer.propTypes = {
-  breakpoint: propIsBreakpoint.isRequired,
+  breakpoint: propTypeBreakpoint.isRequired,
 }
 
 
@@ -68,7 +68,7 @@ const LevelCenter = styled('div', ({ breakpoint: bkpt }) => expandStyles(
 ))
 
 LevelCenter.propTypes = {
-  breakpoint: propIsBreakpoint.isRequired,
+  breakpoint: propTypeBreakpoint.isRequired,
 }
 
 
@@ -122,8 +122,8 @@ export default function Level({ breakpoint, alignItems, children, ...restProps }
 }
 
 Level.propTypes = {
-  breakpoint: propIsBreakpoint.isRequired, // has default
-  alignItems: propIsAlignItems.isRequired, // has default
+  breakpoint: propTypeBreakpoint.isRequired, // has default
+  alignItems: propTypeAlignItems.isRequired, // has default
 
   children: PropTypes.node,
 }

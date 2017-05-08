@@ -1,6 +1,6 @@
 import memoize from 'lodash.memoize'
 
-import { styled, expandStyles, capitalize, propIsBrand } from '../../utils'
+import { styled, expandStyles, capitalize, propTypeBrand } from '../../utils'
 
 
 const brandToThemeColor = memoize((brand) => `brand${capitalize(brand)}`)
@@ -14,7 +14,7 @@ const FieldFeedback = styled('div', ({ brand }) => expandStyles(
 ))
 
 FieldFeedback.propTypes = {
-  brand: propIsBrand.isRequired,
+  brand: propTypeBrand.isRequired,
 }
 
 export default FieldFeedback

@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import {
   styled,
   expandStyles,
-  propIsSize,
-  propIsBrandOrDefault,
+  propTypeSize,
+  propTypeBrandOrDefault,
   capitalize,
 } from '../../utils'
 
@@ -259,8 +259,8 @@ function Button({ isInButtonGroup, ...restProps }) {
 }
 
 Button.propTypes = {
-  size: propIsSize.isRequired, // has default
-  brand: propIsBrandOrDefault.isRequired, // has default
+  size: propTypeSize.isRequired, // has default
+  brand: propTypeBrandOrDefault.isRequired, // has default
 
   link: PropTypes.bool,
   outline: PropTypes.bool,

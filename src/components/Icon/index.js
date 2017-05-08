@@ -9,7 +9,7 @@
 import PropTypes from 'prop-types'
 import memoize from 'lodash.memoize'
 
-import { styled, expandStyles, propIsIconSize } from '../../utils'
+import { styled, expandStyles, propTypeIconSize } from '../../utils'
 
 import { pseudoBefore } from '../../mixins'
 
@@ -79,7 +79,7 @@ const Icon = styled('span', (props) => {
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
 
-  size: propIsIconSize.isRequired, // has default
+  size: propTypeIconSize.isRequired, // has default
 
   relative: PropTypes.bool,
   fixedWidth: PropTypes.bool,

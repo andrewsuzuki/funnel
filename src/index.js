@@ -30,8 +30,8 @@ export { default as theme } from './theme'
 
 export { default as utils } from './utils'
 export {
+  styled,
   expandStyles,
-  propIsBrand,
-  propIsInputType,
-  condSpread,
+  propTypeBrand,
+  propTypeInputType,
 } from './utils'

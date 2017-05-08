@@ -5,7 +5,7 @@ import BrandBackground from '../BrandBackground'
 
 import Close from '../Close'
 
-import { styled, expandStyles, propIsBrandOrDefaultOrLightOrDark } from '../../utils'
+import { styled, expandStyles, propTypeBrandOrDefaultOrLightOrDark } from '../../utils'
 
 
 const DismissableClose = styled(Close, expandStyles(
@@ -46,7 +46,7 @@ export default function Alert({ brand, bold, onClose, children }) {
 }
 
 Alert.propTypes = {
-  brand: propIsBrandOrDefaultOrLightOrDark.isRequired, // has default
+  brand: propTypeBrandOrDefaultOrLightOrDark.isRequired, // has default
   bold: PropTypes.bool,
   onClose: PropTypes.func,
 

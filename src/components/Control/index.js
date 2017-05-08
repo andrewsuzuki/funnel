@@ -18,8 +18,7 @@ const ControlWrapper = styled('div', expandStyles(
 
 const ControlLeft = styled('div', expandStyles(
   'absolute',
-  'atTop',
-  'atLeft',
+  'atTopLeft',
 
   'h/100%',
   'w/~inputPaddingXHasIcon',

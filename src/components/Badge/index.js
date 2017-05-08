@@ -5,8 +5,8 @@ import get from 'lodash.get'
 import {
   styled,
   expandStyles,
-  propIsBrandOrDefaultOrLightOrDark,
-  propIsSize,
+  propTypeBrandOrDefaultOrLightOrDark,
+  propTypeSize,
 } from '../../utils'
 
 import BrandBackground from '../BrandBackground'
@@ -76,8 +76,8 @@ export default function Badge({ brand, size, onClose, children }) {
 }
 
 Badge.propTypes = {
-  brand: propIsBrandOrDefaultOrLightOrDark.isRequired,
-  size: propIsSize.isRequired,
+  brand: propTypeBrandOrDefaultOrLightOrDark.isRequired,
+  size: propTypeSize.isRequired,
   onClose: PropTypes.func,
 
   children: PropTypes.node.isRequired,

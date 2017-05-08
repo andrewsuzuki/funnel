@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { propIsCheckableType } from '../../utils'
+import { propTypeCheckableType } from '../../utils'
 
 import canConnectField from '../Field/canConnectField'
 
@@ -20,7 +20,7 @@ function CheckableSet({ name, type, disabled, items }) {
 
 CheckableSet.propTypes = {
   name: PropTypes.string,
-  type: propIsCheckableType.isRequired,
+  type: propTypeCheckableType.isRequired,
   disabled: PropTypes.bool,
   items: PropTypes.arrayOf(PropTypes.object), // a bit naive
 }

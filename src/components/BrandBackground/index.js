@@ -10,7 +10,7 @@ import color from 'color'
 import {
   styled,
   expandStyles,
-  propIsBrandOrDefaultOrLightOrDark,
+  propTypeBrandOrDefaultOrLightOrDark,
 } from '../../utils'
 
 import { themeValue } from '../../mixins'
@@ -72,7 +72,7 @@ export default function BrandBackground({ bold, brand, children, ...restProps })
 }
 
 BrandBackground.propTypes = {
-  brand: propIsBrandOrDefaultOrLightOrDark.isRequired, // has default
+  brand: propTypeBrandOrDefaultOrLightOrDark.isRequired, // has default
   bold: PropTypes.bool.isRequired, // has default
   children: PropTypes.node,
 }

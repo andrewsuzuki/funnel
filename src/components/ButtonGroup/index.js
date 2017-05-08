@@ -13,7 +13,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import invariant from 'invariant'
 
-import { styled, expandStyles, propIsSize } from '../../utils'
+import { styled, expandStyles, propTypeSize } from '../../utils'
 
 import Button from '../Button'
 
@@ -54,7 +54,7 @@ export default function ButtonGroup({ children, size, outline, link, disabled, .
 ButtonGroup.propTypes = {
   children: PropTypes.node.isRequired,
 
-  size: propIsSize,
+  size: propTypeSize,
   link: PropTypes.bool,
   outline: PropTypes.bool,
 

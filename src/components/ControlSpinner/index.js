@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { styled, expandStyles, propIsIconSize } from '../../utils'
+import { styled, expandStyles, propTypeIconSize } from '../../utils'
 
 
 const Spinner = styled('div', ({ sizeUnits }) => expandStyles(
@@ -30,7 +30,7 @@ export default function ControlSpinner({ size }) {
 }
 
 ControlSpinner.propTypes = {
-  size: propIsIconSize.isRequired, // has default
+  size: propTypeIconSize.isRequired, // has default
 }
 
 ControlSpinner.defaultProps = {
