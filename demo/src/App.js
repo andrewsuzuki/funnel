@@ -1,22 +1,17 @@
 import React, { Component } from 'react'
 
-import { Alert } from '../../dist'
+import {  } from '../../dist'
 
-import './App.css'
+import HeroExample from './HeroExample'
+import GridFormExample from './GridFormExample'
 
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <h1>otep</h1>
-          <h2>by Andrew Suzuki (@andrewsuzuki)</h2>
-        </div>
-        <div className="App-content">
-          TODO
-          <Alert brand="primary" bold>Hello world!</Alert>
-        </div>
+      <div>
+        <HeroExample />
+        <GridFormExample />
       </div>
     )
   }
