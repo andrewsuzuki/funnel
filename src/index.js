@@ -32,7 +32,6 @@ export { default as utils } from './utils'
 export {
   styled,
   ThemeProvider,
-  expandStyles,
   propTypeBrand,
   propTypeInputType,
 } from './utils'

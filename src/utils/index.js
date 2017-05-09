@@ -14,7 +14,6 @@ export * from './color'
 export * from './valids'
 export * from './propTypes'
 export * from './breakpoints'
-export * from './styleAndTheme'
 
 
 // For now, just re-export styled HOC and ThemeProvider from glamorous
