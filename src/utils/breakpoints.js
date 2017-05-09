@@ -4,6 +4,7 @@
 
 import invariant from 'invariant'
 import memoize from 'lodash.memoize'
+import partial from 'lodash.partial'
 
 import { breakpoint } from '../mixins'
 
@@ -47,14 +48,14 @@ export function breakpointsCreateSpecsOnValues(values, prefix, styleFn) {
 
 /**
  * Create a memoized parsing function for spec strings
- * @param  {object}   dict map of single-spec strings to style objects
+ * @param  {function} specResolver  spec string resolver,
  * @return {function} parser that turns full spec strings into style objects
  */
-export function breakpointsCreateSpecStringParser(dict) {
-  return memoize((s) => {
+export function breakpointsCreateSpecStringParser(specResolver) {
+  return (theme, s) => {
     const specs = s.split('/')
 
-    const resolvedSpecs = specs.map((m) => dict[m] || m)
+    const resolvedSpecs = specs.map(partial(specResolver, theme))
 
     // verify
     resolvedSpecs.forEach((rs) => {
@@ -65,7 +66,7 @@ export function breakpointsCreateSpecStringParser(dict) {
     })
 
     return Object.assign({}, ...resolvedSpecs)
-  })
+  }
 }
 
 
@@ -74,6 +75,7 @@ export function breakpointsCreateSpecStringParser(dict) {
  * in props with breakpoint names.
  * e.g. { tiny: '4/align-self:center' }
  *        => { '@media ...': { width: '33.3%', ... } }
+ * @param  {object}   theme
  * @param  {object}   props         props which may contain breakpoint names as keys
  * @param  {function} propGuardFn   applied to all props[breakpointName] lookups
  *                                  e.g. can default bool true into
@@ -84,6 +86,7 @@ export function breakpointsCreateSpecStringParser(dict) {
  *                                  with child style objects
  */
 export function breakpointsCreateBreakpointsForPropSpecStrings(
+  theme,
   props,
   propGuardFn,
   parser,
@@ -94,10 +97,12 @@ export function breakpointsCreateBreakpointsForPropSpecStrings(
     const propGuarded = propGuardFn(propMaybe)
 
     if (typeof propGuarded === 'string' && propGuarded.length) {
-      const parsed = parser(propGuarded)
+      const parsed = parser(theme, propGuarded)
 
       const parsedGuarded = parsedGuardFn(parsed)
 
+      // !!!
+      // TODO feed theme to breakpoint
       return breakpoint(bkpt, parsedGuarded)
     }
 

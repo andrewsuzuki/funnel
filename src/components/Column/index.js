@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import range from 'lodash.range'
 import partial from 'lodash.partial'
 
 import {
@@ -11,7 +10,6 @@ import {
   propTypesForColumnBreakpoints,
   aliasWidthMap,
   breakpointsMapAndMerge,
-  breakpointsCreateSpecsOnValues,
   breakpointsCreateSpecStringParser,
   breakpointsCreateBreakpointsForPropSpecStrings,
 } from '../../utils'
@@ -19,10 +17,7 @@ import {
 import {
   breakpointOnly,
   gridPercentageValue,
-  alignSelf,
 } from '../../mixins'
-
-import theme from '../../theme'
 
 
 const makeGutterStylesForBreakpoint = (t, breakpoint) =>
@@ -32,42 +27,72 @@ const makeGutterStylesForBreakpoint = (t, breakpoint) =>
   })
 
 
-const specDict = {
-  // Width
-  // NOTE it's important these three types of width values
-  // override each other (i.e. each has flex-basis and max-width)
-  // auto
-  auto: {
-    flexBasis: 0,
-    maxWidth: 'auto',
-  },
-  // number
-  ...breakpointsCreateSpecsOnValues(range(1, theme.gridColumns + 1), '', (v) => ({
-    flexBasis: gridPercentageValue(v),
-    maxWidth: gridPercentageValue(v),
-  })),
-  // alias
-  ...breakpointsCreateSpecsOnValues(Object.keys(aliasWidthMap), '', (v) => ({
-    flexBasis: aliasWidthMap[v],
-    maxWidth: aliasWidthMap[v],
-  })),
+const specResolver = (theme, spec) => {
+  if (spec === 'auto') {
+    // auto width
 
-  // Offset
-  ...breakpointsCreateSpecsOnValues(
-    range(0, theme.gridColumns),
-    'offset:',
-    (v) => ({ marginLeft: gridPercentageValue(v) }),
-  ),
+    return {
+      flexBasis: 0,
+      maxWidth: 'auto',
+    }
+  } else if (/^\d+$/.test(spec)) {
+    // integer width
 
-  // Align-self
-  ...breakpointsCreateSpecsOnValues(validAlignSelf, 'align-self:', alignSelf),
+    const cols = parseInt(spec, 10)
+
+    if (cols >= 1 && cols <= theme.gridColumns) {
+      const width = gridPercentageValue(theme, cols)
+
+      return {
+        flexBasis: width,
+        maxWidth: width,
+      }
+    }
+  } else if (Object.keys(aliasWidthMap).includes(spec)) {
+    // alias width
+
+    const width = aliasWidthMap[spec]
+
+    return {
+      flexBasis: width,
+      maxWidth: width,
+    }
+  } else if (spec.startsWith('offset:')) {
+    // offset
+
+    const amountString = spec.slice(7)
+
+    if (/^\d+$/.test(amountString)) {
+      const amount = parseInt(amountString, 10)
+
+      if (amount >= 0 && amount < theme.gridColumns) {
+        return {
+          marginLeft: gridPercentageValue(theme, amount),
+        }
+      }
+    }
+  } else if (spec.startsWith('align-self:')) {
+    // align-self
+
+    const alignSelf = spec.slice(11)
+
+    if (validAlignSelf.includes(alignSelf)) {
+      return {
+        alignSelf,
+      }
+    }
+  }
+
+  // catch:
+  // return o.g. spec string; the parser will pick this up as an error
+  return spec
 }
 
 
 const propGuardFn = (prop) => (prop === true ? 'auto' : prop)
 
 
-const specStringParser = breakpointsCreateSpecStringParser(specDict)
+const specStringParser = breakpointsCreateSpecStringParser(specResolver)
 
 
 const parsedGuardFn = (parsed) => {
@@ -77,15 +102,16 @@ const parsedGuardFn = (parsed) => {
   // correct with 'auto' if not set
   return isBasisSet
     ? parsed
-    : { ...parsed, ...specDict.auto }
+    : { ...parsed, ...specResolver(null, 'auto') }
 }
 
 
-const StyledDivGapless = styled.div((props) => ({
+const StyledDivGapless = styled.div((props, t) => ({
   flexGrow: 1,
   flexShrink: 1,
 
   ...breakpointsCreateBreakpointsForPropSpecStrings(
+    t,
     props,
     // if a prop is bool true, then default to 'auto'
     propGuardFn,

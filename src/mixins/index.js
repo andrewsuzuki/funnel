@@ -29,7 +29,7 @@ function makeBasicPropFn(name) {
 
 /**
  * Wrap a mixin/property-map function with a theme-value predicate,
- * usually a theme enabler (ex. theme.enableShadows)
+ * usually a theme enabler (ex. enableShadows)
  * to return an empty object when called if not enabled
  * @param  {string} key theme key (theme[key] should resolve to a bool)
  * @param  {func} propFn
@@ -45,7 +45,7 @@ function wrapEnabler(key, propFn) {
 // Convert values or attribute maps to CSS attribute value strings
 
 
-export function gridPercentageValue(n) {
+export function gridPercentageValue(theme, n) {
   return `${(n / theme.gridColumns) * 100}%`
 }
 

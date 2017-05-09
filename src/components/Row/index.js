@@ -77,19 +77,21 @@ const specDict = {
 const propGuardFn = (prop) => prop // pass
 
 
-const specStringParser = breakpointsCreateSpecStringParser(specDict)
+const specResolver = (theme, spec) => (specDict[spec] || spec)
+const specStringParser = breakpointsCreateSpecStringParser(specResolver)
 
 
 const parsedGuardFn = (parsed) => parsed // pass
 
 
-const StyledDivGapless = styled.div((props) => ({
+const StyledDivGapless = styled.div((props, t) => ({
   display: 'flex',
   flexWrap: 'wrap',
   marginLeft: 0,
   marginRight: 0,
 
   ...breakpointsCreateBreakpointsForPropSpecStrings(
+    t,
     props,
     propGuardFn, // pass
     specStringParser, // our row breakpoint spec string parser
