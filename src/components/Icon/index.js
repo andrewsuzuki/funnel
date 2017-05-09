@@ -3,13 +3,14 @@
  *
  * This is an attempt to duplicate the font-awesome sass stylesheets
  * in css-in-js form, to escape having to include a css/sass loader.
- * The font-awesome font still needs to be included.
+ * The font-awesome font still needs to be included and available as
+ * theme.iconFontFamily (probably 'FontAwesome')
  */
 
 import PropTypes from 'prop-types'
 import memoize from 'lodash.memoize'
 
-import { styled, expandStyles, propTypeIconSize } from '../../utils'
+import { styled, propTypeIconSize } from '../../utils'
 
 import { before } from '../../mixins'
 
@@ -29,7 +30,7 @@ const iconSizeToFontSize = memoize((size, relative) => {
 const iconNameToChar = memoize((name) => (nameCharMap[name] || ' '))
 
 
-const Icon = styled.span((props) => {
+const Icon = styled.span((props, t) => {
   const {
     name,
     size,
@@ -43,36 +44,37 @@ const Icon = styled.span((props) => {
 
   const fontSize = iconSizeToFontSize(size, relative)
 
-  return expandStyles(
+  return {
     // The character
-    before({ content: `"${iconNameToChar(name)}"` }),
+    ...before({ content: `"${iconNameToChar(name)}"` }),
 
     // Due to android bug, need 'text-rendering: "auto"' on fa font icons. see:
     // https://github.com/FortAwesome/Font-Awesome/issues/1094
-    { textRendering: 'auto' },
+    textRendering: 'auto',
 
     // Display
-    'd/inline-block',
+    display: 'inline-block',
 
     // Font
-    'ff/FontAwesome',
-    'fw/normal',
-    `fs/${fontSize}`,
-    { fontStyle: 'normal', fontVariant: 'normal' },
+    fontFamily: t.iconFontFamily,
+    fontWeight: 'normal',
+    fontStyle: 'normal',
+    fontVariant: 'normal',
+    fontSize,
 
     // Fixed Width (width of largest icons, e.g. cc-discover)
-    fixedWidth && expandStyles('w/1.29em', 'tAlign/center'), // 18em/14 = 1.29em
+    ...fixedWidth && { width: '1.29em', textAlign: 'center' }, // 18em/14 = 1.29em
 
     // Rotate
-    rotate && `transform/rotate(${rotate}deg)`,
+    ...rotate && { transform: `rotate(${rotate}deg)` },
 
     // Flip
-    flipHorizontal && 'transform/scale(-1, 1)',
-    flipVertical && 'transform/scale(1, -1)',
+    ...flipHorizontal && { transform: 'scale(-1, 1)' },
+    ...flipVertical && { transform: 'scale(1, -1)' },
 
     // Disabled
-    disabled && 'o/0.65',
-  )
+    ...disabled && { opacity: 0.65 },
+  }
 })
 
 

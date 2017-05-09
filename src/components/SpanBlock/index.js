@@ -1,6 +1,4 @@
-import { styled, expandStyles } from '../../utils'
+import { styled } from '../../utils'
 
 
-export default styled.span(expandStyles(
-  'd/block',
-))
+export default styled.span({ display: 'block' })

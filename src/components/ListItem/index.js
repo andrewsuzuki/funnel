@@ -5,20 +5,16 @@ import Item from './Item'
 import Wrapper from './Wrapper'
 
 
-function ListItem(props) {
+export default function ListItem({ item }) {
   return (
     <Wrapper>
       <Item>
-        {props.item}
+        {item}
       </Item>
     </Wrapper>
   )
 }
 
-
 ListItem.propTypes = {
   item: PropTypes.any,
 }
-
-
-export default ListItem

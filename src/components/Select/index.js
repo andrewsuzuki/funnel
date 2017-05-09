@@ -4,47 +4,44 @@ import canConnectField from '../Field/canConnectField'
 
 import {
   styled,
-  expandStyles,
   propTypeBrand,
   propTypeSize,
   propTypeFieldMeta,
 } from '../../utils'
 
-import { makeInputStyles } from '../../mixins'
+import { makeInputStyles, square, after } from '../../mixins'
 
 
-const Wrapper = styled.div(({ hasIconRight }) => expandStyles(
-  'relative',
+const Wrapper = styled.div(({ hasIconRight }, t) => ({
+  position: 'relative',
 
-  !hasIconRight && {
+  ...!hasIconRight &&
     // caret
-    ':after': expandStyles(
-      'absolute',
-      'mTop/-0.375em',
-      't/50%',
-      'r/1.125em',
-      'd/block',
-      'square/~selectCaretSize',
-      'bordW/1px',
-      'bordS/solid',
-      'bordC/~selectCaretColor',
-      'z/~zIndices.selectCaret',
-      {
-        borderRight: 0,
-        borderTop: 0,
-        content: '" "',
-        pointerEvents: 'none',
-        transform: 'rotate(-45deg)',
-      },
-    ),
-  },
-))
+    after({
+      position: 'absolute',
+      marginTop: '-0.375em',
+      top: 't/50%',
+      right: 'r/1.125em',
+      display: 'd/block',
+      ...square(t.selectCaretSize),
+      borderWidth: '1px',
+      borderStyle: 'bordS/solid',
+      borderColor: 'bordC/~selectCaretColor',
+      zIndex: 'z/~zIndices.selectCaret',
+
+      borderRight: 0,
+      borderTop: 0,
+      content: '" "',
+      pointerEvents: 'none',
+      transform: 'rotate(-45deg)',
+    }),
+}))
 
 
-const StyledBaseSelect = styled.select((props) => expandStyles(
-  makeInputStyles(props),
-  `w/${props.expanded ? '100%' : 'auto'}`, // override input style maybe (100%)
-))
+const StyledBaseSelect = styled.select((props) => ({
+  ...makeInputStyles(props),
+  width: props.expanded ? '100%' : 'auto', // override input style maybe (100%)
+}))
 
 
 const ActualSelect = canConnectField(StyledBaseSelect, 'id', false)

@@ -1,18 +1,18 @@
-import { styled, expandStyles } from '../../utils'
+import { styled } from '../../utils'
+
+import { firstChild } from '../../mixins'
 
 
 export default styled.li({
-  ...expandStyles(
-    'relative',
-    'd/flex',
-    'fullWidth',
-    'h/3em',
-    'fAlignItems/center',
-  ),
+  position: 'relative',
+  display: 'flex',
+  width: '100%',
+  height: '3em',
+  alignItems: 'center',
 
   borderTop: '1px solid #eee',
 
-  ':first-child': {
-    borderTop: '0',
-  },
+  ...firstChild({
+    borderTop: 0,
+  }),
 })

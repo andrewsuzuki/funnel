@@ -1,9 +1,9 @@
 import { capitalize } from '../../utils'
 
-import { boxShadowIfEnabled } from '../../mixins'
+import { boxShadowIfEnabled, hover, focus, active, disabled } from '../../mixins'
 
 
-export default function stylesBrandOutlined(t, brand, { focus, active, disabled }) {
+export default function stylesBrandOutlined(t, brand, props) {
   const brandCap = capitalize(brand)
 
   const lubba = (f) => t[`button${brandCap}${f}`]
@@ -47,13 +47,13 @@ export default function stylesBrandOutlined(t, brand, { focus, active, disabled 
   return {
     ...baseStyles,
 
-    ...focus && focusStyles,
-    ...active && activeStyles,
-    ...disabled && disabledStyles,
+    ...props.focus && focusStyles,
+    ...props.active && activeStyles,
+    ...props.disabled && disabledStyles,
 
-    ':hover': hoverStyles,
-    ':focus': focusStyles,
-    ':active': activeStyles,
-    ':disabled': disabledStyles,
+    ...hover(hoverStyles),
+    ...focus(focusStyles),
+    ...active(activeStyles),
+    ...disabled(disabledStyles),
   }
 }

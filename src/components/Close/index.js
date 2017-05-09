@@ -1,6 +1,6 @@
 import { styled, propTypeSize } from '../../utils'
 
-import { square, borderRadiusIfEnabled } from '../../mixins'
+import { square, borderRadiusIfEnabled, before, after, hover, focus, active } from '../../mixins'
 
 
 const beforeAndAfterCommonStyles = {
@@ -46,22 +46,22 @@ const Close = styled.button(({ size }, t) => {
     appearance: 'none',
 
     // Cross-pieces
-    ':before': {
+    ...before({
       ...beforeAndAfterCommonStyles,
       backgroundColor: t.white,
       width: '50%',
       height: '2px',
-    },
-    ':after': {
+    }),
+    ...after({
       ...beforeAndAfterCommonStyles,
       backgroundColor: t.white,
       width: '2px',
       height: '50%',
-    },
+    }),
 
-    ':hover': hoverStyles,
-    ':focus': hoverStyles,
-    ':active': activeStyles,
+    ...hover(hoverStyles),
+    ...focus(hoverStyles),
+    ...active(activeStyles),
   }
 })
 

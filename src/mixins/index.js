@@ -259,7 +259,13 @@ export function pseudoBlock(pseudoType, styles) {
 
 export const before = partial(pseudoBlock, 'before')
 export const after = partial(pseudoBlock, 'after')
+export const firstChild = partial(pseudoBlock, 'first-child')
+export const lastChild = partial(pseudoBlock, 'last-child')
+
 export const hover = partial(pseudoBlock, 'hover')
+export const active = partial(pseudoBlock, 'active')
+export const focus = partial(pseudoBlock, 'focus')
+export const disabled = partial(pseudoBlock, 'disabled')
 export const visited = partial(pseudoBlock, 'visited')
 
 

@@ -1,10 +1,6 @@
-import { styled, expandStyles } from '../../utils'
+import { styled } from '../../utils'
 
 
-const Li = styled.li(expandStyles(
-  'm/0',
-  'p/0',
-))
-
+const Li = styled.li({ margin: 0, padding: 0 })
 
 export default Li

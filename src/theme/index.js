@@ -289,6 +289,12 @@ theme.closeFontWeight = theme.fontWeightBold
 theme.closeTextShadow = `0 1px 0 ${theme.white}`
 
 
+// Component: Icon
+
+
+theme.iconFontFamily = 'FontAwesome'
+
+
 // Component: Badge
 
 

@@ -6,7 +6,7 @@ import Ul from './Ul'
 import Ol from './Ol'
 
 
-function List({ ordered, items }) {
+export default function List({ ordered, items }) {
   const component = ordered ? Ol : Ul
 
   const children = items.map((item, i) =>
@@ -19,5 +19,3 @@ List.propTypes = {
   ordered: PropTypes.bool,
   items: PropTypes.array,
 }
-
-export default List
