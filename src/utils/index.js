@@ -3,7 +3,7 @@
  */
 
 
-import glamorous from 'glamorous'
+import glamorous, { ThemeProvider as GlamorousThemeProvider } from 'glamorous'
 
 import * as mixins from '../mixins'
 
@@ -17,8 +17,9 @@ export * from './breakpoints'
 export * from './styleAndTheme'
 
 
-// For now, just re-export styled HOC from glamorous
+// For now, just re-export styled HOC and ThemeProvider from glamorous
 export const styled = glamorous
+export const ThemeProvider = GlamorousThemeProvider
 
 
 export const modalCloseClassname = 'should-close-modal'
