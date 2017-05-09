@@ -1,19 +1,21 @@
 import PropTypes from 'prop-types'
 
-import { styled, expandStyles } from '../../utils'
+import { styled } from '../../utils'
+
+import { square } from '../../mixins'
 
 import VanillaClose from '../Close'
 
 
-const Close = styled(VanillaClose)(expandStyles(
-  'fixed',
-  'square/30px',
-  'bgc/transparent',
-  't/17px',
-  'r/17px',
-  'pointer',
-  'z/~zIndices.modalClose',
-))
+const Close = styled(VanillaClose)((p, t) => ({
+  ...square('30px'),
+  position: 'fixed',
+  backgroundColor: 'transparent',
+  top: '17px',
+  right: '17px',
+  cursor: 'pointer',
+  zIndex: t.zIndices.modalClose,
+}))
 
 Close.propTypes = {
   onClick: PropTypes.func.isRequired,

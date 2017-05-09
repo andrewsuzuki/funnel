@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { styled, expandStyles, modalCloseClassname as mcc } from '../../utils'
+import { styled, modalCloseClassname as mcc } from '../../utils'
 
 import { breakpoint } from '../../mixins'
 
@@ -11,19 +11,22 @@ import Column from '../Column'
 import Box from '../Box'
 
 
-const Fence = styled.div(expandStyles(
-  'relative',
-  'm/60px/20px/30px',
-  'hMax/calc(100vh - 90px)',
-  'w/calc(100vw - 40px)',
-  'overY/auto',
-  'overX/auto',
+const Fence = styled.div({
+  position: 'relative',
+  marginTop: '60px',
+  marginRight: '20px',
+  marginBottom: '30px',
+  marginLeft: '20px',
+  maxHeight: 'calc(100vh - 90px)',
+  width: 'calc(100vw - 40px)',
+  overflowY: 'auto',
+  overflowX: 'auto',
 
-  breakpoint('tablet', expandStyles(
-    'm/30px/20px/30px',
-    'hMax/calc(100vh - 60px)',
-  )),
-))
+  ...breakpoint('tablet', {
+    marginTop: '30px',
+    maxHeight: 'calc(100vh - 60px)',
+  }),
+})
 
 
 export default function ModalContent({ column, boxed, children }) {

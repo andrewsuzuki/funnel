@@ -1,32 +1,33 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { styled, expandStyles, modalCloseClassname } from '../../utils'
+import { styled, modalCloseClassname } from '../../utils'
 
 import { breakpoint } from '../../mixins'
 
 import Close from './Close'
 
 
-const Container = styled.div(expandStyles(
-  'fixed',
-  'atTopLeft',
-  'w/100vw',
-  'h/100vh',
-  'overX/hidden',
-  'overY/hidden',
-  'z/~zIndices.modal',
-  'bgc/~modalBackgroundColor',
+const Container = styled.div((p, t) => ({
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  width: '100vw',
+  height: '100vh',
+  overflowX: 'hidden',
+  overflowY: 'hidden',
+  zIndex: t.zIndices.modal,
+  backgroundColor: t.modalBackgroundColor,
 
-  breakpoint('tablet', expandStyles(
-    'd/flex',
-    'fAlignItems/center',
-    'fJustifyContent/center',
-  )),
-))
+  ...breakpoint('tablet', {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }),
+}))
 
 
-class Modal extends React.PureComponent {
+export default class Modal extends React.PureComponent {
   onClick = (e) => {
     if (e.target.className.includes(modalCloseClassname)) {
       this.props.onClose(e)
@@ -49,5 +50,3 @@ Modal.propTypes = {
   children: PropTypes.node,
   onClose: PropTypes.func,
 }
-
-export default Modal

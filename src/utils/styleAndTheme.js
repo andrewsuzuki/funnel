@@ -83,9 +83,6 @@ export function expandThemeValue(s) {
 
 /**
  * Shorthand properties (static)
- *
- * NOTE See below expandStyles definition for more
- * properties set with dependencies on the others
  */
 export const shorthandPropertiesStatic = {
   absolute: mixins.position('absolute'),
@@ -260,17 +257,3 @@ export function expandStyles(...args) {
 
   return Object.assign({}, ...styleMaps)
 }
-
-
-// Further shorthandPropertiesStatic (with dependencies)
-
-shorthandPropertiesStatic.atTopLeft = expandStyles('atTop', 'atLeft')
-
-shorthandPropertiesStatic.absoluteCover = expandStyles('absolute', 'fullHeight', 'fullWidth', 'atTopLeft')
-
-shorthandPropertiesStatic.absoluteVerticalCenter = {
-  ...expandStyles('absolute', 'l/50%'),
-  transform: mixins.translateXValue(mixins.percentValue(-50)),
-}
-
-shorthandPropertiesStatic.flexCenter = expandStyles('fJustifyContent/center', 'fAlignItems/center')

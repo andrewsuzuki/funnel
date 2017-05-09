@@ -7,21 +7,26 @@ import PropTypes from 'prop-types'
 
 import {
   styled,
-  expandStyles,
   propTypeBrandOrDefaultOrLightOrDark,
 } from '../../utils'
+
+import {
+  borderRadiusIfEnabled,
+  boxShadowIfEnabled,
+} from '../../mixins'
 
 import BrandBackground from '../BrandBackground'
 
 
-const Tile = styled(BrandBackground)(({ hasRadius, hasShadow }) => expandStyles(
-  'p/~tilePaddingY/~tilePaddingX',
-  'mBottom/~tileMarginBottom',
-
-  hasRadius && '!radius/~tileBorderRadius',
-
-  hasShadow && '!bShadow/~tileBoxShadow',
-))
+const Tile = styled(BrandBackground)(({ hasRadius, hasShadow }, t) => ({
+  paddingTop: t.tilePaddingY,
+  paddingRight: t.tilePaddingX,
+  paddingBottom: t.tilePaddingY,
+  paddingLeft: t.tilePaddingX,
+  marginBottom: t.tileMarginBottom,
+  ...borderRadiusIfEnabled(t.tileBorderRadius),
+  ...boxShadowIfEnabled(t.tileBoxShadow),
+}))
 
 
 Tile.propTypes = {
