@@ -9,12 +9,8 @@ import Checkable from '../Checkable'
 
 
 function CheckableSet({ name, type, disabled, items }) {
-  return (
-    <div>
-      {items.map((item, i) =>
-        <Checkable key={i} name={name} type={type} disabled={disabled} {...item} />)}
-    </div>
-  )
+  return React.createElement('div', null, items.map((item, key) =>
+    React.createElement(Checkable, { key, name, type, disabled, ...item })))
 }
 
 

@@ -1,9 +1,9 @@
-import { styled, expandStyles } from '../../utils'
+import { styled } from '../../utils'
 
 
-export default styled.h4(expandStyles(
-  'fs/1.5rem',
-  'fw/700',
-  'mTop/0',
-  'mBottom/0.5rem',
-))
+export default styled.h4({
+  fontSize: '1.5rem',
+  fontWeight: 700,
+  marginTop: 0,
+  marginBottom: '0.5rem',
+})

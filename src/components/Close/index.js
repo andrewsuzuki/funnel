@@ -1,20 +1,18 @@
-import { styled, expandStyles, propTypeSize } from '../../utils'
+import { styled, propTypeSize } from '../../utils'
+
+import { square, borderRadiusIfEnabled } from '../../mixins'
 
 
-const beforeAndAfterCommonStyles = [
-  'absolute',
-  'd/block',
-  't/50%',
-  'l/50%',
+const beforeAndAfterCommonStyles = {
+  position: 'absolute',
+  display: 'block',
+  top: '50%',
+  left: '50%',
 
-  'bgc/~white',
-
-  {
-    content: '""',
-    transform: 'translateX(-50%) translateY(-50%) rotate(45deg)',
-    transformOrigin: 'center center',
-  },
-]
+  content: '""',
+  transform: 'translateX(-50%) translateY(-50%) rotate(45deg)',
+  transformOrigin: 'center center',
+}
 
 
 const sizeLookup = {
@@ -24,41 +22,47 @@ const sizeLookup = {
 }
 
 
-const hoverStyles = expandStyles('bgc/rgba(10, 10, 10, 0.3)')
-const activeStyles = expandStyles('bgc/rgba(10, 10, 10, 0.4)')
+const hoverStyles = { backgroundColor: 'rgba(10, 10, 10, 0.3)' }
+const activeStyles = { backgroundColor: 'rgba(10, 10, 10, 0.4)' }
 
 
-const Close = styled.button(({ size }) => {
+const Close = styled.button(({ size }, t) => {
   const sideLength = sizeLookup[size] || 0
 
-  return expandStyles(
-    'noOutline',
-    'pointer',
-    'tDecor/none',
+  return {
+    ...square(sideLength),
+    outline: 0,
+    cursor: 'pointer',
+    textDecoration: 'none',
+    position: 'relative',
+    display: 'inline-block',
+    borderWidth: 0,
+    fontSize: '1rem',
+    verticalAlign: 'top',
+    backgroundColor: 'rgba(10, 10, 10, 0.2)',
+    ...borderRadiusIfEnabled(t.borderRadiusInfinite),
 
-    'relative',
-    'd/inline-block',
-    'bordW/0',
-    'fs/1rem',
-    'vAlign/top',
+    userSelect: 'none',
+    appearance: 'none',
 
-    `square/${sideLength}`,
-
-    'radius/~borderRadiusInfinite',
-    'bgc/rgba(10, 10, 10, 0.2)',
-
-    {
-      userSelect: 'none',
-      appearance: 'none',
-
-      ':before': expandStyles(...beforeAndAfterCommonStyles, 'w/50%', 'h/2px'),
-      ':after': expandStyles(...beforeAndAfterCommonStyles, 'w/2px', 'h/50%'),
-
-      ':hover': hoverStyles,
-      ':focus': hoverStyles,
-      ':active': activeStyles,
+    // Cross-pieces
+    ':before': {
+      ...beforeAndAfterCommonStyles,
+      backgroundColor: t.white,
+      width: '50%',
+      height: '2px',
     },
-  )
+    ':after': {
+      ...beforeAndAfterCommonStyles,
+      backgroundColor: t.white,
+      width: '2px',
+      height: '50%',
+    },
+
+    ':hover': hoverStyles,
+    ':focus': hoverStyles,
+    ':active': activeStyles,
+  }
 })
 
 Close.propTypes = {

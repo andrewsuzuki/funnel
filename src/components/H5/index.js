@@ -1,9 +1,9 @@
-import { styled, expandStyles } from '../../utils'
+import { styled } from '../../utils'
 
 
-export default styled.h5(expandStyles(
-  'fs/1.25rem',
-  'fw/700',
-  'mTop/0',
-  'mBottom/0.5rem',
-))
+export default styled.h5({
+  fontSize: '1.25rem',
+  fontWeight: 700,
+  marginTop: 0,
+  marginBottom: '0.5rem',
+})

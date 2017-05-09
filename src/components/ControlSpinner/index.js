@@ -1,18 +1,18 @@
 import React from 'react'
 
-import { styled, expandStyles, propTypeIconSize } from '../../utils'
+import { styled, propTypeIconSize } from '../../utils'
+
+import { square, borderRadiusIfEnabled } from '../../mixins'
 
 
-const Spinner = styled.div(({ sizeUnits }) => expandStyles(
-  'd/inline-block',
-  `square/${sizeUnits}`,
-  'radius/~borderRadiusInfinite',
-  {
-    animation: 'spin 500ms infinite linear',
-    border: '2px solid #dbdbdb',
-    borderRightColor: 'transparent',
-  },
-))
+const Spinner = styled.div(({ sizeUnits }, t) => ({
+  display: 'inline-block',
+  ...square(sizeUnits),
+  ...borderRadiusIfEnabled(t.borderRadiusInfinite),
+  animation: 'spin 500ms infinite linear',
+  border: '2px solid #dbdbdb',
+  borderRightColor: 'transparent',
+}))
 
 
 const sizeMap = {
