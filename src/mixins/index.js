@@ -290,7 +290,7 @@ export function mediaWidthRange(from, to, styles) {
 
 
 export function clearfix() {
-  return pseudoAfter({
+  return after({
     ...display('block'),
     content: '',
     clear: 'both',

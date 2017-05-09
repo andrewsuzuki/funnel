@@ -5,11 +5,11 @@
 import invariant from 'invariant'
 import memoize from 'lodash.memoize'
 
-import * as mixins from '../mixins'
-
-import * as valids from './valids'
+import { breakpoint } from '../mixins'
 
 import { capitalize } from './helpers'
+
+import * as valids from './valids'
 
 
 /**
@@ -88,8 +88,8 @@ export function breakpointsCreateBreakpointsForPropSpecStrings(
   propGuardFn,
   parser,
   parsedGuardFn) {
-  return breakpointsMapAndMerge((breakpointName) => {
-    const propMaybe = props[breakpointName]
+  return breakpointsMapAndMerge((bkpt) => {
+    const propMaybe = props[bkpt]
 
     const propGuarded = propGuardFn(propMaybe)
 
@@ -98,7 +98,7 @@ export function breakpointsCreateBreakpointsForPropSpecStrings(
 
       const parsedGuarded = parsedGuardFn(parsed)
 
-      return mixins.breakpoint(breakpointName, parsedGuarded)
+      return breakpoint(bkpt, parsedGuarded)
     }
 
     return {}

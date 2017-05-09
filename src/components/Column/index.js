@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import range from 'lodash.range'
-import memoize from 'lodash.memoize'
+import partial from 'lodash.partial'
 
 import {
   styled,
-  expandStyles,
+  halvePixels,
   validBreakpoints,
   validAlignSelf,
   propTypesForColumnBreakpoints,
@@ -19,43 +19,48 @@ import {
 import {
   breakpointOnly,
   gridPercentageValue,
+  alignSelf,
 } from '../../mixins'
 
 import theme from '../../theme'
 
 
-const makeGutterStylesForBreakpoint = memoize((breakpoint) =>
-  breakpointOnly(breakpoint, expandStyles(
-    `pLeft/~gridGutters.${breakpoint}~halvePixels`,
-    `pRight/~gridGutters.${breakpoint}~halvePixels`,
-  )))
+const makeGutterStylesForBreakpoint = (t, breakpoint) =>
+  breakpointOnly(breakpoint, {
+    paddingLeft: halvePixels(t.gridGutters[breakpoint]),
+    paddingRight: halvePixels(t.gridGutters[breakpoint]),
+  })
 
 
 const specDict = {
   // Width
   // NOTE it's important these three types of width values
-  // override each other (i.e. each have fBasis and wMax)
+  // override each other (i.e. each has flex-basis and max-width)
   // auto
-  auto: expandStyles(
-    'fBasis/0',
-    'wMax/auto',
-  ),
+  auto: {
+    flexBasis: 0,
+    maxWidth: 'auto',
+  },
   // number
-  ...breakpointsCreateSpecsOnValues(range(1, theme.gridColumns + 1), '', (v) => expandStyles(
-    `fBasis/${gridPercentageValue(v)}`,
-    `wMax/${gridPercentageValue(v)}`,
-  )),
+  ...breakpointsCreateSpecsOnValues(range(1, theme.gridColumns + 1), '', (v) => ({
+    flexBasis: gridPercentageValue(v),
+    maxWidth: gridPercentageValue(v),
+  })),
   // alias
-  ...breakpointsCreateSpecsOnValues(Object.keys(aliasWidthMap), '', (v) => expandStyles(
-    `fBasis/${aliasWidthMap[v]}`,
-    `wMax/${aliasWidthMap[v]}`,
-  )),
+  ...breakpointsCreateSpecsOnValues(Object.keys(aliasWidthMap), '', (v) => ({
+    flexBasis: aliasWidthMap[v],
+    maxWidth: aliasWidthMap[v],
+  })),
 
   // Offset
-  ...breakpointsCreateSpecsOnValues(range(0, theme.gridColumns), 'offset:', (v) => expandStyles(`mLeft/${gridPercentageValue(v)}`)),
+  ...breakpointsCreateSpecsOnValues(
+    range(0, theme.gridColumns),
+    'offset:',
+    (v) => ({ marginLeft: gridPercentageValue(v) }),
+  ),
 
   // Align-self
-  ...breakpointsCreateSpecsOnValues(validAlignSelf, 'align-self:', (v) => expandStyles(`fAlignSelf/${v}`)),
+  ...breakpointsCreateSpecsOnValues(validAlignSelf, 'align-self:', alignSelf),
 }
 
 
@@ -76,11 +81,11 @@ const parsedGuardFn = (parsed) => {
 }
 
 
-const StyledDivGapless = styled.div((props) => expandStyles(
-  'fGrow/1',
-  'fShrink/1',
+const StyledDivGapless = styled.div((props) => ({
+  flexGrow: 1,
+  flexShrink: 1,
 
-  breakpointsCreateBreakpointsForPropSpecStrings(
+  ...breakpointsCreateBreakpointsForPropSpecStrings(
     props,
     // if a prop is bool true, then default to 'auto'
     propGuardFn,
@@ -89,13 +94,13 @@ const StyledDivGapless = styled.div((props) => expandStyles(
     // guard parsed results by...
     parsedGuardFn,
   ),
-))
+}))
 
 
-const StyledDivGaps = styled(StyledDivGapless)(expandStyles(
+const StyledDivGaps = styled(StyledDivGapless)((p, t) => ({
   // Gutters
-  breakpointsMapAndMerge(makeGutterStylesForBreakpoint),
-))
+  ...breakpointsMapAndMerge(partial(makeGutterStylesForBreakpoint, t)),
+}))
 
 
 export default function Column({ gapless, children, ...restProps }) {

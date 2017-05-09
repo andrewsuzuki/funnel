@@ -29,6 +29,13 @@ export const negate = (x) => `-${x}`
 
 
 /**
+ * Negate a pixel string
+ * ex. halvePixels('4.2px') => '2.1px'
+ */
+export const halvePixels = (x) => `${parseFloat(x) / 2}px`
+
+
+/**
  * HOC for a component with props pre-applied
  * @param  {string}                 New component display name
  * @param  {React.Component} component

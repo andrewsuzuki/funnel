@@ -1,41 +1,42 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import partial from 'lodash.partial'
 
-import { styled, expandStyles, breakpointsMapAndMerge } from '../../utils'
+import { styled, halvePixels, breakpointsMapAndMerge } from '../../utils'
 
 import { breakpointOnly } from '../../mixins'
 
 
-const makeGutterStylesForBreakpoint = (breakpoint) =>
-  breakpointOnly(breakpoint, expandStyles(
-    `pLeft/~gridGutters.${breakpoint}~halvePixels`,
-    `pRight/~gridGutters.${breakpoint}~halvePixels`,
-  ))
+const makeGutterStylesForBreakpoint = (t, breakpoint) =>
+  breakpointOnly(breakpoint, {
+    paddingLeft: halvePixels(t.gridGutters[breakpoint]),
+    paddingRight: halvePixels(t.gridGutters[breakpoint]),
+  })
 
 
-const makeMaxWidthStylesForBreakpoint = (breakpoint) =>
-  breakpointOnly(breakpoint, expandStyles(
-    `w/~gridContainerMaxWidths.${breakpoint}`,
-    'wMax/100%',
-  ))
+const makeMaxWidthStylesForBreakpoint = (t, breakpoint) =>
+  breakpointOnly(breakpoint, {
+    width: t.gridContainerMaxWidths[breakpoint],
+    maxWidth: '100%',
+  })
 
 
-const StyledDivFluid = styled.div(expandStyles(
-  'fullWidth',
-  'mRight/auto',
-  'mLeft/auto',
+const StyledDivFluid = styled.div((p, t) => ({
+  width: '100%', // overridden by StyledDivStandard
+  marginLeft: 'auto',
+  marginRight: 'auto',
 
   // Gutters for each breakpoint
-  breakpointsMapAndMerge(makeGutterStylesForBreakpoint),
-))
+  ...breakpointsMapAndMerge(partial(makeGutterStylesForBreakpoint, t)),
+}))
 
 
-const StyledDivStandard = styled(StyledDivFluid)(expandStyles(
-  'w/auto',
+const StyledDivStandard = styled(StyledDivFluid)((p, t) => ({
+  width: 'auto',
 
   // Max widths for each breakpoint (except smallest)
-  breakpointsMapAndMerge(makeMaxWidthStylesForBreakpoint, true),
-))
+  ...breakpointsMapAndMerge(partial(makeMaxWidthStylesForBreakpoint, t), true),
+}))
 
 
 export default function Container({ fluid, children, ...restProps }) {

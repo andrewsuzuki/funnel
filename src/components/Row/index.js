@@ -1,11 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import omit from 'lodash.omit'
+import partial from 'lodash.partial'
 import invariant from 'invariant'
 
 import {
   styled,
-  expandStyles,
+  halvePixels,
+  negate,
   breakpointsMapAndMerge,
   validBreakpoints,
   validJustifyContent,
@@ -19,16 +21,22 @@ import {
   breakpointsCreateSpecsOnValues,
 } from '../../utils'
 
-import { breakpointOnly } from '../../mixins'
+import {
+  breakpointOnly,
+  justifyContent,
+  alignItems,
+  alignContent,
+  flexDirection,
+} from '../../mixins'
 
 import Column from '../Column'
 
 
-const makeGutterStylesForBreakpoint = (breakpoint) =>
-  breakpointOnly(breakpoint, expandStyles(
-    `mLeft/~gridGutters.${breakpoint}~halvePixels~negate`,
-    `mRight/~gridGutters.${breakpoint}~halvePixels~negate`,
-  ))
+const makeGutterStylesForBreakpoint = (t, breakpoint) =>
+  breakpointOnly(breakpoint, {
+    marginLeft: negate(halvePixels(t.gridGutters[breakpoint])),
+    marginRight: negate(halvePixels(t.gridGutters[breakpoint])),
+  })
 
 
 const columnPassBreakpoints = validBreakpoints.map((bkpt) =>
@@ -40,28 +48,28 @@ const specDict = {
   ...breakpointsCreateSpecsOnValues(
     validJustifyContent,
     'justify-content:',
-    (v) => expandStyles(`fJustifyContent/${v}`),
+    justifyContent,
   ),
 
   // align-items
   ...breakpointsCreateSpecsOnValues(
     validAlignItems,
     'align-items:',
-    (v) => expandStyles(`fAlignItems/${v}`),
+    alignItems,
   ),
 
   // align-content
   ...breakpointsCreateSpecsOnValues(
     validAlignContent,
     'align-content:',
-    (v) => expandStyles(`fAlignContent/${v}`),
+    alignContent,
   ),
 
   // direction (flex-direction) (with normal=>row, reverse=>row-reverse)
   ...breakpointsCreateSpecsOnValues(
     [['normal', 'row'], ['reverse', 'row-reverse']],
     'direction:',
-    (v) => expandStyles(`fDirection/${v}`),
+    flexDirection,
   ),
 }
 
@@ -75,24 +83,23 @@ const specStringParser = breakpointsCreateSpecStringParser(specDict)
 const parsedGuardFn = (parsed) => parsed // pass
 
 
-const StyledDivGapless = styled.div((props) => expandStyles(
-  'd/flex',
-  'fWrap/wrap',
-  'mLeft/0',
-  'mRight/0',
+const StyledDivGapless = styled.div((props) => ({
+  display: 'flex',
+  flexWrap: 'wrap',
+  marginLeft: 0,
+  marginRight: 0,
 
-  breakpointsCreateBreakpointsForPropSpecStrings(
+  ...breakpointsCreateBreakpointsForPropSpecStrings(
     props,
     propGuardFn, // pass
     specStringParser, // our row breakpoint spec string parser
     parsedGuardFn, // pass
   ),
-))
+}))
 
 
-const StyledDivGaps = styled(StyledDivGapless)(expandStyles(
-  breakpointsMapAndMerge(makeGutterStylesForBreakpoint),
-))
+const StyledDivGaps = styled(StyledDivGapless)((p, t) =>
+  breakpointsMapAndMerge(partial(makeGutterStylesForBreakpoint, t)))
 
 
 export default function Row({ gapless, children, ...restProps }) {
