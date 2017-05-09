@@ -9,26 +9,22 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import invariant from 'invariant'
 
-import {
-  styled,
-  expandStyles,
-  propTypeBreakpoint,
-  propTypeAlignItems,
-} from '../../utils'
+import { styled, propTypeBreakpoint, propTypeAlignItems } from '../../utils'
 
-import * as mixins from '../../mixins'
+import { breakpoint } from '../../mixins'
 
 import AtCenter from '../AtCenter'
 import AtLeft from '../AtLeft'
 import AtRight from '../AtRight'
 
 
-const LevelWrapper = styled.div(({ breakpoint: bkpt, alignItems }) =>
-  mixins.breakpoint(bkpt, expandStyles(
-    'd/flex',
-    'fJustifyContent/space-between',
-    `fAlignItems/${alignItems}`,
-  )))
+const LevelWrapper = styled.div(({ breakpoint: bkpt, alignItems }) => ({
+  ...breakpoint(bkpt, {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems,
+  }),
+}))
 
 LevelWrapper.propTypes = {
   breakpoint: propTypeBreakpoint.isRequired,
@@ -37,49 +33,49 @@ LevelWrapper.propTypes = {
 
 
 // Vertical spacer under breakpoint, horizontal spacer at/above breakpoint
-const LevelSpacer = styled.div(({ breakpoint: bkpt }) => expandStyles(
-  'fGrow/0',
-  'fShrink/0',
-  'h/1.5rem',
-  'w/1px',
+const LevelSpacer = styled.div(({ breakpoint: bkpt }) => ({
+  flexGrow: 0,
+  flexShrink: 0,
+  height: '1.5rem',
+  width: '1px',
 
-  mixins.breakpoint(bkpt, expandStyles(
-    'h/1px',
-    'w/1.5rem',
-  )),
-))
+  ...breakpoint(bkpt, {
+    height: '1px',
+    width: '1.5rem',
+  }),
+}))
 
 LevelSpacer.propTypes = {
   breakpoint: propTypeBreakpoint.isRequired,
 }
 
 
-const LevelCenter = styled.div(({ breakpoint: bkpt }) => expandStyles(
+const LevelCenter = styled.div(({ breakpoint: bkpt }) => ({
   // 'fBasis/auto',
   // 'fGrow/0',
   // 'fShrink/0',
 
-  mixins.breakpoint(bkpt, expandStyles('d/flex')),
+  ...breakpoint(bkpt, { display: 'flex' }),
 
-  'fAlignItems/center',
+  alignItems: 'center',
 
   // overriden by extending components
-  'fJustifyContent/center',
-))
+  justifyContent: 'center',
+}))
 
 LevelCenter.propTypes = {
   breakpoint: propTypeBreakpoint.isRequired,
 }
 
 
-const LevelLeft = styled(LevelCenter)(expandStyles(
-  'fJustifyContent/flex-start',
-))
+const LevelLeft = styled(LevelCenter)({
+  justifyContent: 'flex-start',
+})
 
 
-const LevelRight = styled(LevelCenter)(expandStyles(
-  'fJustifyContent/flex-end',
-))
+const LevelRight = styled(LevelCenter)({
+  justifyContent: 'flex-end',
+})
 
 
 const validChildPositions = [AtCenter, AtLeft, AtRight]

@@ -9,40 +9,40 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import invariant from 'invariant'
 
-import { styled, expandStyles } from '../../utils'
+import { styled } from '../../utils'
 
 import AtCenter from '../AtCenter'
 import AtLeft from '../AtLeft'
 import AtRight from '../AtRight'
 
 
-const MediaWrapper = styled.div(expandStyles(
-  'd/flex',
-  'fJustifyContent/space-between',
-  'fAlignItems/flex-start',
-))
+const MediaWrapper = styled.div({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'flex-start',
+})
 
 
-const MediaSpacer = styled.div(expandStyles(
-  'fGrow/0',
-  'fShrink/0',
-  'h/1px',
-  'w/1.5rem',
-))
+const MediaSpacer = styled.div({
+  flexGrow: 0,
+  flexShrink: 0,
+  height: '1px',
+  width: '1.5rem',
+})
 
 
-const MediaCenter = styled.div(expandStyles(
-  'fBasis/auto',
-  'fGrow/1',
-  'fShrink/1',
-))
+const MediaCenter = styled.div({
+  flexBasis: 'auto',
+  flexGrow: 1,
+  flexShrink: 1,
+})
 
 
-const MediaLeft = styled.div(expandStyles(
-  'fBasis/auto',
-  'fGrow/0',
-  'fShrink/0',
-))
+const MediaLeft = styled.div({
+  flexBasis: 'auto',
+  flexGrow: 0,
+  flexShrink: 0,
+})
 
 
 const MediaRight = styled(MediaLeft)
