@@ -11,6 +11,7 @@ import {
   Control,
   RadioSet,
   Tile,
+  A,
 } from '../../dist'
 
 const GridFormExample = () =>
@@ -36,6 +37,7 @@ const GridFormExample = () =>
           <Tile bold brand="success">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </Tile>
+          <A href="#">This is a link.</A>
         </Column>
       </Row>
     </Container>

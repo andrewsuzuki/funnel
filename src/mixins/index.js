@@ -257,10 +257,10 @@ export function pseudoBlock(pseudoType, styles) {
 }
 
 
-export const pseudoBefore = partial(pseudoBlock, 'before')
-export const pseudoAfter = partial(pseudoBlock, 'after')
-export const pseudoHover = partial(pseudoBlock, 'hover')
-export const pseudoVisited = partial(pseudoBlock, 'visited')
+export const before = partial(pseudoBlock, 'before')
+export const after = partial(pseudoBlock, 'after')
+export const hover = partial(pseudoBlock, 'hover')
+export const visited = partial(pseudoBlock, 'visited')
 
 
 // Media queries

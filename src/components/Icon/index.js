@@ -11,7 +11,7 @@ import memoize from 'lodash.memoize'
 
 import { styled, expandStyles, propTypeIconSize } from '../../utils'
 
-import { pseudoBefore } from '../../mixins'
+import { before } from '../../mixins'
 
 import canConnectField from '../Field/canConnectField'
 
@@ -45,7 +45,7 @@ const Icon = styled.span((props) => {
 
   return expandStyles(
     // The character
-    pseudoBefore({ content: `"${iconNameToChar(name)}"` }),
+    before({ content: `"${iconNameToChar(name)}"` }),
 
     // Due to android bug, need 'text-rendering: "auto"' on fa font icons. see:
     // https://github.com/FortAwesome/Font-Awesome/issues/1094
