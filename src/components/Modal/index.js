@@ -8,7 +8,7 @@ import { breakpoint } from '../../mixins'
 import Close from './Close'
 
 
-const Container = styled('div', expandStyles(
+const Container = styled.div(expandStyles(
   'fixed',
   'atTopLeft',
   'w/100vw',

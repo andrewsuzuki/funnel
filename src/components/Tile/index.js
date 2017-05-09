@@ -14,7 +14,7 @@ import {
 import BrandBackground from '../BrandBackground'
 
 
-const Tile = styled(BrandBackground, ({ hasRadius, hasShadow }) => expandStyles(
+const Tile = styled(BrandBackground)(({ hasRadius, hasShadow }) => expandStyles(
   'p/~tilePaddingY/~tilePaddingX',
   'mBottom/~tileMarginBottom',
 

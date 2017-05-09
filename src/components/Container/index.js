@@ -20,7 +20,7 @@ const makeMaxWidthStylesForBreakpoint = (breakpoint) =>
   ))
 
 
-const StyledDivFluid = styled('div', expandStyles(
+const StyledDivFluid = styled.div(expandStyles(
   'fullWidth',
   'mRight/auto',
   'mLeft/auto',
@@ -30,7 +30,7 @@ const StyledDivFluid = styled('div', expandStyles(
 ))
 
 
-const StyledDivStandard = styled(StyledDivFluid, expandStyles(
+const StyledDivStandard = styled(StyledDivFluid)(expandStyles(
   'w/auto',
 
   // Max widths for each breakpoint (except smallest)

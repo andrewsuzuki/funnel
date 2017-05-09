@@ -1,7 +1,7 @@
 import { styled, expandStyles } from '../../utils'
 
 
-export default styled('h6', expandStyles(
+export default styled.h6(expandStyles(
   'fs/1rem',
   'fw/700',
   'mTop/0',

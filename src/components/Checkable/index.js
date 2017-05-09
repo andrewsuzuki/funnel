@@ -10,13 +10,13 @@ import {
 } from '../../utils'
 
 
-const StyledCheckGroup = styled('div', expandStyles(
+const StyledCheckGroup = styled.div(expandStyles(
   'relative',
   'd/block',
   'mTop/~checkableMargin',
 ))
 
-const StyledBaseLabel = styled('label', ({ brand, disabled }) => expandStyles(
+const StyledBaseLabel = styled.label(({ brand, disabled }) => expandStyles(
   'pointer',
   'd/inline-block',
   'pLeft/~checkableInputGutter',
@@ -28,7 +28,7 @@ const StyledBaseLabel = styled('label', ({ brand, disabled }) => expandStyles(
   disabled && expandStyles('c/~grayLight', 'cursor/not-allowed'),
 ))
 
-const StyledBaseInput = styled('input', ({ disabled }) => expandStyles(
+const StyledBaseInput = styled.input(({ disabled }) => expandStyles(
   'pointer',
   'absolute',
   'mTop/~checkableInputMarginY',

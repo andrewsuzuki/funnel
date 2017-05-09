@@ -11,12 +11,12 @@ import Icon from '../Icon'
 import ControlSpinner from '../ControlSpinner'
 
 
-const ControlWrapper = styled('div', expandStyles(
+const ControlWrapper = styled.div(expandStyles(
   'relative',
 ))
 
 
-const ControlLeft = styled('div', expandStyles(
+const ControlLeft = styled.div(expandStyles(
   'absolute',
   'atTopLeft',
 
@@ -28,7 +28,7 @@ const ControlLeft = styled('div', expandStyles(
   'fJustifyContent/center',
 ))
 
-const ControlRight = styled(ControlLeft, expandStyles(
+const ControlRight = styled(ControlLeft)(expandStyles(
   'l/auto',
   'r/0',
 ))

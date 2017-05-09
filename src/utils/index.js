@@ -3,7 +3,7 @@
  */
 
 
-import { styled as styletronReactStyled } from 'styletron-react'
+import glamorous from 'glamorous'
 
 import * as mixins from '../mixins'
 
@@ -17,9 +17,8 @@ export * from './breakpoints'
 export * from './styleAndTheme'
 
 
-// For now, just re-export styled HOC from styletron-react
-// Eventually, this should be swappable with other CSS-in-JS solutions
-export const styled = styletronReactStyled
+// For now, just re-export styled HOC from glamorous
+export const styled = glamorous
 
 
 export const modalCloseClassname = 'should-close-modal'

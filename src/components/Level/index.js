@@ -23,7 +23,7 @@ import AtLeft from '../AtLeft'
 import AtRight from '../AtRight'
 
 
-const LevelWrapper = styled('div', ({ breakpoint: bkpt, alignItems }) =>
+const LevelWrapper = styled.div(({ breakpoint: bkpt, alignItems }) =>
   mixins.breakpoint(bkpt, expandStyles(
     'd/flex',
     'fJustifyContent/space-between',
@@ -37,7 +37,7 @@ LevelWrapper.propTypes = {
 
 
 // Vertical spacer under breakpoint, horizontal spacer at/above breakpoint
-const LevelSpacer = styled('div', ({ breakpoint: bkpt }) => expandStyles(
+const LevelSpacer = styled.div(({ breakpoint: bkpt }) => expandStyles(
   'fGrow/0',
   'fShrink/0',
   'h/1.5rem',
@@ -54,7 +54,7 @@ LevelSpacer.propTypes = {
 }
 
 
-const LevelCenter = styled('div', ({ breakpoint: bkpt }) => expandStyles(
+const LevelCenter = styled.div(({ breakpoint: bkpt }) => expandStyles(
   // 'fBasis/auto',
   // 'fGrow/0',
   // 'fShrink/0',
@@ -72,12 +72,12 @@ LevelCenter.propTypes = {
 }
 
 
-const LevelLeft = styled(LevelCenter, expandStyles(
+const LevelLeft = styled(LevelCenter)(expandStyles(
   'fJustifyContent/flex-start',
 ))
 
 
-const LevelRight = styled(LevelCenter, expandStyles(
+const LevelRight = styled(LevelCenter)(expandStyles(
   'fJustifyContent/flex-end',
 ))
 

@@ -35,7 +35,7 @@ const baseStyles = expandStyles(
   { ':empty': expandStyles('d/none') },
 )
 
-const BaseElement = styled(BrandBackground, baseStyles)
+const BaseElement = styled(BrandBackground)(baseStyles)
 
 const sizeMap = {
   // size: [font-size, Close-size]
@@ -44,12 +44,12 @@ const sizeMap = {
   large: ['~badgeFontSizeLarge', 'normal'],
 }
 
-const SizedElement = styled(BaseElement, ({ size }) => expandStyles(
+const SizedElement = styled(BaseElement)(({ size }) => expandStyles(
   `fs/${get(sizeMap, [size, 0], 0)}`,
 ))
 
 
-const BadgeClose = styled(Close, expandStyles(
+const BadgeClose = styled(Close)(expandStyles(
   'mLeft/0.25em',
   'mRight/-0.375em',
 ))

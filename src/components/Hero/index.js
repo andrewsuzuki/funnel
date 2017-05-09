@@ -17,13 +17,13 @@ import BrandBackground from '../BrandBackground'
 import Container from '../Container'
 
 
-const WrapperWithBackground = styled(BrandBackground, expandStyles(
+const WrapperWithBackground = styled(BrandBackground)(expandStyles(
   'd/flex',
   'fAlignItems/center',
 ))
 
 
-const VerticalPadding = styled('div', ({ amount }) => expandStyles(
+const VerticalPadding = styled.div(({ amount }) => expandStyles(
   'fullWidth',
   `pTop/${amount}`,
   `pBottom/${amount}`,

@@ -18,7 +18,7 @@ import { styled, expandStyles, propTypeSize } from '../../utils'
 import Button from '../Button'
 
 
-const StyledWrapper = styled('div', expandStyles(
+const StyledWrapper = styled.div(expandStyles(
   'relative',
   'd/inline-flex',
   'vAlign/middle',

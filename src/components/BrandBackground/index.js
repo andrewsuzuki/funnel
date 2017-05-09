@@ -16,7 +16,7 @@ import {
 import { themeValue } from '../../mixins'
 
 
-const Wrapper = styled('div', ({ brandStyles }) => expandStyles(...brandStyles))
+const Wrapper = styled.div(({ brandStyles }) => expandStyles(...brandStyles))
 
 
 const generateGradientColor = (baseColor, rotate, saturate, darken) =>

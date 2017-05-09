@@ -6,7 +6,7 @@ import { styled, expandStyles, capitalize, propTypeBrand } from '../../utils'
 const brandToThemeColor = memoize((brand) => `brand${capitalize(brand)}`)
 
 
-const FieldFeedback = styled('div', ({ brand }) => expandStyles(
+const FieldFeedback = styled.div(({ brand }) => expandStyles(
   'mTop/~fieldFeedbackMarginTop',
 
   'fw/~fieldFeedbackFontWeight',

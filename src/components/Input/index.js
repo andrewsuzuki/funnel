@@ -13,7 +13,7 @@ import {
 import { makeInputStyles } from '../../mixins'
 
 
-const Input = styled('input', makeInputStyles)
+const Input = styled.input(makeInputStyles)
 
 Input.propTypes = {
   type: propTypeInputType.isRequired, // has default

@@ -16,14 +16,14 @@ import AtLeft from '../AtLeft'
 import AtRight from '../AtRight'
 
 
-const MediaWrapper = styled('div', expandStyles(
+const MediaWrapper = styled.div(expandStyles(
   'd/flex',
   'fJustifyContent/space-between',
   'fAlignItems/flex-start',
 ))
 
 
-const MediaSpacer = styled('div', expandStyles(
+const MediaSpacer = styled.div(expandStyles(
   'fGrow/0',
   'fShrink/0',
   'h/1px',
@@ -31,14 +31,14 @@ const MediaSpacer = styled('div', expandStyles(
 ))
 
 
-const MediaCenter = styled('div', expandStyles(
+const MediaCenter = styled.div(expandStyles(
   'fBasis/auto',
   'fGrow/1',
   'fShrink/1',
 ))
 
 
-const MediaLeft = styled('div', expandStyles(
+const MediaLeft = styled.div(expandStyles(
   'fBasis/auto',
   'fGrow/0',
   'fShrink/0',

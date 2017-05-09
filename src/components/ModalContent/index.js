@@ -11,7 +11,7 @@ import Column from '../Column'
 import Box from '../Box'
 
 
-const Fence = styled('div', expandStyles(
+const Fence = styled.div(expandStyles(
   'relative',
   'm/60px/20px/30px',
   'hMax/calc(100vh - 90px)',

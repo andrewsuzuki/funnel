@@ -3,7 +3,7 @@ import React from 'react'
 import { styled, expandStyles, propTypeIconSize } from '../../utils'
 
 
-const Spinner = styled('div', ({ sizeUnits }) => expandStyles(
+const Spinner = styled.div(({ sizeUnits }) => expandStyles(
   'd/inline-block',
   `square/${sizeUnits}`,
   'radius/~borderRadiusInfinite',

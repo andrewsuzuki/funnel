@@ -50,6 +50,8 @@
   },
   "dependencies": {
     "color": "^1.0.3",
+    "glamor": "^2.20.25",
+    "glamorous": "^3.13.3",
     "invariant": "^2.2.2",
     "lodash.get": "^4.4.2",
     "lodash.isplainobject": "^4.0.6",
@@ -60,8 +62,7 @@
     "lodash.partial": "^4.2.1",
     "lodash.range": "^3.2.0",
     "lodash.uniq": "^4.5.0",
-    "prop-types": "^15.3.0",
-    "styletron-react": "^2.5.8"
+    "prop-types": "^15.3.0"
   },
   "peerDependencies": {
     "react": "^15.3.0"

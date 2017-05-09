@@ -29,7 +29,7 @@ const iconSizeToFontSize = memoize((size, relative) => {
 const iconNameToChar = memoize((name) => (nameCharMap[name] || ' '))
 
 
-const Icon = styled('span', (props) => {
+const Icon = styled.span((props) => {
   const {
     name,
     size,

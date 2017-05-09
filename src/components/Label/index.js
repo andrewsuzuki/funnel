@@ -14,7 +14,7 @@ const sizeMap = {
 }
 
 
-const Label = styled('label', ({ size, horizontal, disabled }) => expandStyles(
+const Label = styled.label(({ size, horizontal, disabled }) => expandStyles(
   'd/inline-block',
   'mBottom/~labelMarginBottom',
 

@@ -5,12 +5,12 @@ import { styled, expandStyles, propTypeBreakpoint } from '../../utils'
 import * as mixins from '../../mixins'
 
 
-export const FlexGrow = styled('div', expandStyles(
+export const FlexGrow = styled.div(expandStyles(
   'fGrow/1',
 ))
 
 
-export const Marginal = styled('div', ({ hasMarginBottom }) => expandStyles(
+export const Marginal = styled.div(({ hasMarginBottom }) => expandStyles(
   hasMarginBottom && 'mBottom/~fieldMarginBottom',
 ))
 
@@ -22,7 +22,7 @@ Marginal.propTypes = {
 // Horizontal
 
 
-export const HorizontalWrapper = styled('div', ({ breakpoint }) =>
+export const HorizontalWrapper = styled.div(({ breakpoint }) =>
   mixins.breakpoint(breakpoint, expandStyles(
     'd/flex',
     'fJustifyContent/flex-start',
@@ -35,7 +35,7 @@ HorizontalWrapper.propTypes = {
 }
 
 
-export const HorizontalLeft = styled('div', ({ breakpoint }) =>
+export const HorizontalLeft = styled.div(({ breakpoint }) =>
   mixins.breakpoint(breakpoint, expandStyles(
     'w/16%',
 
@@ -54,7 +54,7 @@ HorizontalLeft.propTypes = {
 }
 
 
-export const HorizontalRight = styled('div', ({ breakpoint }) =>
+export const HorizontalRight = styled.div(({ breakpoint }) =>
   mixins.breakpoint(breakpoint, expandStyles(
     'fBasis/0',
     'fGrow/5',
@@ -70,7 +70,7 @@ HorizontalRight.propTypes = {
 // Grouped
 
 
-export const GroupedRow = styled('div', ({ breakpoint }) => expandStyles(
+export const GroupedRow = styled.div(({ breakpoint }) => expandStyles(
   mixins.breakpoint(breakpoint, expandStyles(
     'd/flex',
 
@@ -84,7 +84,7 @@ GroupedRow.propTypes = {
 }
 
 
-export const GroupedColumn = styled('div', ({ breakpoint, expanded }) => expandStyles(
+export const GroupedColumn = styled.div(({ breakpoint, expanded }) => expandStyles(
   mixins.breakpoint(breakpoint, expandStyles(
     expanded && expandStyles('fGrow/1', 'fShrink/0'),
 
@@ -104,7 +104,7 @@ GroupedColumn.propTypes = {
 // Addons
 
 
-export const AddonsRow = styled('div', () => expandStyles(
+export const AddonsRow = styled.div(() => expandStyles(
   'd/flex',
 ))
 
@@ -112,7 +112,7 @@ AddonsRow.propTypes = {
 }
 
 
-export const AddonsColumn = styled('div', ({ expanded }) => expandStyles(
+export const AddonsColumn = styled.div(({ expanded }) => expandStyles(
   expanded && expandStyles('fGrow/1', 'fShrink/0'),
 ))
 

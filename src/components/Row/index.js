@@ -75,7 +75,7 @@ const specStringParser = breakpointsCreateSpecStringParser(specDict)
 const parsedGuardFn = (parsed) => parsed // pass
 
 
-const StyledDivGapless = styled('div', (props) => expandStyles(
+const StyledDivGapless = styled.div((props) => expandStyles(
   'd/flex',
   'fWrap/wrap',
   'mLeft/0',
@@ -90,7 +90,7 @@ const StyledDivGapless = styled('div', (props) => expandStyles(
 ))
 
 
-const StyledDivGaps = styled(StyledDivGapless, expandStyles(
+const StyledDivGaps = styled(StyledDivGapless)(expandStyles(
   breakpointsMapAndMerge(makeGutterStylesForBreakpoint),
 ))
 

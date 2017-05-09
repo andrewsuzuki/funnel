@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { styled, expandStyles } from '../../utils'
 
 
-const Section = styled('section', expandStyles(
+const Section = styled.section(expandStyles(
   'fullWidth',
 
   'pTop/3rem',

@@ -1,7 +1,7 @@
 import { styled, expandStyles } from '../../utils'
 
 
-const FieldHelp = styled('div', expandStyles(
+const FieldHelp = styled.div(expandStyles(
   'mTop/~fieldHelpMarginTop',
 
   'fs/~fieldHelpFontSize',

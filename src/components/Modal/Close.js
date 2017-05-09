@@ -5,7 +5,7 @@ import { styled, expandStyles } from '../../utils'
 import VanillaClose from '../Close'
 
 
-const Close = styled(VanillaClose, expandStyles(
+const Close = styled(VanillaClose)(expandStyles(
   'fixed',
   'square/30px',
   'bgc/transparent',

@@ -8,14 +8,14 @@ import Close from '../Close'
 import { styled, expandStyles, propTypeBrandOrDefaultOrLightOrDark } from '../../utils'
 
 
-const DismissableClose = styled(Close, expandStyles(
+const DismissableClose = styled(Close)(expandStyles(
   'absolute',
   't/0.5em',
   'r/0.5em',
 ))
 
 
-const BaseDiv = styled(BrandBackground, ({ hasClose }) => expandStyles(
+const BaseDiv = styled(BrandBackground)(({ hasClose }) => expandStyles(
   'relative',
   'pTop/~alertPaddingY',
   `pRight/~alertPaddingX${hasClose ? 'Close' : ''}`,

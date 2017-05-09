@@ -76,7 +76,7 @@ const parsedGuardFn = (parsed) => {
 }
 
 
-const StyledDivGapless = styled('div', (props) => expandStyles(
+const StyledDivGapless = styled.div((props) => expandStyles(
   'fGrow/1',
   'fShrink/1',
 
@@ -92,7 +92,7 @@ const StyledDivGapless = styled('div', (props) => expandStyles(
 ))
 
 
-const StyledDivGaps = styled(StyledDivGapless, expandStyles(
+const StyledDivGaps = styled(StyledDivGapless)(expandStyles(
   // Gutters
   breakpointsMapAndMerge(makeGutterStylesForBreakpoint),
 ))

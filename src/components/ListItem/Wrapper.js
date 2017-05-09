@@ -1,7 +1,7 @@
 import { styled, expandStyles } from '../../utils'
 
 
-export default styled('li', {
+export default styled.li({
   ...expandStyles(
     'relative',
     'd/flex',

@@ -28,7 +28,7 @@ const hoverStyles = expandStyles('bgc/rgba(10, 10, 10, 0.3)')
 const activeStyles = expandStyles('bgc/rgba(10, 10, 10, 0.4)')
 
 
-const Close = styled('button', ({ size }) => {
+const Close = styled.button(({ size }) => {
   const sideLength = sizeLookup[size] || 0
 
   return expandStyles(

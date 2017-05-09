@@ -13,7 +13,7 @@ import {
 import { makeInputStyles } from '../../mixins'
 
 
-const Wrapper = styled('div', ({ hasIconRight }) => expandStyles(
+const Wrapper = styled.div(({ hasIconRight }) => expandStyles(
   'relative',
 
   !hasIconRight && {
@@ -41,7 +41,7 @@ const Wrapper = styled('div', ({ hasIconRight }) => expandStyles(
 ))
 
 
-const StyledBaseSelect = styled('select', (props) => expandStyles(
+const StyledBaseSelect = styled.select((props) => expandStyles(
   makeInputStyles(props),
   `w/${props.expanded ? '100%' : 'auto'}`, // override input style maybe (100%)
 ))

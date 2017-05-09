@@ -204,7 +204,7 @@ function makeButtonLinkStyles({ focus, active, disabled }) {
   )
 }
 
-const StyledButton = styled('button', ({ size, brand, link, outline, focus, active, disabled }) => {
+const StyledButton = styled.button(({ size, brand, link, outline, focus, active, disabled }) => {
   const branding = link
     ? makeButtonLinkStyles({ focus, active, disabled })
     : (outline ? buttonBrandOutlined : buttonBrand)(brand, { focus, active, disabled })
@@ -235,7 +235,7 @@ const StyledButton = styled('button', ({ size, brand, link, outline, focus, acti
 })
 
 
-const ButtonInGroup = styled(StyledButton, ({ isFirstInGroup, isLastInGroup }) =>
+const ButtonInGroup = styled(StyledButton)(({ isFirstInGroup, isLastInGroup }) =>
   expandStyles(
     'relative',
 

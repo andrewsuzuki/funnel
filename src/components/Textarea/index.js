@@ -13,7 +13,7 @@ import {
 import { makeInputStyles } from '../../mixins'
 
 
-const Textarea = styled('textarea', (props) => expandStyles(
+const Textarea = styled.textarea((props) => expandStyles(
   makeInputStyles(props),
   'h/auto',
 ))
