@@ -38,8 +38,8 @@ const Wrapper = styled.div(({ hasIconRight }, t) => ({
 }))
 
 
-const StyledBaseSelect = styled.select((props) => ({
-  ...makeInputStyles(props),
+const StyledBaseSelect = styled.select((props, t) => ({
+  ...makeInputStyles(props, t),
   width: props.expanded ? '100%' : 'auto', // override input style maybe (100%)
 }))
 

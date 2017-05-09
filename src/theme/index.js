@@ -159,9 +159,9 @@ theme.inputBorderRadiusNormal = theme.borderRadiusNormal
 theme.inputBorderRadiusSmall = theme.borderRadiusSmall
 theme.inputBorderRadiusLarge = theme.borderRadiusLarge
 
-theme.inputBgc = theme.white
-theme.inputBgcFocus = theme.inputBgc
-theme.inputBgcDisabled = theme.grayLightest
+theme.inputBackgroundColor = theme.white
+theme.inputBackgroundColorFocus = theme.inputBackgroundColor
+theme.inputBackgroundColorDisabled = theme.grayLightest
 
 theme.inputColor = theme.gray
 theme.inputColorFocus = theme.inputColor

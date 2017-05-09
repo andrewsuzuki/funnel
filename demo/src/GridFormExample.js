@@ -9,6 +9,7 @@ import {
   Field,
   Label,
   Control,
+  TextInput,
   RadioSet,
   Tile,
   A,
@@ -20,6 +21,12 @@ const GridFormExample = () =>
       <Row>
         <Column tablet="one-half">
           <H2>Contact</H2>
+          <Field horizontal size="large">
+            <Label>Full name</Label>
+            <Control>
+              <TextInput connectRootId />
+            </Control>
+          </Field>
           <Field horizontal>
             <Label>Choose one</Label>
             <Control>

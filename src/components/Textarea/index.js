@@ -4,7 +4,6 @@ import canConnectField from '../Field/canConnectField'
 
 import {
   styled,
-  expandStyles,
   propTypeBrand,
   propTypeSize,
   propTypeFieldMeta,
@@ -13,10 +12,10 @@ import {
 import { makeInputStyles } from '../../mixins'
 
 
-const Textarea = styled.textarea((props) => expandStyles(
-  makeInputStyles(props),
-  'h/auto',
-))
+const Textarea = styled.textarea((props, t) => ({
+  ...makeInputStyles(props, t),
+  height: 'auto',
+}))
 
 Textarea.propTypes = {
   brand: propTypeBrand,
