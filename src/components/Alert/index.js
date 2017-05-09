@@ -5,26 +5,28 @@ import BrandBackground from '../BrandBackground'
 
 import Close from '../Close'
 
-import { styled, expandStyles, propTypeBrandOrDefaultOrLightOrDark } from '../../utils'
+import { styled, propTypeBrandOrDefaultOrLightOrDark } from '../../utils'
+
+import * as mixins from '../../mixins'
 
 
-const DismissableClose = styled(Close)(expandStyles(
-  'absolute',
-  't/0.5em',
-  'r/0.5em',
-))
+const DismissableClose = styled(Close)({
+  position: 'absolute',
+  top: '0.5em',
+  right: '0.5em',
+})
 
 
-const BaseDiv = styled(BrandBackground)(({ hasClose }) => expandStyles(
-  'relative',
-  'pTop/~alertPaddingY',
-  `pRight/~alertPaddingX${hasClose ? 'Close' : ''}`,
-  'pBottom/~alertPaddingY',
-  'pLeft/~alertPaddingX',
-  'mBottom/~alertMarginBottom',
-  '!radius/~alertBorderRadius',
-  'lh/~alertLineHeight',
-))
+const BaseDiv = styled(BrandBackground)(({ hasClose }, t) => ({
+  position: 'relative',
+  paddingTop: t.alertPaddingY,
+  paddingRight: t[hasClose ? 'alertPaddingXClose' : 'alertPaddingX'],
+  paddingBottom: t.alertPaddingY,
+  paddingLeft: t.alertPaddingX,
+  marginBottom: t.alertMarginBottom,
+  lineHeight: t.alertLineHeight,
+  ...mixins.borderRadiusIfEnabled(t.alertBorderRadius),
+}))
 
 BaseDiv.propTypes = {
   hasClose: PropTypes.bool,

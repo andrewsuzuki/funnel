@@ -3,20 +3,13 @@
  */
 
 
-import React from 'react'
 import PropTypes from 'prop-types'
 import color from 'color'
 
 import {
   styled,
-  expandStyles,
   propTypeBrandOrDefaultOrLightOrDark,
 } from '../../utils'
-
-import { themeValue } from '../../mixins'
-
-
-const Wrapper = styled.div(({ brandStyles }) => expandStyles(...brandStyles))
 
 
 const generateGradientColor = (baseColor, rotate, saturate, darken) =>
@@ -28,48 +21,45 @@ const generateGradientColor = (baseColor, rotate, saturate, darken) =>
     .string()
 
 
-const boldGradientStyle = (baseThemeColor) => {
-  const baseColor = themeValue(baseThemeColor)
-
+const boldGradientStyle = (baseColor) => {
   const gradientTopLeft = generateGradientColor(baseColor, -10, 0.1, 0.1)
   const gradientBottomRight = generateGradientColor(baseColor, 10, 0.05, 0.05)
 
-  return `bgi/linear-gradient(141deg, ${gradientTopLeft} 0%, \
+  return `linear-gradient(141deg, ${gradientTopLeft} 0%, \
 ${baseColor} 71%, ${gradientBottomRight} 100%)`
 }
 
 
 const normalBrandMap = {
-  default: ['bgc/~white', 'c/~textColor'],
-  light: ['bgc/~grayLightest', 'c/~textColor'],
-  dark: ['bgc/~grayDark', 'c/~white'],
-  primary: ['bgc/~brandPrimary', 'c/~white'],
-  success: ['bgc/~brandSuccess', 'c/~white'],
-  info: ['bgc/~brandInfo', 'c/~white'],
-  warning: ['bgc/~brandWarning', 'c/~white'],
-  danger: ['bgc/~brandDanger', 'c/~white'],
+  default: ['white', 'textColor'],
+  light: ['grayLightest', 'textColor'],
+  dark: ['grayDark', 'white'],
+  primary: ['brandPrimary', 'white'],
+  success: ['brandSuccess', 'white'],
+  info: ['brandInfo', 'white'],
+  warning: ['brandWarning', 'white'],
+  danger: ['brandDanger', 'white'],
 }
 
 
 const boldBrandMap = {
-  default: [boldGradientStyle('white'), 'c/~textColor'],
-  light: [boldGradientStyle('grayLightest'), 'c/~textColor'],
-  dark: [boldGradientStyle('gray'), 'c/~white'],
-  primary: [boldGradientStyle('brandPrimary'), 'c/~white'],
-  success: [boldGradientStyle('brandSuccess'), 'c/~white'],
-  info: [boldGradientStyle('brandInfo'), 'c/~white'],
-  warning: [boldGradientStyle('brandWarning'), 'c/~white'],
-  danger: [boldGradientStyle('brandDanger'), 'c/~white'],
+  ...normalBrandMap,
+  dark: ['gray', 'white'], // tweak 'dark' background color (lighter)
 }
 
 
-export default function BrandBackground({ bold, brand, children, ...restProps }) {
-  const brandStyles = bold
+const BrandBackground = styled.div(({ bold, brand, children }, t) => {
+  const [themeBackgroundColor, themeColor] = bold
     ? boldBrandMap[brand]
     : normalBrandMap[brand]
 
-  return React.createElement(Wrapper, { ...restProps, brandStyles }, children)
-}
+  return {
+    color: t[themeColor],
+    ...(bold
+      ? { backgroundImage: boldGradientStyle(t[themeBackgroundColor]) }
+      : { backgroundColor: themeBackgroundColor }),
+  }
+})
 
 BrandBackground.propTypes = {
   brand: propTypeBrandOrDefaultOrLightOrDark.isRequired, // has default
@@ -81,3 +71,5 @@ BrandBackground.defaultProps = {
   brand: 'default',
   bold: false,
 }
+
+export default BrandBackground
