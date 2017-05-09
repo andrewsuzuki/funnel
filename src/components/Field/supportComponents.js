@@ -1,18 +1,18 @@
 import PropTypes from 'prop-types'
 
-import { styled, expandStyles, propTypeBreakpoint } from '../../utils'
+import { styled, negate, halvePixels, propTypeBreakpoint } from '../../utils'
 
-import * as mixins from '../../mixins'
-
-
-export const FlexGrow = styled.div(expandStyles(
-  'fGrow/1',
-))
+import { breakpoint, breakpointTo } from '../../mixins'
 
 
-export const Marginal = styled.div(({ hasMarginBottom }) => expandStyles(
-  hasMarginBottom && 'mBottom/~fieldMarginBottom',
-))
+export const FlexGrow = styled.div({
+  flexGrow: 1,
+})
+
+
+export const Marginal = styled.div(({ hasMarginBottom }, t) => ({
+  ...hasMarginBottom && { marginBottom: t.fieldMarginBottom },
+}))
 
 Marginal.propTypes = {
   hasMarginBottom: PropTypes.bool.isRequired,
@@ -22,31 +22,30 @@ Marginal.propTypes = {
 // Horizontal
 
 
-export const HorizontalWrapper = styled.div(({ breakpoint }) =>
-  mixins.breakpoint(breakpoint, expandStyles(
-    'd/flex',
-    'fJustifyContent/flex-start',
-    'fAlignItems/flex-start',
-  )),
-)
+export const HorizontalWrapper = styled.div(({ breakpoint: bkpt }) =>
+  breakpoint(bkpt, {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  }))
 
 HorizontalWrapper.propTypes = {
   breakpoint: propTypeBreakpoint.isRequired,
 }
 
 
-export const HorizontalLeft = styled.div(({ breakpoint }) =>
-  mixins.breakpoint(breakpoint, expandStyles(
-    'w/16%',
+export const HorizontalLeft = styled.div(({ breakpoint: bkpt }, t) =>
+  breakpoint(bkpt, {
+    width: '16%',
 
     // 'fBasis/0',
-    'fGrow/1',
-    'fShrink/0',
+    flexGrow: 1,
+    flexShrink: 0,
 
-    'mRight/~fieldHorizontalGap',
+    marginRight: t.fieldHorizontalGap,
 
-    'tAlign/right',
-  )),
+    textAlign: 'right',
+  }),
 )
 
 HorizontalLeft.propTypes = {
@@ -54,13 +53,13 @@ HorizontalLeft.propTypes = {
 }
 
 
-export const HorizontalRight = styled.div(({ breakpoint }) =>
-  mixins.breakpoint(breakpoint, expandStyles(
-    'fBasis/0',
-    'fGrow/5',
-    'fShrink/1',
-  )),
-)
+export const HorizontalRight = styled.div(({ breakpoint: bkpt }) => ({
+  ...breakpoint(bkpt, {
+    flexBasis: 0,
+    flexGrow: 5,
+    flexShrink: 1,
+  }),
+}))
 
 HorizontalRight.propTypes = {
   breakpoint: propTypeBreakpoint.isRequired,
@@ -70,31 +69,31 @@ HorizontalRight.propTypes = {
 // Grouped
 
 
-export const GroupedRow = styled.div(({ breakpoint }) => expandStyles(
-  mixins.breakpoint(breakpoint, expandStyles(
-    'd/flex',
+export const GroupedRow = styled.div(({ breakpoint: bkpt }, t) => ({
+  ...breakpoint(bkpt, {
+    display: 'flex',
 
-    'mLeft/~fieldGroupedGutter~halvePixels~negate',
-    'mRight/~fieldGroupedGutter~halvePixels~negate',
-  )),
-))
+    marginLeft: negate(halvePixels(t.fieldGroupedGutter)),
+    marginRight: negate(halvePixels(t.fieldGroupedGutter)),
+  }),
+}))
 
 GroupedRow.propTypes = {
   breakpoint: propTypeBreakpoint.isRequired,
 }
 
 
-export const GroupedColumn = styled.div(({ breakpoint, expanded }) => expandStyles(
-  mixins.breakpoint(breakpoint, expandStyles(
-    expanded && expandStyles('fGrow/1', 'fShrink/0'),
+export const GroupedColumn = styled.div(({ breakpoint: bkpt, expanded }, t) => ({
+  ...breakpoint(bkpt, {
+    ...expanded && { flexGrow: 1, flexShrink: 0 },
 
-    'mLeft/~fieldGroupedGutter~halvePixels',
-    'mRight/~fieldGroupedGutter~halvePixels',
-  )),
-  mixins.breakpointTo(breakpoint, expandStyles(
-    'mBottom/~fieldMarginBottom',
-  )),
-))
+    marginLeft: halvePixels(t.fieldGroupedGutter),
+    marginRight: halvePixels(t.fieldGroupedGutter),
+  }),
+  ...breakpointTo(bkpt, {
+    marginBottom: t.fieldMarginBottom,
+  }),
+}))
 
 GroupedColumn.propTypes = {
   expanded: PropTypes.bool,
@@ -104,17 +103,14 @@ GroupedColumn.propTypes = {
 // Addons
 
 
-export const AddonsRow = styled.div(() => expandStyles(
-  'd/flex',
-))
-
-AddonsRow.propTypes = {
-}
+export const AddonsRow = styled.div({
+  display: 'flex',
+})
 
 
-export const AddonsColumn = styled.div(({ expanded }) => expandStyles(
-  expanded && expandStyles('fGrow/1', 'fShrink/0'),
-))
+export const AddonsColumn = styled.div(({ expanded }) => ({
+  ...expanded && { flexGrow: 1, flexShrink: 0 },
+}))
 
 AddonsColumn.propTypes = {
   expanded: PropTypes.bool,
