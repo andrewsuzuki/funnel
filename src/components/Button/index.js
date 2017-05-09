@@ -45,7 +45,7 @@ const StyledButton = styled.button((props, t) => {
 
     userSelect: 'none',
 
-    ...transitionIfEnabled(t.buttonTransition),
+    ...transitionIfEnabled(t, t.buttonTransition),
 
     ...sizing,
     ...branding,

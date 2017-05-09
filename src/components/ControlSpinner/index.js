@@ -8,7 +8,7 @@ import { square, borderRadiusIfEnabled } from '../../mixins'
 const Spinner = styled.div(({ sizeUnits }, t) => ({
   display: 'inline-block',
   ...square(sizeUnits),
-  ...borderRadiusIfEnabled(t.borderRadiusInfinite),
+  ...borderRadiusIfEnabled(t, t.borderRadiusInfinite),
   animation: 'spin 500ms infinite linear',
   border: '2px solid #dbdbdb',
   borderRightColor: 'transparent',

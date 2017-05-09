@@ -23,7 +23,7 @@ export default function stylesBrandNormal(t, brand, props) {
   const focusStyles = {
     outline: 0,
     textDecoration: 'none',
-    ...boxShadowIfEnabled(t.buttonFocusBoxShadow),
+    ...boxShadowIfEnabled(t, t.buttonFocusBoxShadow),
   }
 
   const activeStyles = {
@@ -31,7 +31,7 @@ export default function stylesBrandNormal(t, brand, props) {
     textDecoration: 'none',
     backgroundColor: darken(lubba('Bg'), 10),
     borderColor: darken(lubba('Border'), 12),
-    ...boxShadowIfEnabled(t.buttonActiveBoxShadow),
+    ...boxShadowIfEnabled(t, t.buttonActiveBoxShadow),
   }
 
   const disabledStyles = {
@@ -40,7 +40,7 @@ export default function stylesBrandNormal(t, brand, props) {
 
     color: lubba('Color'),
     backgroundColor: lubba('Bg'),
-    ...boxShadowIfEnabled('none'),
+    ...boxShadowIfEnabled(t, 'none'),
   }
 
   return {

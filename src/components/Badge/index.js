@@ -26,7 +26,7 @@ const BaseElement = styled(BrandBackground)((p, t) => ({
   wordWrap: 'nowrap',
   fontFamily: t.badgeFontFamily,
   fontWeight: t.badgeFontWeight,
-  ...borderRadiusIfEnabled(t.badgeBorderRadius),
+  ...borderRadiusIfEnabled(t, t.badgeBorderRadius),
 
   ...empty({
     display: 'none',

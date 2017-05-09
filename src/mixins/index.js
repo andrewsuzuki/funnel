@@ -7,8 +7,6 @@ import partial from 'lodash.partial'
 
 import theme from '../theme'
 
-import { capitalize } from '../utils'
-
 
 // Re-exports
 
@@ -17,15 +15,6 @@ export { makeInputStyles } from './inputs'
 
 
 // Mini-utils
-
-
-/**
- * Create a new empty object
- * @return {obj} a new empty object ({})
- */
-function createEmptyObject() {
-  return {}
-}
 
 
 /**
@@ -39,15 +28,16 @@ function makeBasicPropFn(name) {
 
 
 /**
- * Wrap a mixin/property-map function with a predicate,
+ * Wrap a mixin/property-map function with a theme-value predicate,
  * usually a theme enabler (ex. theme.enableShadows)
- * to return an empty object when called if pred===false
- * @param  {bool} pred
+ * to return an empty object when called if not enabled
+ * @param  {string} key theme key (theme[key] should resolve to a bool)
  * @param  {func} propFn
  * @return {func}
  */
-function wrapEnabler(pred, propFn) {
-  return pred ? propFn : createEmptyObject
+function wrapEnabler(key, propFn) {
+  return (theme, ...args) =>
+    (theme[key] ? propFn(...args) : {})
 }
 
 
@@ -55,41 +45,8 @@ function wrapEnabler(pred, propFn) {
 // Convert values or attribute maps to CSS attribute value strings
 
 
-/**
- * Look up a theme value
- * @param  {string} id id, optionally using '.' to
- *                     look up object-nested values
- *                     (ex. 'gridBreakpoints.mobile')
- * @return {mixed}     theme value
- */
-export function themeValue(id) {
-  const parts = id.split('.')
-  return parts.reduce(
-    (o, part) => {
-      if (typeof o !== 'object') {
-        return undefined
-      }
-
-      const result = o[part]
-
-      if (typeof result === 'undefined') {
-        return undefined
-      }
-
-      return result
-    },
-    theme,
-  )
-}
-
-
 export function gridPercentageValue(n) {
   return `${(n / theme.gridColumns) * 100}%`
-}
-
-
-export function brandValue(brand) {
-  return themeValue(`brand${capitalize(brand)}`)
 }
 
 
@@ -191,14 +148,6 @@ export function square(x) {
 
 
 export const color = makeBasicPropFn('color')
-
-export function standardColor(color = 'text') {
-  return { color: theme.palette[color] || rgbValue(0, 0, 0) }
-}
-
-export function standardBackgroundColor(color = 'background') {
-  return { backgroundColor: theme.palette[color] || rgbValue(255, 255, 255) }
-}
 
 
 // Background
@@ -318,7 +267,7 @@ export function borderRadius(...args) {
 }
 
 
-export const borderRadiusIfEnabled = wrapEnabler(theme.enableRounded, borderRadius)
+export const borderRadiusIfEnabled = wrapEnabler('enableRounded', borderRadius)
 
 
 // Visibility, opacity
@@ -368,7 +317,7 @@ export const textDecoration = makeBasicPropFn('textDecoration')
 export const textAlign = makeBasicPropFn('textAlign')
 export const textShadow = makeBasicPropFn('textShadow')
 
-export const textShadowIfEnabled = wrapEnabler(theme.enableShadows, textShadow)
+export const textShadowIfEnabled = wrapEnabler('enableShadows', textShadow)
 
 
 // Misc
@@ -380,7 +329,7 @@ export const cursor = makeBasicPropFn('cursor')
 export const verticalAlign = makeBasicPropFn('verticalAlign')
 export const boxShadow = makeBasicPropFn('boxShadow')
 
-export const boxShadowIfEnabled = wrapEnabler(theme.enableShadows, boxShadow)
+export const boxShadowIfEnabled = wrapEnabler('enableShadows', boxShadow)
 
 
 // Breakpoints
@@ -446,4 +395,4 @@ export function breakpointOnly(device, styles) {
 
 export const transition = makeBasicPropFn('transition')
 
-export const transitionIfEnabled = wrapEnabler(theme.enableTransitions, transition)
+export const transitionIfEnabled = wrapEnabler('enableTransitions', transition)

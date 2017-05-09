@@ -54,7 +54,6 @@
     "glamorous": "^3.13.3",
     "invariant": "^2.2.2",
     "lodash.get": "^4.4.2",
-    "lodash.isplainobject": "^4.0.6",
     "lodash.memoize": "^4.1.2",
     "lodash.merge": "^4.6.0",
     "lodash.omit": "^4.5.0",

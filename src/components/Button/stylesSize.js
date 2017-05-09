@@ -8,6 +8,6 @@ export default (t, size) => {
 
   return {
     fontSize: t[`buttonFontSize${sizeCap}`],
-    ...borderRadiusIfEnabled(t[`buttonBorderRadius${sizeCap}`]),
+    ...borderRadiusIfEnabled(t, t[`buttonBorderRadius${sizeCap}`]),
   }
 }

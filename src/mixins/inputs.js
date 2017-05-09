@@ -45,11 +45,11 @@ const makeBaseInputStyles = (t) => ({
   borderColor: t.inputBorderColor,
 
   // NOTE if not applied, iOS defaults to border radius
-  ...borderRadiusIfEnabled(t.inputBorderRadiusNormal), // overridden by size
+  ...borderRadiusIfEnabled(t, t.inputBorderRadiusNormal), // overridden by size
 
-  ...transitionIfEnabled(t.inputTransition),
+  ...transitionIfEnabled(t, t.inputTransition),
 
-  ...boxShadowIfEnabled(t.inputBoxShadow),
+  ...boxShadowIfEnabled(t, t.inputBoxShadow),
 
   // Unstyle the caret on `<select>`s
   appearance: 'none',
@@ -85,7 +85,7 @@ export function makeInputStyles(props, t) {
     color: t.inputColorFocus,
     backgroundColor: t.inputBackgroundColorFocus,
     borderColor: t.inputBorderColorFocus,
-    ...boxShadowIfEnabled(t.inputBoxShadowFocus),
+    ...boxShadowIfEnabled(t, t.inputBoxShadowFocus),
   }
 
   return merge(
@@ -108,7 +108,7 @@ export function makeInputStyles(props, t) {
       // Size
       ...props.size && {
         fontSize: t[`inputFontSize${capitalize(props.size)}`],
-        ...borderRadiusIfEnabled(t[`inputBorderRadius${capitalize(props.size)}`]),
+        ...borderRadiusIfEnabled(t, t[`inputBorderRadius${capitalize(props.size)}`]),
       },
     },
     {

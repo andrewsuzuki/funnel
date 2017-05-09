@@ -24,7 +24,7 @@ export default function stylesBrandOutlined(t, brand, props) {
   const focusStyles = {
     outline: 0,
     textDecoration: 'none',
-    ...boxShadowIfEnabled(lubba('FocusBoxShadow')),
+    ...boxShadowIfEnabled(t, lubba('FocusBoxShadow')),
   }
 
   const activeStyles = {
@@ -41,7 +41,7 @@ export default function stylesBrandOutlined(t, brand, props) {
 
     color: lubba('Bg'),
     backgroundColor: 'transparent',
-    ...boxShadowIfEnabled('none'),
+    ...boxShadowIfEnabled(t, 'none'),
   }
 
   return {

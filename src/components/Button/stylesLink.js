@@ -11,7 +11,7 @@ export default function stylesLink(t, props) {
     ...borderAndBg,
     color: t.linkColor,
     textDecoration: t.linkDecoration,
-    ...boxShadowIfEnabled('none'),
+    ...boxShadowIfEnabled(t, 'none'),
   }
 
   const hoverStyles = {
@@ -22,7 +22,7 @@ export default function stylesLink(t, props) {
 
   const activeStyles = {
     ...borderAndBg,
-    ...boxShadowIfEnabled('none'),
+    ...boxShadowIfEnabled(t, 'none'),
   }
 
   const focusStyles = {
@@ -35,7 +35,7 @@ export default function stylesLink(t, props) {
     opacity: 0.65,
     color: t.buttonLinkDisabledColor,
     textDecoration: t.linkDecoration,
-    ...boxShadowIfEnabled('none'),
+    ...boxShadowIfEnabled(t, 'none'),
   }
 
   return {

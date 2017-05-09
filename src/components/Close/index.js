@@ -40,7 +40,7 @@ const Close = styled.button(({ size }, t) => {
     fontSize: '1rem',
     verticalAlign: 'top',
     backgroundColor: 'rgba(10, 10, 10, 0.2)',
-    ...borderRadiusIfEnabled(t.borderRadiusInfinite),
+    ...borderRadiusIfEnabled(t, t.borderRadiusInfinite),
 
     userSelect: 'none',
     appearance: 'none',

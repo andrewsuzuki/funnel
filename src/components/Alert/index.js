@@ -25,7 +25,7 @@ const BaseDiv = styled(BrandBackground)(({ hasClose }, t) => ({
   paddingLeft: t.alertPaddingX,
   marginBottom: t.alertMarginBottom,
   lineHeight: t.alertLineHeight,
-  ...borderRadiusIfEnabled(t.alertBorderRadius),
+  ...borderRadiusIfEnabled(t, t.alertBorderRadius),
 }))
 
 BaseDiv.propTypes = {

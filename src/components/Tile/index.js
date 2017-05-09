@@ -24,8 +24,8 @@ const Tile = styled(BrandBackground)(({ hasRadius, hasShadow }, t) => ({
   paddingBottom: t.tilePaddingY,
   paddingLeft: t.tilePaddingX,
   marginBottom: t.tileMarginBottom,
-  ...borderRadiusIfEnabled(t.tileBorderRadius),
-  ...boxShadowIfEnabled(t.tileBoxShadow),
+  ...borderRadiusIfEnabled(t, t.tileBorderRadius),
+  ...boxShadowIfEnabled(t, t.tileBoxShadow),
 }))
 
 
