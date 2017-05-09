@@ -1,8 +1,8 @@
-import { styled, expandStyles } from '../../utils'
+import { styled } from '../../utils'
 
 import SpanBlock from '../SpanBlock'
 
 
-export default styled(SpanBlock)(expandStyles(
-  'fs/1.5rem',
-))
+export default styled(SpanBlock)({
+  fontSize: '1.5rem',
+})

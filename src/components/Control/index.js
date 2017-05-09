@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import invariant from 'invariant'
 
-import { styled, expandStyles } from '../../utils'
+import { styled } from '../../utils'
 
 import AtLeft from '../AtLeft'
 import AtRight from '../AtRight'
@@ -11,28 +11,31 @@ import Icon from '../Icon'
 import ControlSpinner from '../ControlSpinner'
 
 
-const ControlWrapper = styled.div(expandStyles(
-  'relative',
-))
+const ControlWrapper = styled.div({
+  position: 'relative',
+})
 
 
-const ControlLeft = styled.div(expandStyles(
-  'absolute',
-  'atTop',
-  'atLeft',
+const ControlLeft = styled.div((p, t) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 
-  'h/100%',
-  'w/~inputPaddingXHasIcon',
+  height: '100%',
+  width: t.inputPaddingXHasIcon,
 
-  'd/flex',
-  'fAlignItems/center',
-  'fJustifyContent/center',
-))
+  position: 'absolute',
+  top: 0,
 
-const ControlRight = styled(ControlLeft)(expandStyles(
-  'l/auto',
-  'r/0',
-))
+  // overridden by ControlRight
+  left: 0,
+  right: 'auto',
+}))
+
+const ControlRight = styled(ControlLeft)({
+  left: 'auto',
+  right: 0,
+})
 
 
 const validChildPositions = [AtLeft, AtRight]

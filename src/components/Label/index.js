@@ -2,34 +2,33 @@ import PropTypes from 'prop-types'
 
 import canConnectField from '../Field/canConnectField'
 
-import { styled, expandStyles, propTypeSize, propTypeColumnBreakpoint } from '../../utils'
+import { styled, propTypeSize, propTypeColumnBreakpoint } from '../../utils'
 
 import { breakpoint } from '../../mixins'
 
 
-const sizeMap = {
-  normal: 'fs/~inputFontSizeNormal',
-  small: 'fs/~inputFontSizeSmall',
-  large: 'fs/~inputFontSizeLarge',
+const sizeToThemeFontSizeMap = {
+  normal: 'inputFontSizeNormal',
+  small: 'inputFontSizeSmall',
+  large: 'inputFontSizeLarge',
 }
 
 
-const Label = styled.label(({ size, horizontal, disabled }) => expandStyles(
-  'd/inline-block',
-  'mBottom/~labelMarginBottom',
-
-  'fw/~fontWeightBold',
+const Label = styled.label(({ size, horizontal, disabled }, t) => ({
+  display: 'inline-block',
+  marginBottom: t.labelMarginBottom,
+  fontWeight: t.fontWeightBold,
 
   // Size
-  sizeMap[size],
+  fontSize: t[sizeToThemeFontSizeMap[size]],
 
   // Horizontal
   // Add padding-top sized to match input font size
-  horizontal && breakpoint(horizontal === true ? 'tablet' : horizontal, expandStyles('pTop/~inputPaddingY')),
+  ...horizontal && breakpoint(horizontal === true ? 'tablet' : horizontal, { paddingTop: t.inputPaddingY }),
 
   // Disabled
-  disabled && 'c/~grayLight',
-))
+  ...disabled && { color: t.grayLight },
+}))
 
 Label.propTypes = {
   size: propTypeSize.isRequired, // has default

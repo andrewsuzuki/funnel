@@ -8,7 +8,6 @@ import PropTypes from 'prop-types'
 
 import {
   styled,
-  expandStyles,
   propTypeSize,
   propTypeBrandOrDefaultOrLightOrDark,
 } from '../../utils'
@@ -17,17 +16,17 @@ import BrandBackground from '../BrandBackground'
 import Container from '../Container'
 
 
-const WrapperWithBackground = styled(BrandBackground)(expandStyles(
-  'd/flex',
-  'fAlignItems/center',
-))
+const WrapperWithBackground = styled(BrandBackground)({
+  display: 'flex',
+  alignItems: 'center',
+})
 
 
-const VerticalPadding = styled.div(({ amount }) => expandStyles(
-  'fullWidth',
-  `pTop/${amount}`,
-  `pBottom/${amount}`,
-))
+const VerticalPadding = styled.div(({ amount }) => ({
+  width: '100%',
+  paddingTop: amount,
+  paddingBottom: amount,
+}))
 
 
 const sizePaddingMap = {
