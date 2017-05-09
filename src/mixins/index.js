@@ -5,8 +5,6 @@
 import memoize from 'lodash.memoize'
 import partial from 'lodash.partial'
 
-import theme from '../theme'
-
 
 // Re-exports
 
@@ -335,10 +333,6 @@ export const boxShadowIfEnabled = wrapEnabler('enableShadows', boxShadow)
 // Breakpoints
 
 
-export const breakpointToMediaRange = memoize((device) =>
-  [theme.gridBreakpoints[device], null])
-
-
 // mini-util
 const decrementPixelValue = memoize((x) =>
   `${parseFloat(x) - 1}px`)
@@ -353,8 +347,12 @@ export const nextBreakpointLookup = {
 }
 
 
-export const breakpointToMediaRangeMax = memoize((device) =>
-  [
+export const breakpointToMediaRange = (theme, device) =>
+  ([theme.gridBreakpoints[device], null])
+
+
+export const breakpointToMediaRangeMax = (theme, device) =>
+  ([
     null,
     device === 'widescreen'
       ? null
@@ -362,31 +360,31 @@ export const breakpointToMediaRangeMax = memoize((device) =>
   ])
 
 
-export const breakpointToMediaRangeTo = memoize((device) =>
-  [null, decrementPixelValue(theme.gridBreakpoints[device])])
+export const breakpointToMediaRangeTo = (theme, device) =>
+  ([null, decrementPixelValue(theme.gridBreakpoints[device])])
 
 
-export const breakpointToMediaRangeOnly = memoize((device) =>
-  [breakpointToMediaRange(device)[0], breakpointToMediaRangeMax(device)[1]])
+export const breakpointToMediaRangeOnly = (theme, device) =>
+  ([breakpointToMediaRange(theme, device)[0], breakpointToMediaRangeMax(theme, device)[1]])
 
 
-export function breakpoint(device, styles) {
-  return mediaWidthRange(...breakpointToMediaRange(device), styles)
+export function breakpoint(theme, device, styles) {
+  return mediaWidthRange(...breakpointToMediaRange(theme, device), styles)
 }
 
 
-export function breakpointMax(device, styles) {
-  return mediaWidthRange(...breakpointToMediaRangeMax(device), styles)
+export function breakpointMax(theme, device, styles) {
+  return mediaWidthRange(...breakpointToMediaRangeMax(theme, device), styles)
 }
 
 
-export function breakpointTo(device, styles) {
-  return mediaWidthRange(...breakpointToMediaRangeTo(device), styles)
+export function breakpointTo(theme, device, styles) {
+  return mediaWidthRange(...breakpointToMediaRangeTo(theme, device), styles)
 }
 
 
-export function breakpointOnly(device, styles) {
-  return mediaWidthRange(...breakpointToMediaRangeOnly(device), styles)
+export function breakpointOnly(theme, device, styles) {
+  return mediaWidthRange(...breakpointToMediaRangeOnly(theme, device), styles)
 }
 
 

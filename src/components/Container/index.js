@@ -8,14 +8,14 @@ import { breakpointOnly } from '../../mixins'
 
 
 const makeGutterStylesForBreakpoint = (t, breakpoint) =>
-  breakpointOnly(breakpoint, {
+  breakpointOnly(t, breakpoint, {
     paddingLeft: halvePixels(t.gridGutters[breakpoint]),
     paddingRight: halvePixels(t.gridGutters[breakpoint]),
   })
 
 
 const makeMaxWidthStylesForBreakpoint = (t, breakpoint) =>
-  breakpointOnly(breakpoint, {
+  breakpointOnly(t, breakpoint, {
     width: t.gridContainerMaxWidths[breakpoint],
     maxWidth: '100%',
   })

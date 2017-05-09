@@ -18,8 +18,8 @@ import AtLeft from '../AtLeft'
 import AtRight from '../AtRight'
 
 
-const LevelWrapper = styled.div(({ breakpoint: bkpt, alignItems }) => ({
-  ...breakpoint(bkpt, {
+const LevelWrapper = styled.div(({ breakpoint: bkpt, alignItems }, t) => ({
+  ...breakpoint(t, bkpt, {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems,
@@ -33,13 +33,13 @@ LevelWrapper.propTypes = {
 
 
 // Vertical spacer under breakpoint, horizontal spacer at/above breakpoint
-const LevelSpacer = styled.div(({ breakpoint: bkpt }) => ({
+const LevelSpacer = styled.div(({ breakpoint: bkpt }, t) => ({
   flexGrow: 0,
   flexShrink: 0,
   height: '1.5rem',
   width: '1px',
 
-  ...breakpoint(bkpt, {
+  ...breakpoint(t, bkpt, {
     height: '1px',
     width: '1.5rem',
   }),
@@ -50,12 +50,12 @@ LevelSpacer.propTypes = {
 }
 
 
-const LevelCenter = styled.div(({ breakpoint: bkpt }) => ({
+const LevelCenter = styled.div(({ breakpoint: bkpt }, t) => ({
   // 'fBasis/auto',
   // 'fGrow/0',
   // 'fShrink/0',
 
-  ...breakpoint(bkpt, { display: 'flex' }),
+  ...breakpoint(t, bkpt, { display: 'flex' }),
 
   alignItems: 'center',
 

@@ -33,7 +33,7 @@ import Column from '../Column'
 
 
 const makeGutterStylesForBreakpoint = (t, breakpoint) =>
-  breakpointOnly(breakpoint, {
+  breakpointOnly(t, breakpoint, {
     marginLeft: negate(halvePixels(t.gridGutters[breakpoint])),
     marginRight: negate(halvePixels(t.gridGutters[breakpoint])),
   })
@@ -84,14 +84,14 @@ const specStringParser = breakpointsCreateSpecStringParser(specResolver)
 const parsedGuardFn = (parsed) => parsed // pass
 
 
-const StyledDivGapless = styled.div((props, t) => ({
+const StyledDivGapless = styled.div((props, theme) => ({
   display: 'flex',
   flexWrap: 'wrap',
   marginLeft: 0,
   marginRight: 0,
 
   ...breakpointsCreateBreakpointsForPropSpecStrings(
-    t,
+    theme,
     props,
     propGuardFn, // pass
     specStringParser, // our row breakpoint spec string parser

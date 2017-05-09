@@ -11,7 +11,7 @@ import Column from '../Column'
 import Box from '../Box'
 
 
-const Fence = styled.div({
+const Fence = styled.div((p, t) => ({
   position: 'relative',
   marginTop: '60px',
   marginRight: '20px',
@@ -22,11 +22,11 @@ const Fence = styled.div({
   overflowY: 'auto',
   overflowX: 'auto',
 
-  ...breakpoint('tablet', {
+  ...breakpoint(t, 'tablet', {
     marginTop: '30px',
     maxHeight: 'calc(100vh - 60px)',
   }),
-})
+}))
 
 
 export default function ModalContent({ column, boxed, children }) {

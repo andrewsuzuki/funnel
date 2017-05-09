@@ -101,9 +101,7 @@ export function breakpointsCreateBreakpointsForPropSpecStrings(
 
       const parsedGuarded = parsedGuardFn(parsed)
 
-      // !!!
-      // TODO feed theme to breakpoint
-      return breakpoint(bkpt, parsedGuarded)
+      return breakpoint(theme, bkpt, parsedGuarded)
     }
 
     return {}

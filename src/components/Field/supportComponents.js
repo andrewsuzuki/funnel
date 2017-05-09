@@ -22,8 +22,8 @@ Marginal.propTypes = {
 // Horizontal
 
 
-export const HorizontalWrapper = styled.div(({ breakpoint: bkpt }) =>
-  breakpoint(bkpt, {
+export const HorizontalWrapper = styled.div(({ breakpoint: bkpt }, t) =>
+  breakpoint(t, bkpt, {
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
@@ -35,7 +35,7 @@ HorizontalWrapper.propTypes = {
 
 
 export const HorizontalLeft = styled.div(({ breakpoint: bkpt }, t) =>
-  breakpoint(bkpt, {
+  breakpoint(t, bkpt, {
     width: '16%',
 
     // 'fBasis/0',
@@ -53,8 +53,8 @@ HorizontalLeft.propTypes = {
 }
 
 
-export const HorizontalRight = styled.div(({ breakpoint: bkpt }) => ({
-  ...breakpoint(bkpt, {
+export const HorizontalRight = styled.div(({ breakpoint: bkpt }, t) => ({
+  ...breakpoint(t, bkpt, {
     flexBasis: 0,
     flexGrow: 5,
     flexShrink: 1,
@@ -70,7 +70,7 @@ HorizontalRight.propTypes = {
 
 
 export const GroupedRow = styled.div(({ breakpoint: bkpt }, t) => ({
-  ...breakpoint(bkpt, {
+  ...breakpoint(t, bkpt, {
     display: 'flex',
 
     marginLeft: negate(halvePixels(t.fieldGroupedGutter)),
@@ -84,13 +84,13 @@ GroupedRow.propTypes = {
 
 
 export const GroupedColumn = styled.div(({ breakpoint: bkpt, expanded }, t) => ({
-  ...breakpoint(bkpt, {
+  ...breakpoint(t, bkpt, {
     ...expanded && { flexGrow: 1, flexShrink: 0 },
 
     marginLeft: halvePixels(t.fieldGroupedGutter),
     marginRight: halvePixels(t.fieldGroupedGutter),
   }),
-  ...breakpointTo(bkpt, {
+  ...breakpointTo(t, bkpt, {
     marginBottom: t.fieldMarginBottom,
   }),
 }))

@@ -19,7 +19,7 @@ const Container = styled.div((p, t) => ({
   zIndex: t.zIndices.modal,
   backgroundColor: t.modalBackgroundColor,
 
-  ...breakpoint('tablet', {
+  ...breakpoint(t, 'tablet', {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

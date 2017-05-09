@@ -24,7 +24,7 @@ const Label = styled.label(({ size, horizontal, disabled }, t) => ({
 
   // Horizontal
   // Add padding-top sized to match input font size
-  ...horizontal && breakpoint(horizontal === true ? 'tablet' : horizontal, { paddingTop: t.inputPaddingY }),
+  ...horizontal && breakpoint(t, horizontal === true ? 'tablet' : horizontal, { paddingTop: t.inputPaddingY }),
 
   // Disabled
   ...disabled && { color: t.grayLight },

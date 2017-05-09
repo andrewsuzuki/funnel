@@ -21,7 +21,7 @@ import {
 
 
 const makeGutterStylesForBreakpoint = (t, breakpoint) =>
-  breakpointOnly(breakpoint, {
+  breakpointOnly(t, breakpoint, {
     paddingLeft: halvePixels(t.gridGutters[breakpoint]),
     paddingRight: halvePixels(t.gridGutters[breakpoint]),
   })
