@@ -6,10 +6,7 @@
 import PropTypes from 'prop-types'
 import color from 'color'
 
-import {
-  styled,
-  propTypeBrandOrDefaultOrLightOrDark,
-} from '../../utils'
+import { styled, propTypeBrandOrDefaultOrLightOrDark } from '../../utils'
 
 
 const generateGradientColor = (baseColor, rotate, saturate, darken) =>

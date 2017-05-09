@@ -2,16 +2,18 @@
  * A link to a certain page, an anchor tag
  */
 
-import { styled, darken } from '../../utils'
+import { styled } from '../../utils'
 
-import * as mixins from '../../mixins'
+import { hover } from '../../mixins'
 
 
 export default styled.a((p, t) => ({
   cursor: 'pointer',
-  color: t.brandPrimary,
+  color: t.linkColor,
+  textDecoration: t.linkDecoration,
 
-  ...mixins.hover({
-    color: darken(t.brandPrimary, 10),
+  ...hover({
+    color: t.linkHoverColor,
+    textDecoration: t.linkHoverDecoration,
   }),
 }))

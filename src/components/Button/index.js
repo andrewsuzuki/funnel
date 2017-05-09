@@ -1,256 +1,71 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import partial from 'lodash.partial'
 
-import {
-  styled,
-  expandStyles,
-  propTypeSize,
-  propTypeBrandOrDefault,
-  capitalize,
-} from '../../utils'
+import { styled, propTypeSize, propTypeBrandOrDefault, negate } from '../../utils'
+
+import { transitionIfEnabled } from '../../mixins'
 
 import canConnectField from '../Field/canConnectField'
 
-
-function buttonSizeWithThemeValues(fontSize, borderRadius) {
-  return expandStyles(
-    `fs/~${fontSize}`,
-    `!radius/~${borderRadius}`,
-  )
-}
+import stylesSize from './stylesSize'
+import stylesBrandNormal from './stylesBrandNormal'
+import stylesBrandOutlined from './stylesBrandOutlined'
+import stylesLink from './stylesLink'
 
 
-const sizes = {
-  normal: buttonSizeWithThemeValues(
-    'buttonFontSizeNormal',
-    'buttonBorderRadiusNormal',
-  ),
-  small: buttonSizeWithThemeValues(
-    'buttonFontSizeSmall',
-    'buttonBorderRadiusSmall',
-  ),
-  large: buttonSizeWithThemeValues(
-    'buttonFontSizeLarge',
-    'buttonBorderRadiusLarge',
-  ),
-}
+const StyledButton = styled.button((props, t) => {
+  const { size, brand, link, outlined, focus, active, disabled } = props
 
+  const branding = (() => {
+    if (link) {
+      return partial(stylesLink, t)
+    }
 
-function buttonBrand(brand, { focus, active, disabled }) {
-  const brandCapitalized = capitalize(brand)
+    return partial(outlined ? stylesBrandOutlined : stylesBrandNormal, t, brand)
+  })()({ focus, active, disabled })
 
-  const hoverStyles = expandStyles(
-    'tDecor/none',
-    `bgc/~button${brandCapitalized}Bg~dark10`,
-    `bordC/~button${brandCapitalized}Border~dark12`,
-  )
+  const sizing = stylesSize(t, size)
 
-  const focusStyles = expandStyles(
-    'noOutline', // custom outline (below)
-    'tDecor/none',
-    `!bShadow/~button${brandCapitalized}FocusBoxShadow`,
-  )
+  return {
+    cursor: 'pointer',
+    display: 'inline-block',
+    fontWeight: t.buttonFontWeight,
+    textAlign: 'center',
+    wordWrap: 'nowrap',
+    verticalAlign: 'middle',
+    borderWidth: t.buttonBorderWidth,
+    borderStyle: 'solid',
+    borderColor: 'transparent',
 
-  const activeStyles = expandStyles(
-    'noOutline', // custom outline (below)
-    `bgc/~button${brandCapitalized}Bg~dark10`,
-    `bordC/~button${brandCapitalized}Border~dark12`,
-    '!bShadow/~buttonActiveBoxShadow',
-  )
+    paddingTop: t.buttonPaddingY,
+    paddingRight: t.buttonPaddingX,
+    paddingBottom: t.buttonPaddingY,
+    paddingLeft: t.buttonPaddingX,
 
-  const disabledStyles = expandStyles(
-    'cursor/~cursorDisabled',
-    'o/0.65',
-    '!bShadow/none',
-    `c/~button${brandCapitalized}Color`,
-    `bgc/~button${brandCapitalized}Bg`,
-  )
+    userSelect: 'none',
 
-  return expandStyles(
-    `c/~button${brandCapitalized}Color`,
-    `bgc/~button${brandCapitalized}Bg`,
-    `bordC/~button${brandCapitalized}Border`,
+    ...transitionIfEnabled(t.buttonTransition),
 
-    focus && focusStyles,
-    active && activeStyles,
-    disabled && disabledStyles,
-
-    {
-      ':hover': hoverStyles,
-      ':focus': focusStyles,
-      ':active': activeStyles,
-      ':disabled': disabledStyles,
-    },
-  )
-}
-
-
-function buttonBrandOutlined(brand, { focus, active, disabled }) {
-  const brandCapitalized = capitalize(brand)
-
-  const hoverStyles = expandStyles(
-    'tDecor/none',
-    `c/~button${brandCapitalized}Color`,
-    `bgc/~button${brandCapitalized}Bg`,
-    `bordC/~button${brandCapitalized}Bg`,
-  )
-
-  const focusStyles = expandStyles(
-    'noOutline', // custom outline (below)
-    'tDecor/none',
-    `!bShadow/~button${brandCapitalized}FocusBoxShadow`,
-  )
-
-  const activeStyles = expandStyles(
-    'tDecor/none',
-    `c/~button${brandCapitalized}Color`,
-    `bgc/~button${brandCapitalized}Bg`,
-    `bordC/~button${brandCapitalized}Bg`,
-  )
-
-  const disabledStyles = expandStyles(
-    'cursor/~cursorDisabled',
-    'o/0.65',
-    '!bShadow/none',
-    'bgc/transparent',
-    `c/~button${brandCapitalized}Bg`,
-  )
-
-  return expandStyles(
-    'bgc/transparent',
-    `c/~button${brandCapitalized}Bg`,
-    `bordC/~button${brandCapitalized}Bg`,
-
-    focus && focusStyles,
-    active && activeStyles,
-    disabled && disabledStyles,
-
-    {
-      ':hover': hoverStyles,
-      ':focus': focusStyles,
-      ':active': activeStyles,
-      ':disabled': disabledStyles,
-    },
-  )
-}
-
-
-function makeButtonLinkStyles({ focus, active, disabled }) {
-  const borderAndBg = expandStyles(
-    'bordC/transparent',
-    'bgc/transparent',
-  )
-
-  const baseStyles = expandStyles(
-    borderAndBg,
-    'c/~linkColor',
-    'tDecor/~linkDecoration',
-    '!bShadow/none',
-  )
-
-  const activeStyles = expandStyles(
-    borderAndBg,
-    '!bShadow/none',
-  )
-
-  const focusStyles = expandStyles(
-    borderAndBg,
-    'noOutline',
-    'c/~linkHoverColor',
-    'tDecor/~linkHoverDecoration',
-    '!bShadow/~buttonFocusBoxShadow',
-  )
-
-  const hoverStyles = expandStyles(
-    borderAndBg,
-    'c/~linkHoverColor',
-    'tDecor/~linkHoverDecoration',
-  )
-
-  const disabledStyles = expandStyles(
-    'cursor/~cursorDisabled',
-    'tDecor/~linkDecoration',
-    'o/0.65',
-    '!bShadow/none',
-    'c/~buttonLinkDisabledColor',
-
-    // TODO FIXME currently these can't be combined
-    // (they are merged into normal :hover and :focus)
-    // ':hover': expandStyles(
-    //   'tDecor/~linkDecoration',
-    //   'c/~buttonLinkDisabledColor',
-    // ),
-    // ':focus': expandStyles(
-    //   'noOutline',
-    //   'tDecor/~linkDecoration',
-    //   'c/~buttonLinkDisabledColor',
-    //   '!bShadow/none',
-    // ),
-  )
-
-  return expandStyles(
-    baseStyles,
-
-    focus && focusStyles,
-    active && activeStyles,
-    disabled && disabledStyles,
-
-    {
-      ':hover': hoverStyles,
-      ':focus': focusStyles,
-      ':active': activeStyles,
-      ':disabled': disabledStyles,
-    },
-  )
-}
-
-const StyledButton = styled.button(({ size, brand, link, outline, focus, active, disabled }) => {
-  const branding = link
-    ? makeButtonLinkStyles({ focus, active, disabled })
-    : (outline ? buttonBrandOutlined : buttonBrand)(brand, { focus, active, disabled })
-
-  return expandStyles(
-    'pointer',
-    'd/inline-block',
-    'fw/~buttonFontWeight',
-    'tAlign/center',
-    'nowrap',
-    'vAlign/middle',
-    'bordW/~buttonBorderWidth',
-    'bordS/solid',
-    'bordC/transparent',
-    '!trans/~buttonTransition',
-
-    'pTop/~buttonPaddingY',
-    'pBottom/~buttonPaddingY',
-    'pLeft/~buttonPaddingX',
-    'pRight/~buttonPaddingX',
-
-    { userSelect: 'none' },
-
-    sizes[size],
-
-    branding,
-  )
+    ...sizing,
+    ...branding,
+  }
 })
 
 
-const ButtonInGroup = styled(StyledButton)(({ isFirstInGroup, isLastInGroup }) =>
-  expandStyles(
-    'relative',
+const ButtonInGroup = styled(StyledButton)(({ isFirstInGroup, isLastInGroup }, t) => ({
+  position: 'relative',
+  flexBasis: 'auto',
+  flexGrow: 0,
+  flexShrink: 1,
+  marginBottom: 0,
 
-    'fGrow/0',
-    'fShrink/1',
-    'fBasis/auto',
-
-    'mBottom/0',
-
-    // Prevent double borders and radius when buttons are next to each other
-    !isFirstInGroup && 'mLeft/~buttonBorderWidth~negate',
-    !isFirstInGroup && !isLastInGroup && 'radius/0',
-    isFirstInGroup && { borderTopRightRadius: 0, borderBottomRightRadius: 0 },
-    isLastInGroup && { borderTopLeftRadius: 0, borderBottomLeftRadius: 0 },
-  ))
+  // Prevent double borders and radius when buttons are next to each other
+  ...!isFirstInGroup && { marginLeft: negate(t.buttonBorderWidth) },
+  ...!isFirstInGroup && !isLastInGroup && { borderRadius: 0 },
+  ...isFirstInGroup && { borderTopRightRadius: 0, borderBottomRightRadius: 0 },
+  ...isLastInGroup && { borderTopLeftRadius: 0, borderBottomLeftRadius: 0 },
+}))
 
 
 function Button({ isInButtonGroup, ...restProps }) {
@@ -263,7 +78,7 @@ Button.propTypes = {
   brand: propTypeBrandOrDefault.isRequired, // has default
 
   link: PropTypes.bool,
-  outline: PropTypes.bool,
+  outlined: PropTypes.bool,
 
   focus: PropTypes.bool,
   active: PropTypes.bool,
@@ -277,7 +92,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   size: 'normal',
-  brand: 'primary',
+  brand: 'default',
 }
 
 

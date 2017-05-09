@@ -7,7 +7,7 @@ import Close from '../Close'
 
 import { styled, propTypeBrandOrDefaultOrLightOrDark } from '../../utils'
 
-import * as mixins from '../../mixins'
+import { borderRadiusIfEnabled } from '../../mixins'
 
 
 const DismissableClose = styled(Close)({
@@ -25,7 +25,7 @@ const BaseDiv = styled(BrandBackground)(({ hasClose }, t) => ({
   paddingLeft: t.alertPaddingX,
   marginBottom: t.alertMarginBottom,
   lineHeight: t.alertLineHeight,
-  ...mixins.borderRadiusIfEnabled(t.alertBorderRadius),
+  ...borderRadiusIfEnabled(t.alertBorderRadius),
 }))
 
 BaseDiv.propTypes = {

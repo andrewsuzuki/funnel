@@ -4,55 +4,51 @@ import get from 'lodash.get'
 
 import {
   styled,
-  expandStyles,
   propTypeBrandOrDefaultOrLightOrDark,
   propTypeSize,
 } from '../../utils'
+
+import { empty, borderRadiusIfEnabled } from '../../mixins'
 
 import BrandBackground from '../BrandBackground'
 
 import Close from '../Close'
 
 
-const baseStyles = expandStyles(
-  'd/inline-flex',
-  'fAlignItems/center',
-  'fJustifyContent/center',
+const BaseElement = styled(BrandBackground)((p, t) => ({
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: t.badgeHeight,
+  paddingLeft: t.badgePaddingX,
+  paddingRight: t.badgePaddingX,
+  lineHeight: t.badgeLineHeight,
+  wordWrap: 'nowrap',
+  fontFamily: t.badgeFontFamily,
+  fontWeight: t.badgeFontWeight,
+  ...borderRadiusIfEnabled(t.badgeBorderRadius),
 
-  'h/~badgeHeight',
-  'pLeft/~badgePaddingX',
-  'pRight/~badgePaddingX',
-  'lh/~badgeLineHeight',
-
-  'nowrap',
-
-  '!radius/~badgeBorderRadius',
-
-  'ff/~badgeFontFamily',
-  'fw/~badgeFontWeight',
-
-  // hide empty badges
-  { ':empty': expandStyles('d/none') },
-)
-
-const BaseElement = styled(BrandBackground)(baseStyles)
+  ...empty({
+    display: 'none',
+  }),
+}))
 
 const sizeMap = {
-  // size: [font-size, Close-size]
-  small: ['~badgefontSizeSmall', 'small'],
-  normal: ['~badgeFontSizeNormal', 'small'],
-  large: ['~badgeFontSizeLarge', 'normal'],
+  // size: [Theme font size, Close size]
+  small: ['badgefontSizeSmall', 'small'],
+  normal: ['badgeFontSizeNormal', 'small'],
+  large: ['badgeFontSizeLarge', 'normal'],
 }
 
-const SizedElement = styled(BaseElement)(({ size }) => expandStyles(
-  `fs/${get(sizeMap, [size, 0], 0)}`,
-))
+const SizedElement = styled(BaseElement)(({ size }) => ({
+  fontSize: get(sizeMap, [size, 0], 0),
+}))
 
 
-const BadgeClose = styled(Close)(expandStyles(
-  'mLeft/0.25em',
-  'mRight/-0.375em',
-))
+const BadgeClose = styled(Close)({
+  marginLeft: '0.25em',
+  marginRight: '-0.375em',
+})
 
 
 export default function Badge({ brand, size, onClose, children }) {

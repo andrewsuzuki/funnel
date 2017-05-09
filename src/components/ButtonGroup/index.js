@@ -13,16 +13,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import invariant from 'invariant'
 
-import { styled, expandStyles, propTypeSize } from '../../utils'
+import { styled, propTypeSize } from '../../utils'
 
 import Button from '../Button'
 
 
-const StyledWrapper = styled.div(expandStyles(
-  'relative',
-  'd/inline-flex',
-  'vAlign/middle',
-))
+const StyledWrapper = styled.div({
+  position: 'relative',
+  display: 'inline-flex',
+  verticalAlign: 'middle',
+})
 
 
 export default function ButtonGroup({ children, size, outline, link, disabled, ...restProps }) {

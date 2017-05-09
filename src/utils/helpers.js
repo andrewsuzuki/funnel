@@ -22,6 +22,13 @@ export const capitalize = memoize((str) =>
 
 
 /**
+ * Negate a numberical string
+ * ex. negate('3px') => '-3px'
+ */
+export const negate = (x) => `-${x}`
+
+
+/**
  * HOC for a component with props pre-applied
  * @param  {string}                 New component display name
  * @param  {React.Component} component

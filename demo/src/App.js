@@ -4,6 +4,7 @@ import {  } from '../../dist'
 
 import HeroExample from './HeroExample'
 import GridFormExample from './GridFormExample'
+import ButtonExample from './ButtonExample'
 
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
       <div>
         <HeroExample />
         <GridFormExample />
+        <ButtonExample />
       </div>
     )
   }
