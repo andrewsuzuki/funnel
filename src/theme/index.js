@@ -205,6 +205,7 @@ theme.inputBackgroundColorDisabled = theme.grayLightest
 
 theme.inputColor = theme.gray
 theme.inputColorFocus = theme.inputColor
+theme.inputColorPlaceholder = theme.grayLight
 
 theme.inputBorderWidth = theme.borderWidth
 theme.inputBorderColor = fade(theme.black, 85)

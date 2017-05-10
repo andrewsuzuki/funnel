@@ -12,6 +12,8 @@ import {
   boxShadowIfEnabled,
   disabled,
   focus,
+  msExpand,
+  placeholder,
 } from './'
 
 
@@ -53,24 +55,23 @@ const makeBaseInputStyles = (t) => ({
   // Unstyle the caret on `<select>`s
   appearance: 'none',
 
-  // TODO ms fix: waiting for styletron to enable :: pseudo selectors
-  // &::-ms-expand {
-  //   background-color: transparent;
-  //   border: 0;
-  // }
+  // ms fixes
+  ...msExpand({
+    backgroundColor: 'transparent',
+    border: 0,
+  }),
 
-  // TODO placeholder: waiting for styletron to enable :: pseudo selectors
-  // &::placeholder {
-  //   color: $input-color-placeholder;
-  //   // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
-  //   opacity: 1;
-  // }
+  ...placeholder({
+    color: t.inputColorPlaceholder,
+    // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526
+    opacity: 1,
+  }),
 })
 
 
 export function makeInputStyles(props, t) {
   const disabledStyles = {
-    cursor: 'not-allowed',
+    cursor: t.cursorDisabled,
     backgroundColor: t.inputBackgroundColorDisabled,
 
     // iOS fix for unreadable disabled content;

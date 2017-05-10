@@ -200,21 +200,23 @@ export const display = makeBasicPropFn('display')
 
 
 export function pseudoBlock(pseudoType, styles) {
-  return { [`:${pseudoType}`]: styles }
+  return { [pseudoType]: styles }
 }
 
 
-export const before = partial(pseudoBlock, ':before')
-export const after = partial(pseudoBlock, ':after')
+export const before = partial(pseudoBlock, '::before')
+export const after = partial(pseudoBlock, '::after')
+export const placeholder = partial(pseudoBlock, '::placeholder')
+export const msExpand = partial(pseudoBlock, '::-ms-expand')
 
-export const firstChild = partial(pseudoBlock, 'first-child')
-export const lastChild = partial(pseudoBlock, 'last-child')
+export const firstChild = partial(pseudoBlock, ':first-child')
+export const lastChild = partial(pseudoBlock, ':last-child')
 
-export const hover = partial(pseudoBlock, 'hover')
-export const active = partial(pseudoBlock, 'active')
-export const focus = partial(pseudoBlock, 'focus')
-export const disabled = partial(pseudoBlock, 'disabled')
-export const visited = partial(pseudoBlock, 'visited')
+export const hover = partial(pseudoBlock, ':hover')
+export const active = partial(pseudoBlock, ':active')
+export const focus = partial(pseudoBlock, ':focus')
+export const disabled = partial(pseudoBlock, ':disabled')
+export const visited = partial(pseudoBlock, ':visited')
 
 
 // Media queries
