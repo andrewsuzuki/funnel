@@ -89,8 +89,9 @@ theme.brandInfo = '#AFA2FF'
 theme.brandWarning = '#DB9D47'
 theme.brandDanger = '#A24936'
 
-theme.backgroundColor = '#F6F6F3'
-theme.textColor = '#232C33'
+// Body color
+theme.baseBackgroundColor = theme.grayLightest
+theme.baseTextColor = theme.grayDark
 
 
 // Font
@@ -98,7 +99,7 @@ theme.textColor = '#232C33'
 theme.fontWeightNormal = 300
 theme.fontWeightBold = 700
 
-theme.baseFontFamily = '\'proxima-nova\', \'Helvetica Neue\', Helvetica, Arial, sans-serif'
+theme.baseFontFamily = '\'Helvetica Neue\', Helvetica, Arial, sans-serif'
 theme.baseFontSize = '16px'
 theme.baseFontWeight = theme.fontWeightNormal
 theme.baseLineHeight = 1.5
@@ -107,9 +108,6 @@ theme.fontSizeNormal = '1rem'
 theme.fontSizeExtraSmall = '0.75rem'
 theme.fontSizeSmall = '0.875rem'
 theme.fontSizeLarge = '1.25rem'
-
-theme.headingFontFamily = theme.baseFontFamily
-theme.textFieldFontFamily = theme.baseFontFamily
 
 
 // Border
@@ -140,6 +138,46 @@ theme.linkColor = theme.brandPrimary
 theme.linkDecoration = 'none'
 theme.linkHoverColor = darken(theme.brandPrimary, 15)
 theme.linkHoverDecoration = 'underline'
+
+
+// Paragraph
+
+
+theme.paragraphMarginBottom = '1rem'
+
+
+// Headings (H1-H6)
+
+
+theme.headingFontFamily = theme.baseFontFamily
+
+theme.baseHeadingMarginBottom = '0.5rem'
+theme.h1MarginBottom = theme.baseHeadingMarginBottom
+theme.h2MarginBottom = theme.baseHeadingMarginBottom
+theme.h3MarginBottom = theme.baseHeadingMarginBottom
+theme.h4MarginBottom = theme.baseHeadingMarginBottom
+theme.h5MarginBottom = theme.baseHeadingMarginBottom
+theme.h6MarginBottom = theme.baseHeadingMarginBottom
+
+theme.h1FontSize = '2.5rem'
+theme.h2FontSize = '2rem'
+theme.h3FontSize = '1.75rem'
+theme.h4FontSize = '1.5rem'
+theme.h5FontSize = '1.25rem'
+theme.h6FontSize = '1rem'
+
+theme.h1FontWeight = 800
+theme.h2FontWeight = 800
+theme.h3FontWeight = 700
+theme.h4FontWeight = 700
+theme.h5FontWeight = 700
+theme.h6FontWeight = 700
+
+
+// Section
+
+
+theme.sectionBackgroundColor = theme.white
 
 
 // Base form field styles
@@ -179,10 +217,11 @@ theme.inputBoxShadowFocus = `inset 0 1px 1px ${fade(theme.inputBorderColorFocus,
 theme.inputTransition = 'border-color ease-in-out 150ms, box-shadow ease-in-out 150ms'
 
 
-// Section
+// Select
 
 
-theme.sectionBackgroundColor = theme.white
+theme.selectCaretColor = theme.inputColor
+theme.selectCaretSize = '0.5em'
 
 
 // Checkable (Checkbox / Radio)
@@ -198,13 +237,6 @@ theme.checkableInputMarginX = '0.25em'
 
 
 theme.labelMarginBottom = '0.5rem'
-
-
-// Select
-
-
-theme.selectCaretColor = theme.inputColor
-theme.selectCaretSize = '0.5em'
 
 
 // Component: Field

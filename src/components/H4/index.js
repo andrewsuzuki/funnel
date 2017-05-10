@@ -1,9 +1,12 @@
 import { styled } from '../../utils'
 
 
-export default styled.h4({
-  fontSize: '1.5rem',
-  fontWeight: 700,
+export const styles = (t) => ({
+  fontSize: t.h4FontSize,
+  fontWeight: t.h4FontWeight,
+  marginBottom: t.h4MarginBottom,
   marginTop: 0,
-  marginBottom: '0.5rem',
 })
+
+
+export default styled.h4((p, t) => styles(t))

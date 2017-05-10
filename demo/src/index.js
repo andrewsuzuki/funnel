@@ -5,10 +5,9 @@ import { ThemeProvider, theme, injectAllGlobal } from '../../dist'
 
 import App from './App'
 
-injectAllGlobal()
 
-import './index.css'
-
+// Inject reset and base styles
+injectAllGlobal(theme)
 
 
 const Root = () =>

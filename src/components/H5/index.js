@@ -1,9 +1,12 @@
 import { styled } from '../../utils'
 
 
-export default styled.h5({
-  fontSize: '1.25rem',
-  fontWeight: 700,
+export const styles = (t) => ({
+  fontSize: t.h5FontSize,
+  fontWeight: t.h5FontWeight,
+  marginBottom: t.h5MarginBottom,
   marginTop: 0,
-  marginBottom: '0.5rem',
 })
+
+
+export default styled.h5((p, t) => styles(t))

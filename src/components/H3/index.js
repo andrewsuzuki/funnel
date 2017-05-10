@@ -1,9 +1,12 @@
 import { styled } from '../../utils'
 
 
-export default styled.h3({
-  fontSize: '1.75rem',
-  fontWeight: 700,
+export const styles = (t) => ({
+  fontSize: t.h3FontSize,
+  fontWeight: t.h3FontWeight,
+  marginBottom: t.h3MarginBottom,
   marginTop: 0,
-  marginBottom: '0.5rem',
 })
+
+
+export default styled.h3((p, t) => styles(t))

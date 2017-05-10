@@ -245,6 +245,19 @@ export function clearfix() {
 }
 
 
+// Font-smoothing
+
+
+export function smoothFonts() {
+  return {
+    textRendering: 'optimizeLegibility',
+    WebkitFontSmoothing: 'antialiased',
+    MozOsxFontSmoothing: 'grayscale',
+    MozFontFeatureSettings: '\'liga\' on',
+  }
+}
+
+
 // Border
 
 

@@ -25,7 +25,7 @@ const StyledBaseLabel = styled.label(({ brand, disabled }, t) => ({
   ...brand && { color: t[`brand${capitalize(brand)}`] },
 
   // Disabled
-  ...disabled && { color: t.grayLight, cursor: 'not-allowed' },
+  ...disabled && { color: t.grayLight, cursor: t.cursorDisabled },
 }))
 
 const StyledBaseInput = styled.input(({ disabled }, t) => ({
@@ -35,7 +35,7 @@ const StyledBaseInput = styled.input(({ disabled }, t) => ({
   marginLeft: negate(t.checkableInputGutter),
 
   // Disabled
-  ...disabled && { cursor: 'not-allowed' },
+  ...disabled && { cursor: t.cursorDisabled },
 }))
 
 

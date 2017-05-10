@@ -28,8 +28,8 @@ ${baseColor} 71%, ${gradientBottomRight} 100%)`
 
 
 const normalBrandMap = {
-  default: ['white', 'textColor'],
-  light: ['grayLightest', 'textColor'],
+  default: ['white', 'baseTextColor'],
+  light: ['grayLightest', 'baseTextColor'],
   dark: ['grayDark', 'white'],
   primary: ['brandPrimary', 'white'],
   success: ['brandSuccess', 'white'],
