@@ -29,6 +29,8 @@ export const injectRuleMapGlobal = (ruleMap) =>
 
 export const loadFont = glamorCSS.fontFace
 
+export const loadKeyframes = glamorCSS.keyframes
+
 
 export const modalCloseClassname = 'should-close-modal'
 

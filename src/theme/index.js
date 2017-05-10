@@ -2,7 +2,9 @@
  * Theme
  */
 
-import { loadFont, darken, fade } from '../utils'
+import { darken, fade } from '../utils'
+
+import { iconFontFace } from '../global/fonts'
 
 
 const theme = {}
@@ -293,20 +295,7 @@ theme.closeTextShadow = `0 1px 0 ${theme.white}`
 
 
 // Load font, and use generated font family
-theme.iconFontFamily = loadFont({
-  fontFamily: 'FontAwesome',
-  // NOTE IE9 compat -- doesn't work with glamor? needs separate src instead of csv urls
-  // src: 'url(\'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.eot?v=4.7.0\')',
-  src: [
-    'url(\'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0\') format(\'embedded-opentype\')',
-    'url(\'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0\') format(\'woff2\')',
-    'url(\'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff?v=4.7.0\') format(\'woff\')',
-    'url(\'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.ttf?v=4.7.0\') format(\'truetype\')',
-    'url(\'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular\') format(\'svg\')',
-  ],
-  fontWeight: 'normal',
-  fontStyle: 'normal',
-})
+theme.iconFontFamily = iconFontFace
 
 
 // Component: Badge

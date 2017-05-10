@@ -4,14 +4,21 @@ import { styled, propTypeIconSize } from '../../utils'
 
 import { square, borderRadiusIfEnabled } from '../../mixins'
 
+import { spin } from '../../global/keyframes'
+
 
 const Spinner = styled.div(({ sizeUnits }, t) => ({
   display: 'inline-block',
   ...square(sizeUnits),
   ...borderRadiusIfEnabled(t, t.borderRadiusInfinite),
-  animation: 'spin 500ms infinite linear',
   border: '2px solid #dbdbdb',
   borderRightColor: 'transparent',
+
+  // Animation
+  animationName: spin,
+  animationDuration: '500ms',
+  animationIterationCount: 'infinite',
+  animationTimingFunction: 'linear',
 }))
 
 
