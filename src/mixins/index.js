@@ -204,8 +204,9 @@ export function pseudoBlock(pseudoType, styles) {
 }
 
 
-export const before = partial(pseudoBlock, 'before')
-export const after = partial(pseudoBlock, 'after')
+export const before = partial(pseudoBlock, ':before')
+export const after = partial(pseudoBlock, ':after')
+
 export const firstChild = partial(pseudoBlock, 'first-child')
 export const lastChild = partial(pseudoBlock, 'last-child')
 
