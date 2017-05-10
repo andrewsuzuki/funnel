@@ -17,5 +17,5 @@ const Root = () =>
 
 ReactDOM.render(
   <Root />,
-  document.getElementById('root')
+  document.getElementById('root'),
 )

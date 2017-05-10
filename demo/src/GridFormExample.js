@@ -42,7 +42,8 @@ const GridFormExample = () =>
         </Column>
         <Column tablet="one-half">
           <Tile bold brand="success">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </Tile>
           <A href="#">This is a link.</A>
         </Column>

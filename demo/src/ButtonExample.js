@@ -10,7 +10,7 @@ import {
   Icon,
 } from '../../dist'
 
-const GridFormExample = () =>
+const GridFormExample = () => (
   <Section>
     <Container>
       <Row>
@@ -22,5 +22,6 @@ const GridFormExample = () =>
       </Row>
     </Container>
   </Section>
+)
 
 export default GridFormExample
