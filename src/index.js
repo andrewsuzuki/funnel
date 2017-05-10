@@ -25,6 +25,13 @@ export { default as theme } from './theme'
 
 
 //
+// Global
+//
+
+export { injectAllGlobal } from './global'
+
+
+//
 // Utils
 //
 

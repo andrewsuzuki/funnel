@@ -3,6 +3,7 @@
  */
 
 
+import { css as glamorCSS } from 'glamor'
 import glamorous, { ThemeProvider as GlamorousThemeProvider } from 'glamorous'
 
 import { percentValue } from '../mixins'
@@ -19,6 +20,12 @@ export * from './breakpoints'
 // For now, just re-export styled HOC and ThemeProvider from glamorous
 export const styled = glamorous
 export const ThemeProvider = GlamorousThemeProvider
+
+export const injectRuleGlobal = (target, styles) =>
+  glamorCSS.global(target, styles)
+
+export const injectRuleMapGlobal = (ruleMap) =>
+  Object.keys(ruleMap).forEach((rule) => injectRuleGlobal(rule, ruleMap[rule]))
 
 
 export const modalCloseClassname = 'should-close-modal'

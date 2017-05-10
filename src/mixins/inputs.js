@@ -13,7 +13,6 @@ import {
   disabled,
   focus,
 } from './'
-// NOTE ^ is this possible? circular dep?
 
 
 const makeBaseInputStyles = (t) => ({

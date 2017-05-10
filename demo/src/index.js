@@ -1,11 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { ThemeProvider, theme } from '../../dist'
+import { ThemeProvider, theme, injectAllGlobal } from '../../dist'
 
 import App from './App'
 
+injectAllGlobal()
+
 import './index.css'
+
 
 
 const Root = () =>
