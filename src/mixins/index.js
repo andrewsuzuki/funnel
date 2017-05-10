@@ -204,19 +204,28 @@ export function pseudoBlock(pseudoType, styles) {
 }
 
 
+// Pseudo elements
 export const before = partial(pseudoBlock, '::before')
 export const after = partial(pseudoBlock, '::after')
 export const placeholder = partial(pseudoBlock, '::placeholder')
+export const firstLetter = partial(pseudoBlock, '::first-letter')
+export const firstLine = partial(pseudoBlock, '::first-line')
+export const selection = partial(pseudoBlock, '::selection')
+export const backdrop = partial(pseudoBlock, '::backdrop')
 export const msExpand = partial(pseudoBlock, '::-ms-expand')
 
+// Pseudo filter elements
 export const firstChild = partial(pseudoBlock, ':first-child')
 export const lastChild = partial(pseudoBlock, ':last-child')
+// ...more
 
+// Pseudo states
 export const hover = partial(pseudoBlock, ':hover')
 export const active = partial(pseudoBlock, ':active')
 export const focus = partial(pseudoBlock, ':focus')
 export const disabled = partial(pseudoBlock, ':disabled')
 export const visited = partial(pseudoBlock, ':visited')
+// ...more
 
 
 // Media queries

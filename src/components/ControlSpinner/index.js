@@ -15,7 +15,7 @@ const Spinner = styled.div(({ sizeUnits }, t) => ({
   borderRightColor: 'transparent',
 
   // Animation
-  animationName: spin,
+  animationName: spin.name,
   animationDuration: '500ms',
   animationIterationCount: 'infinite',
   animationTimingFunction: 'linear',

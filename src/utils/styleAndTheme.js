@@ -56,29 +56,43 @@ export const loadFont = (font) => {
 
 /**
  * Load a keyframes declaration
- * @param  {object} keyframes Keyframes declaration object
+ * @param  {string} name      id/name
+ * @param  {object} timeline  Keyframes declaration object
  * @return {string}           Keyframes id
  */
-export const loadKeyframes = (keyframes) => {
-  const result = glamorCSS.fontFace(keyframes)
-  rememberRules.keyframes[result] = keyframes
-  return result
+export const loadKeyframes = (name, timeline) => {
+  const result = glamorCSS.keyframes(name, timeline)
+
+  const keyframes = rememberRules.keyframes
+
+  if (!keyframes[name]) {
+    keyframes[name] = {}
+  }
+
+  const entry = keyframes[name]
+
+  // must mutate existing object
+  entry.name = result
+  entry.originalName = name
+  entry.timeline = timeline
+
+  return entry
 }
 
-
-// helper for rehydrateRememberRules, see below
-const rehydrateRememberRulesPart = (part, fn) => {
-  Object.keys(part)
-    .map((k) => fn(part[k]))
-}
 
 /**
  * Rehydrate fonts and keyframes that were loaded before a flush
  * @return void
  */
 export const rehydrateRememberRules = () => {
-  rehydrateRememberRulesPart(rememberRules.fonts, loadFont)
-  rehydrateRememberRulesPart(rememberRules.keyframes, loadKeyframes)
+  // fonts
+  const fonts = rememberRules.fonts
+  Object.keys(fonts).forEach((name) => loadFont(fonts[name]))
+
+  // keyframes
+  const keyframes = rememberRules.keyframes
+  Object.keys(keyframes).forEach((name) =>
+    loadKeyframes(name, keyframes[name].timeline))
 }
 
 

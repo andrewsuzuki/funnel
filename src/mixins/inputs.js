@@ -54,8 +54,6 @@ const makeBaseInputStyles = (t) => ({
 
   // Unstyle the caret on `<select>`s
   appearance: 'none',
-
-  // ms fixes
   ...msExpand({
     backgroundColor: 'transparent',
     border: 0,

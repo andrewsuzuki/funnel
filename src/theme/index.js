@@ -94,6 +94,13 @@ theme.baseBackgroundColor = theme.grayLightest
 theme.baseTextColor = theme.grayDark
 
 
+// Root ::selection
+
+
+theme.baseSelectionBackgroundColor = null // null = default
+theme.baseSelectionTextColor = null // null = default
+
+
 // Font
 
 theme.fontWeightNormal = 300

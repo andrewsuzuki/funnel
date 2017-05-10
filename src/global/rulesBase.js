@@ -1,10 +1,17 @@
-import { smoothFonts } from '../mixins'
+import { smoothFonts, selection } from '../mixins'
 
 import { stylesBase as stylesLinkBase, stylesHover as stylesLinkHover } from '../components/A'
 
 
 /* eslint-disable quote-props */
 export default (t) => ({
+  // Need to guard it due to glamor bug where empty-object ::selection
+  // results in this css: '::selection{null}'
+  ...(t.baseSelectionBackgroundColor || t.baseSelectionTextColor) && selection({
+    backgroundColor: t.baseSelectionBackgroundColor,
+    color: t.baseSelectionTextColor,
+  }),
+
   'html, body': {
     height: '100%',
     width: '100%',
