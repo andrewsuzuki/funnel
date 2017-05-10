@@ -3,13 +3,6 @@
  */
 
 
-import React from 'react'
-import PropTypes from 'prop-types'
-import { css as glamorCSS } from 'glamor'
-import glamorous, { ThemeProvider as GlamorousThemeProvider } from 'glamorous'
-
-import { injectAllGlobal } from '../global'
-
 import { percentValue } from '../mixins'
 
 
@@ -19,46 +12,7 @@ export * from './color'
 export * from './valids'
 export * from './propTypes'
 export * from './breakpoints'
-
-
-// For now, just re-export styled HOC and ThemeProvider from glamorous
-export const styled = glamorous
-
-export class ThemeProvider extends React.Component {
-  static propTypes = {
-    theme: PropTypes.object.isRequired,
-    children: PropTypes.node,
-  }
-
-  constructor(props) {
-    super(props)
-
-    injectAllGlobal(props.theme)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.theme !== nextProps.theme) {
-      // New theme, so inject new global styles
-      injectAllGlobal(nextProps.theme)
-    }
-  }
-
-  render() {
-    const { theme, children } = this.props
-
-    return React.createElement(GlamorousThemeProvider, { theme }, children)
-  }
-}
-
-export const injectRuleGlobal = (target, styles) =>
-  glamorCSS.global(target, styles)
-
-export const injectRuleMapGlobal = (ruleMap) =>
-  Object.keys(ruleMap).forEach((rule) => injectRuleGlobal(rule, ruleMap[rule]))
-
-export const loadFont = glamorCSS.fontFace
-
-export const loadKeyframes = glamorCSS.keyframes
+export * from './styleAndTheme'
 
 
 export const modalCloseClassname = 'should-close-modal'

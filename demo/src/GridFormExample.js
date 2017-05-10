@@ -24,7 +24,7 @@ const GridFormExample = () =>
           <Field horizontal size="large">
             <Label>Full name</Label>
             <Control>
-              <TextInput connectRootId />
+              <TextInput connectRootId placeholder="Name" />
             </Control>
           </Field>
           <Field horizontal>
