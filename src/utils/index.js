@@ -27,6 +27,8 @@ export const injectRuleGlobal = (target, styles) =>
 export const injectRuleMapGlobal = (ruleMap) =>
   Object.keys(ruleMap).forEach((rule) => injectRuleGlobal(rule, ruleMap[rule]))
 
+export const loadFont = glamorCSS.fontFace
+
 
 export const modalCloseClassname = 'should-close-modal'
 
