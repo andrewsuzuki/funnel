@@ -1,4 +1,4 @@
-# otep
+![otep logo](/logo/logo.png?raw=true "otep")
 
 User interface library for React.
 
