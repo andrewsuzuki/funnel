@@ -13,7 +13,7 @@ const HeroExample = () =>
     <HeroTitle>otep</HeroTitle>
     <HeroSubtitle>
       A React UI library by Andrew Suzuki
-      <A href="http://github.com/andrewsuzuki" title="@andrewsuzuki on GitHub">
+      <A href="http://github.com/andrewsuzuki" title="@andrewsuzuki on GitHub" inherit>
         <Icon name="github" relative fixedWidth />
       </A>
     </HeroSubtitle>

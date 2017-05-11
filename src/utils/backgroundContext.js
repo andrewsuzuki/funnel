@@ -11,15 +11,23 @@ import { getDisplayName } from './helpers'
 
 class BackgroundContextInner extends React.PureComponent {
   getChildContext() {
-    const { theme, backgroundColor, textColor: textColorGiven } = this.props
+    const {
+      theme,
+      backgroundColor,
+      textColor: textColorGiven,
+      linkColor: linkColorGiven,
+    } = this.props
 
     const backgroundColorIsLight = isLight(backgroundColor)
 
     const textColorAuto = backgroundColorIsLight ? theme.baseTextColor : theme.white
 
+    const linkColor = linkColorGiven || null
+
     const background = {
       backgroundColor,
       backgroundColorIsLight,
+      linkColor,
       textColorAuto,
       textColorGiven,
       textColor: textColorGiven || textColorAuto,
@@ -44,6 +52,7 @@ BackgroundContextInner.propTypes = {
 
   backgroundColor: PropTypes.string.isRequired,
   textColor: PropTypes.string.isRequired,
+  linkColor: PropTypes.string,
 }
 
 BackgroundContextInner.childContextTypes = {

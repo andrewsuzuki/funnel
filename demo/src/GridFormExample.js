@@ -41,9 +41,9 @@ const GridFormExample = () =>
           </Field>
         </Column>
         <Column tablet="one-half">
-          <Tile bold brand="success">
+          <Tile bold brand="default">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            eiusmod tempor incididunt ut labore et <A href="#">dolore magna aliqua</A>.
           </Tile>
           <A href="#">This is a link.</A>
         </Column>

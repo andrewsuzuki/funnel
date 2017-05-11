@@ -30,20 +30,20 @@ ${baseColor} 71%, ${gradientBottomRight} 100%)`
 
 
 const normalBrandMap = {
-  default: ['white', 'baseTextColor'],
-  light: ['grayLightest', 'baseTextColor'],
-  dark: ['grayDark', 'white'],
-  primary: ['brandPrimary', 'white'],
-  success: ['brandSuccess', 'white'],
-  info: ['brandInfo', 'white'],
-  warning: ['brandWarning', 'white'],
-  danger: ['brandDanger', 'white'],
+  default: ['white', 'baseTextColor', 'linkColor'],
+  light: ['grayLightest', 'baseTextColor', 'linkColor'],
+  dark: ['grayDark', 'white', 'linkColor'],
+  primary: ['brandPrimary', 'white', 'grayLight'],
+  success: ['brandSuccess', 'white', 'grayLight'],
+  info: ['brandInfo', 'white', 'grayLight'],
+  warning: ['brandWarning', 'white', 'grayLight'],
+  danger: ['brandDanger', 'white', 'grayLight'],
 }
 
 
 const boldBrandMap = {
   ...normalBrandMap,
-  dark: ['gray', 'white'], // tweak 'dark' background color (lighter)
+  dark: ['gray', 'white', 'linkColor'], // tweak 'dark' background color (lighter)
 }
 
 
@@ -56,12 +56,12 @@ const BrandBackgroundDiv = styled.div(({ bold, brand }, t) => {
     color: t[themeColor],
     ...(bold
       ? { backgroundImage: boldGradientStyle(t[themeBackgroundColor]) }
-      : { backgroundColor: themeBackgroundColor }),
+      : { backgroundColor: t[themeBackgroundColor] }),
   }
 })
 
 const BrandBackground = withTheme(({ bold, brand, theme, ...restProps }) => {
-  const [themeBackgroundColor, themeColor] = bold
+  const [themeBackgroundColor, themeColor, themeLinkColor] = bold
     ? boldBrandMap[brand]
     : normalBrandMap[brand]
 
@@ -69,6 +69,7 @@ const BrandBackground = withTheme(({ bold, brand, theme, ...restProps }) => {
     <BackgroundContext
       backgroundColor={theme[themeBackgroundColor]}
       textColor={theme[themeColor]}
+      linkColor={theme[themeLinkColor]}
     >
       <BrandBackgroundDiv {...{ bold, brand, ...restProps }} />
     </BackgroundContext>
