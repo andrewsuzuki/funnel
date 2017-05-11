@@ -5,7 +5,7 @@ import { stylesBase as stylesLinkBase, stylesHover as stylesLinkHover } from '..
 
 /* eslint-disable quote-props */
 export default (t) => ({
-  // Need to guard it due to glamor bug where empty-object ::selection
+  // Need to guard it due to glamor bug where empty global style object
   // results in this css: '::selection{null}'
   ...(t.baseSelectionBackgroundColor || t.baseSelectionTextColor) && selection({
     backgroundColor: t.baseSelectionBackgroundColor,

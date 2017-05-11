@@ -1,7 +1,13 @@
 import { boxShadowIfEnabled, hover, focus, active, disabled } from '../../mixins'
 
 
-export default function stylesLink(t, props) {
+export default function stylesLink(t, backgroundContext, props) {
+  const overrideColorMaybe = (
+    backgroundContext
+    && backgroundContext.linkColor
+    && { color: backgroundContext.linkColor }
+  )
+
   const borderAndBg = {
     backgroundColor: 'transparent',
     borderColor: 'transparent',
@@ -12,12 +18,16 @@ export default function stylesLink(t, props) {
     color: t.linkColor,
     textDecoration: t.linkDecoration,
     ...boxShadowIfEnabled(t, 'none'),
+
+    ...overrideColorMaybe,
   }
 
   const hoverStyles = {
     ...borderAndBg,
     color: t.linkHoverColor,
     textDecoration: t.linkHoverDecoration,
+
+    ...overrideColorMaybe,
   }
 
   const activeStyles = {
@@ -36,6 +46,8 @@ export default function stylesLink(t, props) {
     color: t.buttonLinkDisabledColor,
     textDecoration: t.linkDecoration,
     ...boxShadowIfEnabled(t, 'none'),
+
+    ...overrideColorMaybe,
   }
 
   return {

@@ -9,7 +9,7 @@ import {
 } from '../../dist'
 
 const HeroExample = () =>
-  <Hero bold brand="primary">
+  <Hero bold brand="primary" size="large">
     <HeroTitle>otep</HeroTitle>
     <HeroSubtitle>
       A React UI library by Andrew Suzuki

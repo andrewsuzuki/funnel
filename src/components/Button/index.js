@@ -2,7 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import partial from 'lodash.partial'
 
-import { styled, propTypeSize, propTypeBrandOrDefault, negate } from '../../utils'
+import {
+  styled,
+  propTypeSize,
+  propTypeBrandOrDefault,
+  negate,
+  connectBackgroundContext,
+  propTypeBackgroundContext,
+} from '../../utils'
 
 import { transitionIfEnabled } from '../../mixins'
 
@@ -15,11 +22,11 @@ import stylesLink from './stylesLink'
 
 
 const StyledButton = styled.button((props, t) => {
-  const { size, brand, link, outlined, focus, active, disabled } = props
+  const { backgroundContext, size, brand, link, outlined, focus, active, disabled } = props
 
   const branding = (() => {
     if (link) {
-      return partial(stylesLink, t)
+      return partial(stylesLink, t, backgroundContext)
     }
 
     return partial(outlined ? stylesBrandOutlined : stylesBrandNormal, t, brand)
@@ -87,6 +94,8 @@ Button.propTypes = {
   isInButtonGroup: PropTypes.bool,
   isFirstInGroup: PropTypes.bool,
   isLastInGroup: PropTypes.bool,
+
+  backgroundContext: propTypeBackgroundContext,
 }
 
 
@@ -96,4 +105,4 @@ Button.defaultProps = {
 }
 
 
-export default canConnectField(Button)
+export default connectBackgroundContext(canConnectField(Button))
