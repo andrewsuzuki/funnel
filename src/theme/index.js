@@ -83,11 +83,11 @@ theme.colorMoody = '#585563'
 theme.colorDark = '#2B4141'
 
 // Brand
-theme.brandPrimary = '#7EB0D3'
-theme.brandSuccess = '#00A676'
-theme.brandInfo = '#AFA2FF'
-theme.brandWarning = '#DB9D47'
-theme.brandDanger = '#A24936'
+theme.brandPrimary = '#2998FF'
+theme.brandSuccess = '#32E875'
+theme.brandInfo = '#56EEF4'
+theme.brandWarning = '#F39237'
+theme.brandDanger = '#F25C54'
 
 // Body color
 theme.baseBackgroundColor = theme.grayLightest
@@ -103,7 +103,7 @@ theme.baseSelectionTextColor = null // null = default
 
 // Font
 
-theme.fontWeightNormal = 300
+theme.fontWeightNormal = 400
 theme.fontWeightBold = 700
 
 theme.baseFontFamily = '\'Helvetica Neue\', Helvetica, Arial, sans-serif'
