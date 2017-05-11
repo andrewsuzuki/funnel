@@ -6,7 +6,7 @@ User interface library for React.
 
 ### Hero
 
-```javascript
+```jsx
 import { Hero, HeroTitle, HeroSubtitle } from 'otep'
 
 const Example = () =>
@@ -18,7 +18,7 @@ const Example = () =>
 
 ### Grid, Forms, and Tiles
 
-```javascript
+```jsx
 import {
   Section,
   Container,
@@ -73,7 +73,64 @@ npm install --save otep
 
 # Usage
 
-TODO
+1. Set up the `ThemeProvider` container near the top of your element tree, and provide it with a theme.
+
+```jsx
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+import { ThemeProvider, themes } from 'otep'
+
+import App from './App'
+
+
+const myTheme = {
+  ...themes.standard,
+  // extend the standard theme at will!
+}
+
+
+const Root = () =>
+  <ThemeProvider theme={theme}>
+    <App />
+  </ThemeProvider>
+
+
+ReactDOM.render(
+  <Root />,
+  document.getElementById('root'),
+)
+```
+
+2. Import components and use them!
+
+```jsx
+import React from 'react'
+
+import {
+  Section,
+  Container,
+  Row,
+  Column,
+  Button,
+} from 'otep'
+
+
+export default App = () =>
+  <Section>
+    <Container>
+      <Row>
+        <Column tablet="one-half">
+          <Button>Click me</Button>
+        </Column>
+        <Column tablet="one-half">
+          <Button>Click me too</Button>
+        </Column>
+      </Row>
+    </Container>
+  </Section>
+
+```
 
 ## Contributing
 
