@@ -52,3 +52,30 @@ export function saturate(colorString, amount = 15) {
 export function rotate(colorString, degrees = 15) {
   return color(colorString).rotate(degrees).hsl().string()
 }
+
+
+/**
+ * Determine color luminence
+ * @return {number}
+ */
+export function luminence(colorString) {
+  return color(colorString).luminosity()
+}
+
+
+/**
+ * Determine if a color is light (luminence over ~0.55)
+ * @return {Boolean}
+ */
+export function isLight(colorString) {
+  return luminence(colorString) > 0.55
+}
+
+
+/**
+ * Determine if a color is dark (luminence under ~0.55)
+ * @return {Boolean}
+ */
+export function isDark(colorString) {
+  return luminence(colorString) <= 0.55
+}

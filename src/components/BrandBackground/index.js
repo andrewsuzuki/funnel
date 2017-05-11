@@ -3,10 +3,12 @@
  */
 
 
+import React from 'react'
 import PropTypes from 'prop-types'
 import color from 'color'
+import { withTheme } from 'glamorous'
 
-import { styled, propTypeBrandOrDefaultOrLightOrDark } from '../../utils'
+import { styled, propTypeBrandOrDefaultOrLightOrDark, BackgroundContext } from '../../utils'
 
 
 const generateGradientColor = (baseColor, rotate, saturate, darken) =>
@@ -45,7 +47,7 @@ const boldBrandMap = {
 }
 
 
-const BrandBackground = styled.div(({ bold, brand, children }, t) => {
+const BrandBackgroundDiv = styled.div(({ bold, brand }, t) => {
   const [themeBackgroundColor, themeColor] = bold
     ? boldBrandMap[brand]
     : normalBrandMap[brand]
@@ -56,6 +58,21 @@ const BrandBackground = styled.div(({ bold, brand, children }, t) => {
       ? { backgroundImage: boldGradientStyle(t[themeBackgroundColor]) }
       : { backgroundColor: themeBackgroundColor }),
   }
+})
+
+const BrandBackground = withTheme(({ bold, brand, theme, ...restProps }) => {
+  const [themeBackgroundColor, themeColor] = bold
+    ? boldBrandMap[brand]
+    : normalBrandMap[brand]
+
+  return (
+    <BackgroundContext
+      backgroundColor={theme[themeBackgroundColor]}
+      textColor={theme[themeColor]}
+    >
+      <BrandBackgroundDiv {...{ bold, brand, ...restProps }} />
+    </BackgroundContext>
+  )
 })
 
 BrandBackground.propTypes = {

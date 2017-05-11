@@ -13,6 +13,7 @@ export * from './valids'
 export * from './propTypes'
 export * from './breakpoints'
 export * from './styleAndTheme'
+export * from './backgroundContext'
 
 
 export const modalCloseClassname = 'should-close-modal'

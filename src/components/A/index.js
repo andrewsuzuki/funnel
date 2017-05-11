@@ -2,7 +2,9 @@
  * A link to a certain page, an anchor tag
  */
 
-import { styled } from '../../utils'
+import { compose } from 'glamor'
+
+import { styled, connectBackgroundContext } from '../../utils'
 
 import { hover } from '../../mixins'
 
@@ -19,7 +21,15 @@ export const stylesHover = (t) => ({
 })
 
 
-export default styled.a((p, t) => ({
-  ...stylesBase(t),
-  ...hover(stylesHover(t)),
-}))
+export default connectBackgroundContext(styled.a(({ backgroundContext }, t) =>
+  compose(
+    {
+      ...stylesBase(t),
+      ...hover(stylesHover(t)),
+    },
+    backgroundContext && {
+      color: backgroundContext.textColor,
+      ...hover({ color: backgroundContext.textColor }),
+    },
+  ),
+))

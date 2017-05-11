@@ -7,8 +7,6 @@ import {
   Column,
   H2,
   Button,
-  Icon,
-  ControlSpinner,
 } from '../../dist'
 
 const GridFormExample = () => (
@@ -18,8 +16,6 @@ const GridFormExample = () => (
         <Column tablet="one-half">
           <H2>Buttons</H2>
           <Button>Default button</Button>
-          <Icon name="github" />
-          <ControlSpinner />
         </Column>
       </Row>
     </Container>

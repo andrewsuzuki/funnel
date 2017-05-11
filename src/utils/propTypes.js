@@ -126,3 +126,15 @@ export const propTypeFieldContext = PropTypes.shape({
   rootMeta: propTypeFieldMeta.isRequired,
   idHierarchy: PropTypes.arrayOf(propTypeFieldId).isRequired,
 })
+
+
+// Background context
+
+
+export const propTypeBackgroundContext = PropTypes.shape({
+  backgroundColor: PropTypes.string.isRequired,
+  backgroundColorIsLight: PropTypes.bool.isRequired,
+  textColorAuto: PropTypes.string.isRequired,
+  textColor: PropTypes.string.isRequired,
+  textColorGiven: PropTypes.string,
+})
