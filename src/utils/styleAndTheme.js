@@ -97,10 +97,10 @@ export const rehydrateRememberRules = () => {
 
 
 /**
- * ThemeProvider provides a theme via context (mechanics from glamor.ThemeProvider),
+ * Otep provides a theme via context (mechanics from glamor.Otep),
  * and injects global styles (reset and base) according to current theme
  */
-export class ThemeProvider extends React.Component {
+export class Otep extends React.Component {
   static propTypes = {
     theme: PropTypes.object.isRequired,
     children: PropTypes.node,

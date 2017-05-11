@@ -2,6 +2,10 @@
 
 User interface library for React.
 
+##### Notice
+
+This is currently alpha software, prone to breaking changes. Use at your own risk!
+
 ## Examples
 
 ### Hero
@@ -71,15 +75,20 @@ yarn add otep
 npm install --save otep
 ```
 
-# Usage
+## Usage
 
-1. Set up the `ThemeProvider` container near the top of your element tree, and provide it with a theme.
+### Step one
+
+Set up the `Otep` container component near the top of your element tree, and provide it with a theme.
+
+`Otep` provides the supplied theme to its descendants via context, and also injects
+global styles (both reset styles and theme-based plain-element styles).
 
 ```jsx
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { ThemeProvider, themes } from 'otep'
+import { Otep, themes } from 'otep'
 
 import App from './App'
 
@@ -90,19 +99,25 @@ const myTheme = {
 }
 
 
+// example
 const Root = () =>
-  <ThemeProvider theme={theme}>
+  <Otep theme={theme}>
     <App />
-  </ThemeProvider>
+  </Otep>
 
 
+// example
 ReactDOM.render(
   <Root />,
   document.getElementById('root'),
 )
 ```
 
-2. Import components and use them!
+### Step Two
+
+Import components and use them!
+
+Individual component documentation coming soon.
 
 ```jsx
 import React from 'react'

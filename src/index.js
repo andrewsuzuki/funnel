@@ -38,7 +38,7 @@ export { injectAllGlobal } from './global'
 export { default as utils } from './utils'
 export {
   styled,
-  ThemeProvider,
+  Otep,
   propTypeBrand,
   propTypeInputType,
 } from './utils'
