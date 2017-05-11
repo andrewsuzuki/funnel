@@ -36,6 +36,15 @@ export const halvePixels = (x) => `${parseFloat(x) / 2}px`
 
 
 /**
+ * Get display name of component
+ * @return {string}
+ */
+export function getDisplayName(component) {
+  return component.displayName || component.name || 'Component'
+}
+
+
+/**
  * HOC for a component with props pre-applied
  * @param  {string}                 New component display name
  * @param  {React.Component} component

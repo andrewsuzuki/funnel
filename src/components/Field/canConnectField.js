@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { propTypeFieldContext } from '../../utils'
+import { propTypeFieldContext, getDisplayName } from '../../utils'
 
 
 export const makeFieldMetaToPropsFn = (which) =>
@@ -116,6 +116,8 @@ export default function canConnectField(
   FieldConnectable.contextTypes = {
     field: propTypeFieldContext,
   }
+
+  FieldConnectable.displayName = `canConnectField(${getDisplayName(component)})`
 
   return FieldConnectable
 }

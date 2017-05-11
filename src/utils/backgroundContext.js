@@ -5,6 +5,8 @@ import { propTypeBackgroundContext } from './propTypes'
 
 import { isLight } from './color'
 
+import { getDisplayName } from './helpers'
+
 
 export class BackgroundContext extends React.PureComponent {
   getChildContext() {
@@ -62,7 +64,7 @@ export function connectBackgroundContext(component) {
     background: propTypeBackgroundContext,
   }
 
-  ConnectedBackgroundContext.displayName = `connectBackgroundContext(${component.displayName || component.name || 'Component'})`
+  ConnectedBackgroundContext.displayName = `connectBackgroundContext(${getDisplayName(component)})`
 
   return ConnectedBackgroundContext
 }
