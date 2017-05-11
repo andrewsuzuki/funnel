@@ -10,11 +10,9 @@
 import PropTypes from 'prop-types'
 import memoize from 'lodash.memoize'
 
-import { styled, propTypeIconSize } from '../../utils'
+import { styled, propTypeIconSize, connectField } from '../../utils'
 
 import { before } from '../../mixins'
-
-import canConnectField from '../Field/canConnectField'
 
 import nameCharMap from './nameCharMap'
 
@@ -95,7 +93,7 @@ Icon.defaultProps = {
 }
 
 
-export default canConnectField(
+export default connectField(
   Icon,
   undefined,
   undefined,

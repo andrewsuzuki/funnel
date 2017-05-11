@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types'
 
-import canConnectField from '../Field/canConnectField'
-
 import {
   styled,
   propTypeInputType,
   propTypeFieldMeta,
   propTypeBrand,
   propTypeSize,
+  connectField,
 } from '../../utils'
 
 import { makeInputStyles } from '../../mixins'
@@ -34,4 +33,4 @@ Input.defaultProps = {
 }
 
 
-export default canConnectField(Input, 'id', false)
+export default connectField(Input, 'id', false)

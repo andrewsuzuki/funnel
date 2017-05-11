@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types'
 
-import canConnectField from '../Field/canConnectField'
-
 import {
   styled,
   propTypeBrand,
   propTypeSize,
   propTypeFieldMeta,
+  connectField,
 } from '../../utils'
 
 import { makeInputStyles } from '../../mixins'
@@ -27,4 +26,4 @@ Textarea.propTypes = {
 }
 
 
-export default canConnectField(Textarea, 'id', false)
+export default connectField(Textarea, 'id', false)

@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types'
 
-import canConnectField from '../Field/canConnectField'
-
-import { styled, propTypeSize, propTypeColumnBreakpoint } from '../../utils'
+import { styled, propTypeSize, propTypeColumnBreakpoint, connectField } from '../../utils'
 
 import { breakpoint } from '../../mixins'
 
@@ -44,4 +42,4 @@ Label.defaultProps = {
 
 // Since there is only one Label per Field, we can safely
 // set alwaysId=true (always attach htmlFor if descendent of Field)
-export default canConnectField(Label, 'htmlFor', true)
+export default connectField(Label, 'htmlFor', true)

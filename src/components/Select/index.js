@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import canConnectField from '../Field/canConnectField'
 
 import {
   styled,
   propTypeBrand,
   propTypeSize,
   propTypeFieldMeta,
+  connectField,
 } from '../../utils'
 
 import { makeInputStyles, square, after } from '../../mixins'
@@ -44,7 +44,7 @@ const StyledBaseSelect = styled.select((props, t) => ({
 }))
 
 
-const ActualSelect = canConnectField(StyledBaseSelect, 'id', false)
+const ActualSelect = connectField(StyledBaseSelect, 'id', false)
 
 
 export default function Select(props) {

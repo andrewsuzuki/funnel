@@ -19,9 +19,7 @@ import PropTypes from 'prop-types'
 import get from 'lodash.get'
 import uniq from 'lodash.uniq'
 
-import { warn, propTypeFieldMeta, propTypeBrand } from '../../utils'
-
-import canConnectField from '../Field/canConnectField'
+import { warn, propTypeFieldMeta, propTypeBrand, connectField } from '../../utils'
 
 import FieldFeedback from '../FieldFeedback'
 
@@ -61,4 +59,4 @@ FieldFeedbackSet.propTypes = {
   danger: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([false])]),
 }
 
-export default canConnectField(FieldFeedbackSet)
+export default connectField(FieldFeedbackSet)

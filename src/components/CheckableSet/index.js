@@ -1,9 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { propTypeCheckableType } from '../../utils'
-
-import canConnectField from '../Field/canConnectField'
+import { propTypeCheckableType, connectField } from '../../utils'
 
 import Checkable from '../Checkable'
 
@@ -22,4 +20,4 @@ CheckableSet.propTypes = {
 }
 
 
-export default canConnectField(CheckableSet, 'name', true)
+export default connectField(CheckableSet, 'name', true)

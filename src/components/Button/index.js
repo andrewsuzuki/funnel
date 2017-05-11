@@ -8,12 +8,11 @@ import {
   propTypeBrandOrDefault,
   negate,
   connectBackgroundContext,
+  connectField,
   propTypeBackgroundContext,
 } from '../../utils'
 
 import { transitionIfEnabled } from '../../mixins'
-
-import canConnectField from '../Field/canConnectField'
 
 import stylesSize from './stylesSize'
 import stylesBrandNormal from './stylesBrandNormal'
@@ -105,4 +104,4 @@ Button.defaultProps = {
 }
 
 
-export default connectBackgroundContext(canConnectField(Button))
+export default connectBackgroundContext(connectField(Button))

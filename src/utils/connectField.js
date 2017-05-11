@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { propTypeFieldContext, getDisplayName } from '../../utils'
+import { propTypeFieldContext } from './propTypes'
+
+import { getDisplayName } from './helpers'
 
 
 export const makeFieldMetaToPropsFn = (which) =>
@@ -50,7 +52,7 @@ export const makeFieldMetaToPropsFn = (which) =>
  *                                    is explicity set to bool false)
  * @return {React.component}          Higher-order component ("FieldConnectable")
  */
-export default function connectField(
+export function connectField(
   component,
   keyAttrMaybe = null, // ex. 'id', 'htmlFor', 'name', 'etc'
   alwaysId = false,
