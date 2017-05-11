@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { Otep, themes } from '../../dist'
+import { OtepProvider, themes } from '../../dist'
 
 import App from './App'
 
@@ -13,9 +13,9 @@ const myTheme = {
 
 
 const Root = () =>
-  <Otep theme={myTheme}>
+  <OtepProvider theme={myTheme}>
     <App />
-  </Otep>
+  </OtepProvider>
 
 
 ReactDOM.render(

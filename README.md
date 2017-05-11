@@ -79,16 +79,16 @@ npm install --save otep
 
 ### Step one
 
-Set up the `Otep` container component near the top of your element tree, and provide it with a theme.
+Set up the `OtepProvider` container component near the top of your element tree, and provide it with a theme.
 
-`Otep` provides the supplied theme to its descendants via context, and also injects
+`OtepProvider` provides the supplied theme to its descendants via context, and also injects
 global styles (both reset styles and theme-based plain-element styles).
 
 ```jsx
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { Otep, themes } from 'otep'
+import { OtepProvider, themes } from 'otep'
 
 import App from './App'
 
@@ -101,9 +101,9 @@ const myTheme = {
 
 // example
 const Root = () =>
-  <Otep theme={theme}>
+  <OtepProvider theme={theme}>
     <App />
-  </Otep>
+  </OtepProvider>
 
 
 // example
