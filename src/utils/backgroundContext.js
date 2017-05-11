@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { withTheme } from 'glamorous'
 
 import { propTypeBackgroundContext } from './propTypes'
 
@@ -8,14 +9,13 @@ import { isLight } from './color'
 import { getDisplayName } from './helpers'
 
 
-export class BackgroundContext extends React.PureComponent {
+class BackgroundContextInner extends React.PureComponent {
   getChildContext() {
-    const { backgroundColor, textColor: textColorGiven } = this.props
+    const { theme, backgroundColor, textColor: textColorGiven } = this.props
 
     const backgroundColorIsLight = isLight(backgroundColor)
 
-    // TODO hook into theme
-    const textColorAuto = backgroundColorIsLight ? 'black' : 'white'
+    const textColorAuto = backgroundColorIsLight ? theme.baseTextColor : theme.white
 
     const background = {
       backgroundColor,
@@ -37,16 +37,20 @@ export class BackgroundContext extends React.PureComponent {
   }
 }
 
-BackgroundContext.propTypes = {
+BackgroundContextInner.propTypes = {
+  theme: PropTypes.object,
+
   children: PropTypes.node,
 
   backgroundColor: PropTypes.string.isRequired,
   textColor: PropTypes.string.isRequired,
 }
 
-BackgroundContext.childContextTypes = {
+BackgroundContextInner.childContextTypes = {
   background: propTypeBackgroundContext,
 }
+
+export const BackgroundContext = withTheme(BackgroundContextInner)
 
 
 export function connectBackgroundContext(component) {
