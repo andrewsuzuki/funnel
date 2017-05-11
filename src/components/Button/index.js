@@ -4,12 +4,12 @@ import partial from 'lodash.partial'
 
 import {
   styled,
+  negate,
   propTypeSize,
   propTypeBrandOrDefault,
-  negate,
+  propTypeBackgroundContext,
   connectBackgroundContext,
   connectField,
-  propTypeBackgroundContext,
 } from '../../utils'
 
 import { transitionIfEnabled } from '../../mixins'

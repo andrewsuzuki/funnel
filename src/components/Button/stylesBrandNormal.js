@@ -6,18 +6,18 @@ import { boxShadowIfEnabled, hover, focus, active, disabled } from '../../mixins
 export default function stylesBrandNormal(t, brand, props) {
   const brandCap = capitalize(brand)
 
-  const lubba = (f) => t[`button${brandCap}${f}`]
+  const buttonThemeValue = (f) => t[`button${brandCap}${f}`]
 
   const baseStyles = {
-    color: lubba('Color'),
-    backgroundColor: lubba('Bg'),
-    borderColor: lubba('Border'),
+    color: buttonThemeValue('Color'),
+    backgroundColor: buttonThemeValue('Bg'),
+    borderColor: buttonThemeValue('Border'),
   }
 
   const hoverStyles = {
     textDecoration: 'none',
-    backgroundColor: darken(lubba('Bg'), 10),
-    borderColor: darken(lubba('Border'), 12),
+    backgroundColor: darken(buttonThemeValue('Bg'), 10),
+    borderColor: darken(buttonThemeValue('Border'), 12),
   }
 
   const focusStyles = {
@@ -29,8 +29,8 @@ export default function stylesBrandNormal(t, brand, props) {
   const activeStyles = {
     outline: 0,
     textDecoration: 'none',
-    backgroundColor: darken(lubba('Bg'), 10),
-    borderColor: darken(lubba('Border'), 12),
+    backgroundColor: darken(buttonThemeValue('Bg'), 10),
+    borderColor: darken(buttonThemeValue('Border'), 12),
     ...boxShadowIfEnabled(t, t.buttonActiveBoxShadow),
   }
 
@@ -38,8 +38,8 @@ export default function stylesBrandNormal(t, brand, props) {
     cursor: t.cursorDisabled,
     opacity: 0.65,
 
-    color: lubba('Color'),
-    backgroundColor: lubba('Bg'),
+    color: buttonThemeValue('Color'),
+    backgroundColor: buttonThemeValue('Bg'),
     ...boxShadowIfEnabled(t, 'none'),
   }
 
