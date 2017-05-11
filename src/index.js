@@ -18,10 +18,10 @@ export {
 
 
 //
-// Theme (Variables)
+// Themes
 //
 
-export { default as theme } from './theme'
+export { default as themes } from './themes'
 
 
 //

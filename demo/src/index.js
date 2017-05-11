@@ -1,13 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { ThemeProvider, theme } from '../../dist'
+import { ThemeProvider, themes } from '../../dist'
 
 import App from './App'
 
 
+const myTheme = {
+  ...themes.standard,
+  // extend the standard theme at will!
+}
+
+
 const Root = () =>
-  <ThemeProvider theme={theme}>
+  <ThemeProvider theme={myTheme}>
     <App />
   </ThemeProvider>
 
