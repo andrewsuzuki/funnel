@@ -2,12 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 
-export default function Image({ source, title, ...restProps }) {
-  return <img {...restProps} src={source} alt={title} />
+export default function Image({ alt, ...restProps }) {
+  return <img {...restProps} alt={alt} />
 }
 
 
 Image.propTypes = {
-  source: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired, // has default
+}
+
+Image.defaultProps = {
+  alt: '',
 }
