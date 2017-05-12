@@ -97,7 +97,7 @@ export const rehydrateRememberRules = () => {
 
 
 /**
- * OtepProvider provides a theme via context (mechanics from glamor.OtepProvider),
+ * OtepProvider provides a theme via context (mechanics from glamor.ThemeProvider),
  * and injects global styles (reset and base) according to current theme
  */
 export class OtepProvider extends React.Component {
@@ -121,8 +121,8 @@ export class OtepProvider extends React.Component {
 
   flushAndInject = (theme) => {
     flushStyles() // flush all styles
-    injectAllGlobal(theme) // inject reset and base styles
     rehydrateRememberRules() // inject previously-loaded fonts and keyframes
+    injectAllGlobal(theme) // inject reset and base styles
   }
 
   render() {

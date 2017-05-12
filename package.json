@@ -8,7 +8,8 @@
     "build": "npm run clean && babel src --out-dir dist",
     "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint src demo/src"
+    "lint": "eslint src demo/src",
+    "deploy-site": "yarn run build && cd site && yarn run build && cd .. && git-directory-deploy --directory site/build --branch gh-pages"
   },
   "repository": {
     "type": "git",
@@ -46,6 +47,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
+    "git-directory-deploy": "^1.5.1",
     "react": "^15.3.0",
     "rimraf": "^2.5.2"
   },
