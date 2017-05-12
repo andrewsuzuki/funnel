@@ -102,7 +102,7 @@ export const rehydrateRememberRules = () => {
 
 
 /**
- * OtepProvider provides a theme via context (mechanics from glamor.ThemeProvider),
+ * OtepProvider provides a theme via context (mechanics from glamorous.ThemeProvider),
  * and injects global styles (reset and base) according to current theme
  */
 export class OtepProvider extends React.Component {

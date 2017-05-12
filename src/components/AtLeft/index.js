@@ -1,19 +1,14 @@
 /**
  * AtLeft
- *
- * AtLeft, similar to AtRight and AtCenter, is a helper component
- * that assists positioning in parents that expect them
- *
- * Do not use outside of components such as Level, Media, etc.
+ * Helper component that assists positioning in parents that expect it
  */
-
 
 import React from 'react'
 import PropTypes from 'prop-types'
 
 
-export default function AtLeft({ children, ...props }) {
-  return React.createElement('div', props, children)
+export default function AtLeft({ children, ...restProps }) {
+  return React.createElement('div', restProps, children)
 }
 
 AtLeft.propTypes = {

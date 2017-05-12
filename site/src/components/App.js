@@ -1,16 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import {
+  Stickler,
+  AtBottom,
+} from '../../../dist'
+
 import Header from './Header'
 import Footer from './Footer'
 
 
 const App = ({ children }) =>
-  <div>
+  <Stickler>
     <Header />
     {children}
-    <Footer />
-  </div>
+    <AtBottom>
+      <Footer />
+    </AtBottom>
+  </Stickler>
 
 App.propTypes = {
   children: PropTypes.node,

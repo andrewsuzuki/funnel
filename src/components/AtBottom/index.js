@@ -1,5 +1,5 @@
 /**
- * AtRight
+ * AtBottom
  * Helper component that assists positioning in parents that expect it
  */
 
@@ -7,10 +7,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 
-export default function AtRight({ children, ...restProps }) {
+export default function AtBottom({ children, ...restProps }) {
   return React.createElement('div', restProps, children)
 }
 
-AtRight.propTypes = {
+AtBottom.propTypes = {
   children: PropTypes.node,
 }
