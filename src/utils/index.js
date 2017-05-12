@@ -21,6 +21,7 @@ export const modalCloseClassname = 'should-close-modal'
 
 
 export const aliasWidthMap = {
+  'full-width': percentValue(100),
   'three-quarters': percentValue(100 * (3 / 4)),
   'two-thirds': percentValue(100 * (2 / 3)),
   'one-half': percentValue(100 * (1 / 2)),

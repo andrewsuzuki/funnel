@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 
 import { OtepProvider, themes } from '../../dist'
 
-import App from './App'
+import Routes from './Routes'
 
 
 const myTheme = {
@@ -14,7 +14,7 @@ const myTheme = {
 
 const Root = () =>
   <OtepProvider theme={myTheme}>
-    <App />
+    <Routes />
   </OtepProvider>
 
 
