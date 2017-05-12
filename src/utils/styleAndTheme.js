@@ -28,7 +28,12 @@ export const injectRuleGlobal = (target, styles) =>
  * @return void
  */
 export const injectRuleMapGlobal = (ruleMap) =>
-  Object.keys(ruleMap).forEach((rule) => injectRuleGlobal(rule, ruleMap[rule]))
+  Object.keys(ruleMap).forEach((target) => {
+    const ruleOrRules = ruleMap[target]
+    // handle array (e.g. reset for b, strong needs separate rules for safari)
+    const rules = Array.isArray(ruleOrRules) ? ruleOrRules : [ruleOrRules]
+    rules.forEach((rule) => injectRuleGlobal(target, rule))
+  })
 
 
 /**

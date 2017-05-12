@@ -65,14 +65,15 @@ export default {
     textDecoration: ['underline', 'underline dotted'],
   },
 
-  // Prevent the duplicate application of `bolder` by the next rule in Safari 6.
-  // 'b, strong': {
-  //   fontWeight: 'inherit',
-  // },
-
-  'b, strong': {
-    fontWeight: 'bolder',
-  },
+  'b, strong': [
+    {
+      // Prevent the duplicate application of `bolder` by the next rule in Safari 6.
+      fontWeight: 'inherit',
+    },
+    {
+      fontWeight: 'bolder',
+    },
+  ],
 
   'code, kbd, samp': {
     fontFamily: 'monospace, monospace',
