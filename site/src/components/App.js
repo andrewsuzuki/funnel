@@ -6,6 +6,7 @@ import {
   AtBottom,
 } from '../../../dist'
 
+import Content from './Content'
 import Header from './Header'
 import Footer from './Footer'
 
@@ -13,7 +14,9 @@ import Footer from './Footer'
 const App = ({ children }) =>
   <Stickler>
     <Header />
-    {children}
+    <Content>
+      {children}
+    </Content>
     <AtBottom>
       <Footer />
     </AtBottom>

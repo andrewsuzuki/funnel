@@ -1,6 +1,7 @@
 import React from 'react'
 
 import {
+  styled,
   Section,
   Container,
   Row,
@@ -8,15 +9,23 @@ import {
 } from '../../../dist'
 
 
+const Wrapper = styled(Section)({
+  marginTop: '20px',
+})
+
+
+const year = (new Date()).getFullYear()
+
+
 const Footer = () =>
-  <Section>
+  <Wrapper>
     <Container>
       <Row>
         <Column tablet="full-width">
-          &copy;2017 Andrew Suzuki
+          &copy;{year} Andrew Suzuki
         </Column>
       </Row>
     </Container>
-  </Section>
+  </Wrapper>
 
 export default Footer

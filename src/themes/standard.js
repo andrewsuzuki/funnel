@@ -90,7 +90,7 @@ theme.brandWarning = '#F39237'
 theme.brandDanger = '#F25C54'
 
 // Body color
-theme.baseBackgroundColor = theme.grayLightest
+theme.baseBackgroundColor = theme.white
 theme.baseTextColor = theme.grayDark
 
 
