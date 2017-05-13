@@ -71,7 +71,7 @@ export default function Hero({ fluid, size, bold, brand, children }) {
     } else if (child.type === AtTop) {
       invariant(
         !acc.top,
-        'Stickler must have at most one AtBottom',
+        'Stickler must have at most one AtTop',
       )
 
       return { ...acc, top: child.props.children }
