@@ -4,6 +4,7 @@ import {
   Hero,
   AtTop,
   Navbar,
+  NavbarItem,
   AtLeft,
   AtRight,
   HeroTitle,
@@ -23,8 +24,12 @@ const Header = () =>
   <Hero bold brand="primary">
     <AtTop>
       <Navbar>
-        <AtLeft>left</AtLeft>
-        <AtRight>right</AtRight>
+        <AtLeft>
+          <NavbarItem>left</NavbarItem>
+        </AtLeft>
+        <AtRight>
+          <NavbarItem>right</NavbarItem>
+        </AtRight>
       </Navbar>
     </AtTop>
     <HeroTitle>otep</HeroTitle>
