@@ -16,7 +16,7 @@ const AndrewGithubLinkIcon = () =>
 
 
 const Header = () =>
-  <Hero bold brand="primary" size="large">
+  <Hero bold brand="primary">
     <HeroTitle>otep</HeroTitle>
     <HeroSubtitle>
       A React UI library by Andrew Suzuki
