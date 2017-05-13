@@ -4,8 +4,7 @@ import {
   Hero,
   AtTop,
   Navbar,
-  NavbarItem,
-  AtLeft,
+  NavbarLink,
   AtRight,
   HeroTitle,
   HeroSubtitle,
@@ -15,20 +14,18 @@ import {
 
 
 const AndrewGithubLinkIcon = () =>
-  <A href="http://github.com/andrewsuzuki" title="@andrewsuzuki on GitHub" inherit>
+  <A href="http://github.com/andrewsuzuki" title="@andrewsuzuki on GitHub" inheritColor>
     <Icon name="github" relative fixedWidth />
   </A>
 
 
 const Header = () =>
-  <Hero bold brand="primary">
+  <Hero bold brand="light">
     <AtTop>
-      <Navbar>
-        <AtLeft>
-          <NavbarItem>left</NavbarItem>
-        </AtLeft>
+      <Navbar brand="light">
         <AtRight>
-          <NavbarItem>right</NavbarItem>
+          {['Home', 'About', 'Test'].map((n, i) =>
+            <NavbarLink key={i} href="#" tab>{n}</NavbarLink>)}
         </AtRight>
       </Navbar>
     </AtTop>

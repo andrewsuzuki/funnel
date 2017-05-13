@@ -26,7 +26,7 @@ export const stylesHover = (t) => ({
 })
 
 
-const A = connectBackgroundContext(styled.a(({ backgroundContext, inherit }, t) =>
+const A = connectBackgroundContext(styled.a(({ backgroundContext, inheritColor }, t) =>
   compose(
     {
       ...stylesBase(t),
@@ -36,7 +36,7 @@ const A = connectBackgroundContext(styled.a(({ backgroundContext, inherit }, t) 
       color: backgroundContext.linkColor,
       ...hover({ color: backgroundContext.linkColor }),
     },
-    inherit && {
+    inheritColor && {
       color: 'inherit',
       ...hover({ color: 'inherit' }),
     },
@@ -45,7 +45,7 @@ const A = connectBackgroundContext(styled.a(({ backgroundContext, inherit }, t) 
 
 A.propTypes = {
   backgroundContext: propTypeBackgroundContext,
-  inherit: PropTypes.bool, // inherit css color from parent
+  inheritColor: PropTypes.bool, // inherit css color from parent
 }
 
 export default A

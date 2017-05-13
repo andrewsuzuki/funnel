@@ -69,6 +69,7 @@ theme.gridContainerMaxWidths = {
 
 
 // Basic
+theme.transparent = 'transparent'
 theme.black = '#000000'
 theme.white = '#ffffff'
 
@@ -379,6 +380,20 @@ theme.tileMarginBottom = '1rem'
 
 
 theme.modalBackgroundColor = 'rgba(0, 0, 0, 0.86)'
+
+
+// Navbar
+
+
+theme.navbarHeight = '3.25rem'
+
+theme.navbarLinkColor = theme.grayLight
+theme.navbarLinkColorHover = theme.gray
+theme.navbarLinkTabColor = theme.grayLight
+theme.navbarLinkTabColorHover = theme.brandPrimary
+
+
+// Final export
 
 
 export default theme

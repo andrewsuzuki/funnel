@@ -7,7 +7,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import invariant from 'invariant'
 
-import { styled } from '../../utils'
+import { styled, propTypeBrandOrDefaultOrLightOrDark } from '../../utils'
 
 import { breakpoint } from '../../mixins'
 
@@ -15,16 +15,18 @@ import AtLeft from '../AtLeft'
 import AtRight from '../AtRight'
 import AtCenter from '../AtCenter'
 
+import BrandBackground from '../BrandBackground'
 
-const Wrapper = styled.div({
+
+const Wrapper = styled(BrandBackground)((p, t) => ({
   position: 'relative',
   display: 'flex',
   alignItems: 'stretch',
-  height: '3.25rem',
+  height: t.navbarHeight,
   textAlign: 'center',
   // backgroundColor: 'white',
   // zIndex: 10;
-})
+}))
 
 
 const LeftOrRightBase = styled.div((p, t) => ({
@@ -63,7 +65,7 @@ const Center = styled.div({
 })
 
 
-export default function Navbar({ children }) {
+export default function Navbar({ brand, children }) {
   const { left, center, right } = React.Children.toArray(children).reduce((acc, child) => {
     if (child.type === AtLeft) {
       invariant(
@@ -100,7 +102,7 @@ export default function Navbar({ children }) {
   // The two LeftOrRight need to be in place regardless of whether we have
   // a left/right so that the center is positioned in the center with flexbox
   return (
-    <Wrapper>
+    <Wrapper brand={brand}>
       <Left>{left}</Left>
       {center && <Center>{center}</Center>}
       <Right>{right}</Right>
@@ -109,8 +111,10 @@ export default function Navbar({ children }) {
 }
 
 Navbar.propTypes = {
+  brand: propTypeBrandOrDefaultOrLightOrDark.isRequired, // has default
   children: PropTypes.node,
 }
 
 Navbar.defaultProps = {
+  brand: 'default',
 }
