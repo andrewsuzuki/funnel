@@ -2,6 +2,10 @@ import React from 'react'
 
 import {
   Hero,
+  AtTop,
+  Navbar,
+  AtLeft,
+  AtRight,
   HeroTitle,
   HeroSubtitle,
   Icon,
@@ -17,6 +21,12 @@ const AndrewGithubLinkIcon = () =>
 
 const Header = () =>
   <Hero bold brand="primary">
+    <AtTop>
+      <Navbar>
+        <AtLeft>left</AtLeft>
+        <AtRight>right</AtRight>
+      </Navbar>
+    </AtTop>
     <HeroTitle>otep</HeroTitle>
     <HeroSubtitle>
       A React UI library by Andrew Suzuki

@@ -7,22 +7,59 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import invariant from 'invariant'
 
-import {
-  styled,
-} from '../../utils'
+import { styled } from '../../utils'
+
+import { breakpoint } from '../../mixins'
 
 import AtLeft from '../AtLeft'
 import AtRight from '../AtRight'
 import AtCenter from '../AtCenter'
 
 
-const LeftOrRight = styled.div({
-  // TODO
+const Wrapper = styled.div({
+  position: 'relative',
+  display: 'flex',
+  alignItems: 'stretch',
+  height: '3.25rem',
+  textAlign: 'center',
+  // backgroundColor: 'white',
+  // zIndex: 10;
+})
+
+
+const LeftOrRightBase = styled.div((p, t) => ({
+  flexGrow: 1,
+  flexShrink: 0,
+
+  display: 'flex',
+  alignItems: 'stretch',
+
+  maxWidth: '100%',
+  overflow: 'auto',
+
+  ...breakpoint(t, 'widescreen', {
+    flexBasis: 0,
+  }),
+}))
+
+const Left = styled(LeftOrRightBase)({
+  justifyContent: 'flex-start',
+  whiteSpace: 'nowrap',
+})
+
+const Right = styled(LeftOrRightBase)({
+  justifyContent: 'flex-end',
 })
 
 
 const Center = styled.div({
-  // TODO
+  flexGrow: 0,
+  flexShrink: 0,
+  display: 'flex',
+  alignItems: 'stretch',
+  justifyContent: 'center',
+  marginLeft: 'auto',
+  marginRight: 'auto',
 })
 
 
@@ -31,21 +68,21 @@ export default function Navbar({ children }) {
     if (child.type === AtLeft) {
       invariant(
         !acc.left,
-        'Stickler must have at most one AtLeft',
+        'Navbar must have at most one AtLeft',
       )
 
       return { ...acc, left: child.props.children }
     } else if (child.type === AtRight) {
       invariant(
         !acc.right,
-        'Stickler must have at most one AtRight',
+        'Navbar must have at most one AtRight',
       )
 
       return { ...acc, right: child.props.children }
     } else if (child.type === AtCenter) {
       invariant(
         !acc.center,
-        'Stickler must have at most one AtCenter',
+        'Navbar must have at most one AtCenter',
       )
 
       return { ...acc, center: child.props.children }
@@ -60,12 +97,14 @@ export default function Navbar({ children }) {
     return acc
   }, { left: null, right: null, center: null })
 
+  // The two LeftOrRight need to be in place regardless of whether we have
+  // a left/right so that the center is positioned in the center with flexbox
   return (
-    <div>
-      {left && <LeftOrRight>{left}</LeftOrRight>}
+    <Wrapper>
+      <Left>{left}</Left>
       {center && <Center>{center}</Center>}
-      {right && <LeftOrRight>{right}</LeftOrRight>}
-    </div>
+      <Right>{right}</Right>
+    </Wrapper>
   )
 }
 
