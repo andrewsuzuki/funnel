@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import merge from 'lodash.merge'
 import get from 'lodash.get'
 
-import { styled, connectBackgroundContext, darken } from '../../utils'
+import { styled, connectBackgroundContext } from '../../utils'
 
 import { hover } from '../../mixins'
 

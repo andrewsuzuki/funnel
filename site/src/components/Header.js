@@ -20,7 +20,7 @@ const AndrewGithubLinkIcon = () =>
 
 
 const Header = () =>
-  <Hero bold brand="light">
+  <Hero bold brand="primary">
     <AtTop>
       <Navbar brand="light">
         <AtRight>
