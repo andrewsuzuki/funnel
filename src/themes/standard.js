@@ -397,11 +397,24 @@ theme.navbarLinkTabColorHover = theme.brandPrimary
 // Tabs
 
 
-theme.tabsBorderBottomColor = theme.borderColor
+theme.tabsOuterBorderColor = theme.borderColor
+
 theme.tabsColor = theme.gray
 theme.tabsHoverColor = theme.grayDark
 theme.tabsActiveColor = theme.brandPrimary
 theme.tabsActiveHoverColor = darken(theme.brandPrimary, 10)
+
+theme.tabsBoxedAndButtonlikeBackgroundColorHover = theme.grayLighter
+theme.tabsButtonlikeActiveTextColor = theme.white
+
+theme.tabsBoxedBorderRadius = theme.borderRadiusNormal
+theme.tabsButtonlikeBorderRadius = theme.borderRadiusNormal
+
+// For buttonlike, if false, prevent hovered non-active tab at right
+// of active tab from overlapping the active tab's border.
+// You might consider setting this to true if your
+// tabsOuterBorderColor is darker than your tabsBoxedAndButtonlikeBackgroundColorHover
+theme.tabsButtonlikeHoveredShouldOverlapActiveLeft = false
 
 
 // Final export

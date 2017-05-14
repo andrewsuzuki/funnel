@@ -18,8 +18,15 @@ const Wrapper = styled.div(() => ({
   overflowX: 'auto',
   overflowY: 'hidden',
   whiteSpace: 'nowrap',
+
+  marginBottom: '1rem',
 }))
 
+const positionToJustifyContentMap = {
+  left: 'flex-start',
+  center: 'center',
+  right: 'flex-end',
+}
 
 const sizeToThemeFontSizeMap = {
   normal: 'fontSizeNormal',
@@ -38,20 +45,7 @@ const List = styled.ul(({ isButtonlike, position, size }, t) => ({
   paddingLeft: 0,
 
   // Positioning
-  ...position === 'left' && {
-    justifyContent: 'flex-start',
-    paddingRight: '0.75em',
-  },
-  ...position === 'center' && {
-    justifyContent: 'center',
-    paddingLeft: '0.75em',
-    paddingRight: '0.75em',
-    flex: 'none', // ?
-  },
-  ...position === 'right' && {
-    justifyContent: 'flex-end',
-    paddingLeft: '0.75em',
-  },
+  justifyContent: positionToJustifyContentMap[position],
 
   // Size
   fontSize: t[sizeToThemeFontSizeMap[size]],
@@ -60,7 +54,7 @@ const List = styled.ul(({ isButtonlike, position, size }, t) => ({
   ...!isButtonlike && {
     borderBottomWidth: '1px',
     borderBottomStyle: 'solid',
-    borderBottomColor: t.tabsBorderBottomColor,
+    borderBottomColor: t.tabsOuterBorderColor,
   },
 }))
 

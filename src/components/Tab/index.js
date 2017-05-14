@@ -33,7 +33,7 @@ Wrapper.propTypes = {
 }
 
 
-const Link = styled(A)(({ active, isFirst, isLast, type }, t) =>
+const Link = styled(A)(({ active, isFirst, isLast, tabType }, t) =>
   merge(
     // base styles (all types)
     {
@@ -43,7 +43,7 @@ const Link = styled(A)(({ active, isFirst, isLast, type }, t) =>
 
       borderBottomWidth: '1px',
       borderBottomStyle: 'solid',
-      borderBottomColor: t.transparent,
+      borderBottomColor: 'transparent',
 
       color: t.tabsColor,
 
@@ -77,12 +77,114 @@ const Link = styled(A)(({ active, isFirst, isLast, type }, t) =>
       }),
     },
     // type boxed
-    type === 'boxed' && {
-      // TODO
+    tabType === 'boxed' && {
+      borderTopWidth: '1px',
+      borderTopStyle: 'solid',
+      borderTopColor: 'transparent',
+      borderRightWidth: '1px',
+      borderRightStyle: 'solid',
+      borderRightColor: 'transparent',
+      borderBottomWidth: '1px',
+      borderBottomStyle: 'solid',
+      borderBottomColor: 'transparent',
+      borderLeftWidth: '1px',
+      borderLeftStyle: 'solid',
+      borderLeftColor: 'transparent',
+
+      borderTopLeftRadius: t.tabsBoxedBorderRadius,
+      borderTopRightRadius: t.tabsBoxedBorderRadius,
+      borderBottomRightRadius: 0,
+      borderBottomLeftRadius: 0,
+
+      ...hover({
+        borderBottomColor: 'transparent',
+
+        ...!active && {
+          backgroundColor: t.tabsBoxedAndButtonlikeBackgroundColorHover,
+        },
+      }),
+
+      ...active && {
+        backgroundColor: t.white,
+        borderTopColor: t.tabsOuterBorderColor,
+        borderRightColor: t.tabsOuterBorderColor,
+        borderBottomColor: 'transparent',
+        borderLeftColor: t.tabsOuterBorderColor,
+      },
     },
     // type buttonlike
-    type === 'buttonlike' && {
-      // TODO
+    tabType === 'buttonlike' && {
+      borderTopWidth: '1px',
+      borderTopStyle: 'solid',
+      borderTopColor: t.tabsOuterBorderColor,
+      borderRightWidth: '1px',
+      borderRightStyle: 'solid',
+      borderRightColor: t.tabsOuterBorderColor,
+      borderBottomWidth: '1px',
+      borderBottomStyle: 'solid',
+      borderBottomColor: t.tabsOuterBorderColor,
+      borderLeftWidth: '1px',
+      borderLeftStyle: 'solid',
+      borderLeftColor: t.tabsOuterBorderColor,
+
+      marginBottom: 0,
+      position: 'relative',
+
+      zIndex: 1,
+
+      ...isFirst && {
+        borderTopLeftRadius: t.tabsButtonlikeBorderRadius,
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 0,
+        borderBottomLeftRadius: t.tabsButtonlikeBorderRadius,
+      },
+
+      ...isLast && {
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: t.tabsButtonlikeBorderRadius,
+        borderBottomRightRadius: t.tabsButtonlikeBorderRadius,
+        borderBottomLeftRadius: 0,
+      },
+
+      ...active && {
+        borderTopColor: t.tabsActiveColor,
+        borderRightColor: t.tabsActiveColor,
+        borderBottomColor: t.tabsActiveColor,
+        borderLeftColor: t.tabsActiveColor,
+
+        backgroundColor: t.tabsActiveColor,
+        color: t.tabsButtonlikeActiveTextColor,
+
+        // prevent hovered non-active tab at right (z-index 2) from going over
+        // (unless t.tabsHoveredShouldOverlapActiveLeft is true)
+        ...!t.tabsButtonlikeHoveredShouldOverlapActiveLeft && { zIndex: 3 },
+      },
+
+      ...hover({
+        // not active
+        ...!active && {
+          borderTopColor: t.tabsOuterBorderColor,
+          borderRightColor: t.tabsOuterBorderColor,
+          borderBottomColor: t.tabsOuterBorderColor,
+          borderLeftColor: t.tabsOuterBorderColor,
+
+          backgroundColor: t.tabsBoxedAndButtonlikeBackgroundColorHover,
+        },
+
+        // active
+        ...active && {
+          borderTopColor: t.tabsActiveHoverColor,
+          borderRightColor: t.tabsActiveHoverColor,
+          borderBottomColor: t.tabsActiveHoverColor,
+          borderLeftColor: t.tabsActiveHoverColor,
+
+          backgroundColor: t.tabsActiveHoverColor,
+          color: t.tabsButtonlikeActiveTextColor,
+        },
+
+        // use this border-left over the left sibling tab's border-right (unless active)
+        zIndex: 2,
+      }),
     },
   ))
 
@@ -92,7 +194,7 @@ Link.propTypes = {
   isFirst: PropTypes.bool,
   isLast: PropTypes.bool,
 
-  type: PropTypes.oneOf(['normal', 'boxed', 'buttonlike']).isRequired,
+  tabType: PropTypes.oneOf(['normal', 'boxed', 'buttonlike']).isRequired,
 
   children: PropTypes.node,
 }
@@ -100,7 +202,7 @@ Link.propTypes = {
 
 const Tab = ({ active, isFirst, isLast, type, grow, children, ...restProps }) =>
   <Wrapper isButtonlike={type === 'buttonlike'} isFirst={isFirst} grow={grow}>
-    <Link active={active} isFirst={isFirst} isLast={isLast} type={type} {...restProps}>
+    <Link active={active} isFirst={isFirst} isLast={isLast} tabType={type} {...restProps}>
       {children}
     </Link>
   </Wrapper>
