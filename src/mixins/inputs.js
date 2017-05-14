@@ -67,6 +67,7 @@ const makeBaseInputStyles = (t) => ({
 })
 
 
+// props (all optional): disabled, focus, hover, brand, size, hasIconLeft, hasIconRight
 export function makeInputStyles(props, t) {
   const disabledStyles = {
     cursor: t.cursorDisabled,
