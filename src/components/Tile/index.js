@@ -10,10 +10,7 @@ import {
   propTypeBrandOrDefaultOrLightOrDark,
 } from '../../utils'
 
-import {
-  borderRadiusIfEnabled,
-  boxShadowIfEnabled,
-} from '../../mixins'
+import { borderRadiusIfEnabled, boxShadowIfEnabled } from '../../mixins'
 
 import BrandBackground from '../BrandBackground'
 

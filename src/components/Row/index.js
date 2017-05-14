@@ -21,13 +21,7 @@ import {
   breakpointsCreateSpecsOnValues,
 } from '../../utils'
 
-import {
-  breakpointOnly,
-  justifyContent,
-  alignItems,
-  alignContent,
-  flexDirection,
-} from '../../mixins'
+import { breakpointOnly } from '../../mixins'
 
 import Column from '../Column'
 
@@ -48,28 +42,28 @@ const specDict = {
   ...breakpointsCreateSpecsOnValues(
     validJustifyContent,
     'justify-content:',
-    justifyContent,
+    (justifyContent) => ({ justifyContent }),
   ),
 
   // align-items
   ...breakpointsCreateSpecsOnValues(
     validAlignItems,
     'align-items:',
-    alignItems,
+    (alignItems) => ({ alignItems }),
   ),
 
   // align-content
   ...breakpointsCreateSpecsOnValues(
     validAlignContent,
     'align-content:',
-    alignContent,
+    (alignContent) => ({ alignContent }),
   ),
 
   // direction (flex-direction) (with normal=>row, reverse=>row-reverse)
   ...breakpointsCreateSpecsOnValues(
     [['normal', 'row'], ['reverse', 'row-reverse']],
     'direction:',
-    flexDirection,
+    (flexDirection) => ({ flexDirection }),
   ),
 }
 

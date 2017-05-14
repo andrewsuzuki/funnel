@@ -5,9 +5,13 @@
 import memoize from 'lodash.memoize'
 import partial from 'lodash.partial'
 
+import { size, borderRadius } from './polished'
+
 
 // Re-exports
 
+
+export * from './polished' // NOTE also used above
 
 export { makeInputStyles } from './inputs'
 
@@ -37,6 +41,10 @@ function wrapEnabler(key, propFn) {
   return (theme, ...args) =>
     (theme[key] ? propFn(...args) : {})
 }
+
+
+const decrementPixelValue = memoize((x) =>
+  `${parseFloat(x) - 1}px`)
 
 
 // CSS Attribute Values
@@ -126,74 +134,9 @@ export function transitionValue({ delay, duration, property, timingFunction } = 
 // Size
 
 
-export const height = makeBasicPropFn('height')
-export const width = makeBasicPropFn('width')
-export const maxHeight = makeBasicPropFn('maxHeight')
-export const maxWidth = makeBasicPropFn('maxWidth')
-export const minHeight = makeBasicPropFn('minHeight')
-export const minWidth = makeBasicPropFn('minWidth')
-
-export function size(x, y) {
-  return { ...width(x), ...height(y) }
-}
-
 export function square(x) {
   return size(x, x)
 }
-
-
-// Color
-
-
-export const color = makeBasicPropFn('color')
-
-
-// Background
-
-
-export const backgroundColor = makeBasicPropFn('backgroundColor')
-export const backgroundImage = makeBasicPropFn('backgroundImage')
-
-
-// Position
-
-
-export const position = makeBasicPropFn('position')
-
-
-// Margin, padding, position*ing
-
-
-export function margin(...args) {
-  return { margin: args.join(' ') }
-}
-
-export const marginTop = makeBasicPropFn('marginTop')
-export const marginRight = makeBasicPropFn('marginRight')
-export const marginBottom = makeBasicPropFn('marginBottom')
-export const marginLeft = makeBasicPropFn('marginLeft')
-
-
-export function padding(...args) {
-  return { padding: args.join(' ') }
-}
-
-export const paddingTop = makeBasicPropFn('paddingTop')
-export const paddingRight = makeBasicPropFn('paddingRight')
-export const paddingBottom = makeBasicPropFn('paddingBottom')
-export const paddingLeft = makeBasicPropFn('paddingLeft')
-
-
-export const top = makeBasicPropFn('top')
-export const right = makeBasicPropFn('right')
-export const bottom = makeBasicPropFn('bottom')
-export const left = makeBasicPropFn('left')
-
-
-// Display
-
-
-export const display = makeBasicPropFn('display')
 
 
 // pseudo
@@ -228,29 +171,12 @@ export const visited = partial(pseudoBlock, ':visited')
 // ...more
 
 
-// Media queries
-
-
-export function media(query, styles) {
-  return { [`@media ${query}`]: styles }
-}
-
-
-export function mediaWidthRange(from, to, styles) {
-  const partMin = from ? ` and (min-width: ${from})` : ''
-  const partMax = to ? ` and (max-width: ${to})` : ''
-  const query = `screen${partMin}${partMax}`
-
-  return media(query, styles)
-}
-
-
 // Clearfix
 
 
 export function clearfix() {
   return after({
-    ...display('block'),
+    display: 'block',
     content: '',
     clear: 'both',
   })
@@ -270,97 +196,47 @@ export function smoothFonts() {
 }
 
 
-// Border
-
-
-export function border(attrs) {
-  return { border: borderValue(attrs) }
-}
-
-export const borderStyle = makeBasicPropFn('borderStyle')
-export const borderWidth = makeBasicPropFn('borderWidth')
-export const borderColor = makeBasicPropFn('borderColor')
-
-
 // Border-radius
-
-
-export function borderRadius(...args) {
-  return { borderRadius: args.join(' ') }
-}
 
 
 export const borderRadiusIfEnabled = wrapEnabler('enableRounded', borderRadius)
 
 
-// Visibility, opacity
+// Shadow (text and box)
 
 
-export const zIndex = makeBasicPropFn('zIndex')
-export const opacity = makeBasicPropFn('opacity')
-export const visibility = makeBasicPropFn('visibility')
-
-
-// Flex
-
-
-export const justifyContent = makeBasicPropFn('justifyContent')
-export const alignItems = makeBasicPropFn('alignItems')
-export const alignSelf = makeBasicPropFn('alignSelf')
-export const alignContent = makeBasicPropFn('alignContent')
-export const flexDirection = makeBasicPropFn('flexDirection')
-export const flexGrow = makeBasicPropFn('flexGrow')
-export const flexShrink = makeBasicPropFn('flexShrink')
-export const flexBasis = makeBasicPropFn('flexBasis')
-export const flexWrap = makeBasicPropFn('flexWrap')
-
-
-// Overflow
-
-
-export const overflow = makeBasicPropFn('overflow')
-export const overflowX = makeBasicPropFn('overflowX')
-export const overflowY = makeBasicPropFn('overflowY')
-
-
-// Font
-
-
-export const fontFamily = makeBasicPropFn('fontFamily')
-export const fontSize = makeBasicPropFn('fontSize')
-export const fontWeight = makeBasicPropFn('fontWeight')
-
-
-// Text (non-font)
-
-
-export const lineHeight = makeBasicPropFn('lineHeight')
-export const letterSpacing = makeBasicPropFn('letterSpacing')
-export const textDecoration = makeBasicPropFn('textDecoration')
-export const textAlign = makeBasicPropFn('textAlign')
 export const textShadow = makeBasicPropFn('textShadow')
-
 export const textShadowIfEnabled = wrapEnabler('enableShadows', textShadow)
 
-
-// Misc
-
-
-export const transform = makeBasicPropFn('transform')
-export const float = makeBasicPropFn('float')
-export const cursor = makeBasicPropFn('cursor')
-export const verticalAlign = makeBasicPropFn('verticalAlign')
 export const boxShadow = makeBasicPropFn('boxShadow')
-
 export const boxShadowIfEnabled = wrapEnabler('enableShadows', boxShadow)
 
 
+// Transitions
+
+
+export const transition = makeBasicPropFn('transition')
+export const transitionIfEnabled = wrapEnabler('enableTransitions', transition)
+
+
+// Media queries
+
+
+export function media(query, styles) {
+  return { [`@media ${query}`]: styles }
+}
+
+
+export function mediaWidthRange(from, to, styles) {
+  const partMin = from ? ` and (min-width: ${from})` : ''
+  const partMax = to ? ` and (max-width: ${to})` : ''
+  const query = `screen${partMin}${partMax}`
+
+  return media(query, styles)
+}
+
+
 // Breakpoints
-
-
-// mini-util
-const decrementPixelValue = memoize((x) =>
-  `${parseFloat(x) - 1}px`)
 
 
 export const nextBreakpointLookup = {
@@ -411,11 +287,3 @@ export function breakpointTo(theme, device, styles) {
 export function breakpointOnly(theme, device, styles) {
   return mediaWidthRange(...breakpointToMediaRangeOnly(theme, device), styles)
 }
-
-
-// Transitions
-
-
-export const transition = makeBasicPropFn('transition')
-
-export const transitionIfEnabled = wrapEnabler('enableTransitions', transition)

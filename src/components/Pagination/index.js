@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { styled, makeInputStyles } from '../../utils'
+import { styled } from '../../utils'
 
-import { before } from '../../mixins'
+import { before, makeInputStyles } from '../../mixins'
 
 
-export const makeBaseItemStyles = ({ active, disabled }) => ({
-  ...makeInputStyles({ active, disabled }),
+export const makeBaseItemStyles = ({ active, disabled } = {}, t) => ({
+  ...makeInputStyles({ active, disabled }, t),
   userSelect: 'none',
   fontSize: '1em',
   paddingLeft: '0.5em',
@@ -21,8 +21,8 @@ export const makeBaseItemStyles = ({ active, disabled }) => ({
 })
 
 
-export const LinkItem = styled.a(({ active, disabled }) => ({
-  ...makeBaseItemStyles({ active, disabled }),
+export const LinkItem = styled.a(({ active, disabled }, t) => ({
+  ...makeBaseItemStyles({ active, disabled }, t),
 }))
 
 
@@ -38,13 +38,13 @@ LinkItem.defaultProps = {
 }
 
 
-export const Ellipsis = styled.span({
-  ...makeBaseItemStyles(),
+export const Ellipsis = styled.span((p, t) => ({
+  ...makeBaseItemStyles({}, t),
   // TODO more
   ...before({
     content: '"\\2026"', // &hellip
   }),
-})
+}))
 
 
 const Pagination = ({ total, current }) => {
