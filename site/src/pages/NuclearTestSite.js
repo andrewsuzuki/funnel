@@ -11,7 +11,7 @@ const NuclearTestSite = () =>
   <div>
     <H2>Nuclear Test Site</H2>
     <Tabs>
-      <Tab>One</Tab>
+      <Tab active>One</Tab>
       <Tab>Two</Tab>
       <Tab>Three</Tab>
     </Tabs>

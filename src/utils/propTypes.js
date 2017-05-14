@@ -65,6 +65,18 @@ export const propTypeAlignItems = PropTypes.oneOf(valids.validAlignItems)
 export const propTypeIconSize = PropTypes.oneOf(valids.validIconSizes)
 
 
+/**
+* PropType for valid horizontal position
+*/
+export const propTypeHorizontalPosition = PropTypes.oneOf(valids.validHorizontalPositions)
+
+
+/**
+ * PropType for valid Tabs/Tab type
+ */
+export const propTypeTabType = PropTypes.oneOf(['normal', 'boxed', 'buttonlike'])
+
+
 // Breakpoints-related
 
 

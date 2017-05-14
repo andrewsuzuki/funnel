@@ -98,8 +98,8 @@ theme.baseTextColor = theme.grayDark
 // Root ::selection
 
 
-theme.baseSelectionBackgroundColor = null // null = default
-theme.baseSelectionTextColor = null // null = default
+theme.baseSelectionBackgroundColor = null // null = do not apply
+theme.baseSelectionTextColor = null // null = do not apply
 
 
 // Font
@@ -122,6 +122,7 @@ theme.fontSizeLarge = '1.25rem'
 
 
 theme.borderWidth = '1px'
+theme.borderColor = theme.grayLighter
 
 
 // Border radius
@@ -391,6 +392,16 @@ theme.navbarLinkColor = theme.grayLight
 theme.navbarLinkColorHover = theme.gray
 theme.navbarLinkTabColor = theme.grayLight
 theme.navbarLinkTabColorHover = theme.brandPrimary
+
+
+// Tabs
+
+
+theme.tabsBorderBottomColor = theme.borderColor
+theme.tabsColor = theme.gray
+theme.tabsHoverColor = theme.grayDark
+theme.tabsActiveColor = theme.brandPrimary
+theme.tabsActiveHoverColor = darken(theme.brandPrimary, 10)
 
 
 // Final export

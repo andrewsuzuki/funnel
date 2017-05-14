@@ -82,4 +82,11 @@ export const validAlignContent = [
 ]
 
 
+export const validHorizontalPositions = [
+  'left',
+  'center',
+  'right',
+]
+
+
 export const validIconSizes = ['normal', 1, 2, 3, 4, 5]
