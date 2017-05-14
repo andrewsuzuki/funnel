@@ -2,11 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import merge from 'lodash.merge'
 
-import { styled, propTypeTabType } from '../../utils'
+import { styled, propTypeTabType, propTypeHorizontalPosition } from '../../utils'
 
 import { hover } from '../../mixins'
 
 import A from '../A'
+import Icon from '../Icon'
 
 
 const Wrapper = styled.li(({ isButtonlike, grow, isFirst }) => ({
@@ -200,12 +201,42 @@ Link.propTypes = {
 }
 
 
-const Tab = ({ active, isFirst, isLast, type, grow, children, ...restProps }) =>
-  <Wrapper isButtonlike={type === 'buttonlike'} isFirst={isFirst} grow={grow}>
-    <Link active={active} isFirst={isFirst} isLast={isLast} tabType={type} {...restProps}>
-      {children}
-    </Link>
-  </Wrapper>
+const TabIcon = styled(Icon)(({ position }) => ({
+  ...(position === 'center' || position === 'left') && { marginRight: '0.5em' },
+  ...(position === 'center' || position === 'right') && { marginLeft: '0.5em' },
+}))
+
+TabIcon.propTypes = {
+  position: propTypeHorizontalPosition,
+  // ... other Icon props
+}
+
+
+const Tab = ({ active, isFirst, isLast, type, grow, children, ...restProps }) => {
+  const childrenCount = React.Children.count(children)
+
+  // Map children, unless there's only one, in which case it doesn't
+  // need any margin even if it is an Icon
+  const newChildren = childrenCount === 1 ? children : React.Children.map(children, (child, i) => {
+    if (child.type === Icon) {
+      const position = (i === 0 && 'left') || (i === (childrenCount - 1) && 'right') || 'center'
+      // Steal icon props and use it on our specialized TabIcon
+      // Since props are spread after position, it can be overridden
+      // (i.e. with position=null for no margin)
+      return React.createElement(TabIcon, { position, ...child.props })
+    }
+
+    return child
+  })
+
+  return (
+    <Wrapper isButtonlike={type === 'buttonlike'} isFirst={isFirst} grow={grow}>
+      <Link active={active} isFirst={isFirst} isLast={isLast} tabType={type} {...restProps}>
+        {newChildren}
+      </Link>
+    </Wrapper>
+  )
+}
 
 Tab.propTypes = {
   active: PropTypes.bool, // has default
