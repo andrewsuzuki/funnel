@@ -4,7 +4,7 @@ import merge from 'lodash.merge'
 
 import { styled, propTypeTabType, propTypeHorizontalPosition } from '../../utils'
 
-import { hover } from '../../mixins'
+import { hover, padding } from '../../mixins'
 
 import A from '../A'
 import Icon from '../Icon'
@@ -49,10 +49,7 @@ const Link = styled(A)(({ active, isFirst, isLast, tabType }, t) =>
       color: t.tabsColor,
 
       marginBottom: '-1px',
-      paddingTop: '0.5em',
-      paddingRight: '1em',
-      paddingBottom: '0.5em',
-      paddingLeft: '1em',
+      ...padding('0.5em', '1em'),
 
       verticalAlign: 'top',
 

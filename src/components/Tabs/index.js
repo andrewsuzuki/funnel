@@ -9,6 +9,8 @@ import {
   propTypeTabType,
 } from '../../utils'
 
+import { margin, padding } from '../../mixins'
+
 import Tab from '../Tab'
 
 
@@ -38,11 +40,8 @@ const List = styled.ul(({ isButtonlike, position, size }, t) => ({
   display: 'flex',
   alignItems: 'center',
 
-  margin: 0,
-  paddingTop: 0,
-  paddingRight: 0,
-  paddingBottom: 0,
-  paddingLeft: 0,
+  ...margin('0px'),
+  ...padding('0px'),
 
   // Positioning
   justifyContent: positionToJustifyContentMap[position],

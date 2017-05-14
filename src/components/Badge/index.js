@@ -8,7 +8,7 @@ import {
   propTypeSize,
 } from '../../utils'
 
-import { empty, borderRadiusIfEnabled } from '../../mixins'
+import { empty, borderRadiusIfEnabled, padding } from '../../mixins'
 
 import BrandBackground from '../BrandBackground'
 
@@ -20,8 +20,7 @@ const BaseElement = styled(BrandBackground)((p, t) => ({
   alignItems: 'center',
   justifyContent: 'center',
   height: t.badgeHeight,
-  paddingLeft: t.badgePaddingX,
-  paddingRight: t.badgePaddingX,
+  ...padding(null, t.badgePaddingX),
   lineHeight: t.badgeLineHeight,
   wordWrap: 'nowrap',
   fontFamily: t.badgeFontFamily,

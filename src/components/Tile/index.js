@@ -10,17 +10,14 @@ import {
   propTypeBrandOrDefaultOrLightOrDark,
 } from '../../utils'
 
-import { borderRadiusIfEnabled, boxShadowIfEnabled } from '../../mixins'
+import { borderRadiusIfEnabled, boxShadowIfEnabled, padding } from '../../mixins'
 
 import BrandBackground from '../BrandBackground'
 
 
 const Tile = styled(BrandBackground)(({ hasRadius, hasShadow }, t) => ({
-  paddingTop: t.tilePaddingY,
-  paddingRight: t.tilePaddingX,
-  paddingBottom: t.tilePaddingY,
-  paddingLeft: t.tilePaddingX,
   marginBottom: t.tileMarginBottom,
+  ...padding(t.tilePaddingY, t.tilePaddingX),
   ...borderRadiusIfEnabled(t, t.tileBorderRadius),
   ...boxShadowIfEnabled(t, t.tileBoxShadow),
 }))

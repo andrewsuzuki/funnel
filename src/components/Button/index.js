@@ -12,7 +12,7 @@ import {
   connectField,
 } from '../../utils'
 
-import { transitionIfEnabled } from '../../mixins'
+import { transitionIfEnabled, padding } from '../../mixins'
 
 import stylesSize from './stylesSize'
 import stylesBrandNormal from './stylesBrandNormal'
@@ -44,10 +44,7 @@ const StyledButton = styled.button((props, t) => {
     borderStyle: 'solid',
     borderColor: 'transparent',
 
-    paddingTop: t.buttonPaddingY,
-    paddingRight: t.buttonPaddingX,
-    paddingBottom: t.buttonPaddingY,
-    paddingLeft: t.buttonPaddingX,
+    ...padding(t.buttonPaddingY, t.buttonPaddingX),
 
     userSelect: 'none',
 

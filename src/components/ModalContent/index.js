@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { styled, modalCloseClassname as mcc } from '../../utils'
 
-import { breakpoint } from '../../mixins'
+import { breakpoint, margin } from '../../mixins'
 
 import Container from '../Container'
 import Row from '../Row'
@@ -13,10 +13,7 @@ import Box from '../Box'
 
 const Fence = styled.div((p, t) => ({
   position: 'relative',
-  marginTop: '60px',
-  marginRight: '20px',
-  marginBottom: '30px',
-  marginLeft: '20px',
+  ...margin('60px', '20px', '30px', '20px'),
   maxHeight: 'calc(100vh - 90px)',
   width: 'calc(100vw - 40px)',
   overflowY: 'auto',

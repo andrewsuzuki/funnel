@@ -7,7 +7,7 @@ import Close from '../Close'
 
 import { styled, propTypeBrandOrDefaultOrLightOrDark } from '../../utils'
 
-import { borderRadiusIfEnabled } from '../../mixins'
+import { borderRadiusIfEnabled, padding } from '../../mixins'
 
 
 const DismissableClose = styled(Close)({
@@ -19,10 +19,12 @@ const DismissableClose = styled(Close)({
 
 const BaseDiv = styled(BrandBackground)(({ hasClose }, t) => ({
   position: 'relative',
-  paddingTop: t.alertPaddingY,
-  paddingRight: t[hasClose ? 'alertPaddingXClose' : 'alertPaddingX'],
-  paddingBottom: t.alertPaddingY,
-  paddingLeft: t.alertPaddingX,
+  ...padding(
+    t.alertPaddingY,
+    t[hasClose ? 'alertPaddingXClose' : 'alertPaddingX'],
+    t.alertPaddingY,
+    t.alertPaddingX,
+  ),
   marginBottom: t.alertMarginBottom,
   lineHeight: t.alertLineHeight,
   ...borderRadiusIfEnabled(t, t.alertBorderRadius),

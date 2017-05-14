@@ -4,13 +4,12 @@ import partial from 'lodash.partial'
 
 import { styled, halvePixels, breakpointsMapAndMerge } from '../../utils'
 
-import { breakpointOnly } from '../../mixins'
+import { breakpointOnly, margin, padding } from '../../mixins'
 
 
 const makeGutterStylesForBreakpoint = (t, breakpoint) =>
   breakpointOnly(t, breakpoint, {
-    paddingLeft: halvePixels(t.gridGutters[breakpoint]),
-    paddingRight: halvePixels(t.gridGutters[breakpoint]),
+    ...padding(null, halvePixels(t.gridGutters[breakpoint])),
   })
 
 
@@ -23,8 +22,7 @@ const makeMaxWidthStylesForBreakpoint = (t, breakpoint) =>
 
 const StyledDivFluid = styled.div((p, t) => ({
   width: '100%', // overridden by StyledDivStandard
-  marginLeft: 'auto',
-  marginRight: 'auto',
+  ...margin(null, 'auto'),
 
   // Gutters for each breakpoint
   ...breakpointsMapAndMerge(partial(makeGutterStylesForBreakpoint, t)),

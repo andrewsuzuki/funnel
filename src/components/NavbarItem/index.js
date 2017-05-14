@@ -2,6 +2,8 @@ import PropTypes from 'prop-types'
 
 import { styled } from '../../utils'
 
+import { padding } from '../../mixins'
+
 
 const NavbarItem = styled.div({
   flexGrow: 0,
@@ -11,10 +13,7 @@ const NavbarItem = styled.div({
   alignItems: 'center',
   justifyContent: 'center',
 
-  paddingTop: '0.5rem',
-  paddingRight: '0.75rem',
-  paddingBottom: '0.5rem',
-  paddingLeft: '0.75rem',
+  ...padding('0.5rem', '0.75rem'),
 
   fontSize: '1rem',
   lineHeight: 1.5,

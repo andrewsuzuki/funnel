@@ -14,6 +14,7 @@ import {
   focus,
   msExpand,
   placeholder,
+  padding,
 } from './'
 
 
@@ -24,10 +25,7 @@ const makeBaseInputStyles = (t) => ({
 
   height: t.inputHeight,
 
-  paddingTop: t.inputPaddingY,
-  paddingRight: t.inputPaddingX,
-  paddingBottom: t.inputPaddingY,
-  paddingLeft: t.inputPaddingX,
+  ...padding(t.inputPaddingY, t.inputPaddingX),
 
   fontSize: t.inputFontSizeNormal, // overridden by size
 

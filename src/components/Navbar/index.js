@@ -9,7 +9,7 @@ import invariant from 'invariant'
 
 import { styled, propTypeBrandOrDefaultOrLightOrDark } from '../../utils'
 
-import { breakpoint } from '../../mixins'
+import { breakpoint, margin } from '../../mixins'
 
 import AtLeft from '../AtLeft'
 import AtRight from '../AtRight'
@@ -60,8 +60,7 @@ const Center = styled.div({
   display: 'flex',
   alignItems: 'stretch',
   justifyContent: 'center',
-  marginLeft: 'auto',
-  marginRight: 'auto',
+  ...margin(null, 'auto'),
 })
 
 

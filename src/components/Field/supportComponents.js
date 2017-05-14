@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 
 import { styled, negate, halvePixels, propTypeBreakpoint } from '../../utils'
 
-import { breakpoint, breakpointTo } from '../../mixins'
+import { breakpoint, breakpointTo, margin } from '../../mixins'
 
 
 export const FlexGrow = styled.div({
@@ -73,8 +73,7 @@ export const GroupedRow = styled.div(({ breakpoint: bkpt }, t) => ({
   ...breakpoint(t, bkpt, {
     display: 'flex',
 
-    marginLeft: negate(halvePixels(t.fieldGroupedGutter)),
-    marginRight: negate(halvePixels(t.fieldGroupedGutter)),
+    ...margin(null, negate(halvePixels(t.fieldGroupedGutter))),
   }),
 }))
 
@@ -87,8 +86,7 @@ export const GroupedColumn = styled.div(({ breakpoint: bkpt, expanded }, t) => (
   ...breakpoint(t, bkpt, {
     ...expanded && { flexGrow: 1, flexShrink: 0 },
 
-    marginLeft: halvePixels(t.fieldGroupedGutter),
-    marginRight: halvePixels(t.fieldGroupedGutter),
+    ...margin(null, halvePixels(t.fieldGroupedGutter)),
   }),
   ...breakpointTo(t, bkpt, {
     marginBottom: t.fieldMarginBottom,

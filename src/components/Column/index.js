@@ -14,16 +14,12 @@ import {
   breakpointsCreateBreakpointsForPropSpecStrings,
 } from '../../utils'
 
-import {
-  breakpointOnly,
-  gridPercentageValue,
-} from '../../mixins'
+import { breakpointOnly, gridPercentageValue, padding } from '../../mixins'
 
 
 const makeGutterStylesForBreakpoint = (t, breakpoint) =>
   breakpointOnly(t, breakpoint, {
-    paddingLeft: halvePixels(t.gridGutters[breakpoint]),
-    paddingRight: halvePixels(t.gridGutters[breakpoint]),
+    ...padding(null, halvePixels(t.gridGutters[breakpoint])),
   })
 
 

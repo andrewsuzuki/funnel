@@ -4,7 +4,7 @@ import get from 'lodash.get'
 
 import { styled, connectBackgroundContext } from '../../utils'
 
-import { hover } from '../../mixins'
+import { hover, padding } from '../../mixins'
 
 import A from '../A'
 
@@ -23,10 +23,7 @@ const NavbarLink = styled(A)(({ active, tab, backgroundContext }, t) => {
     alignItems: 'center',
     justifyContent: 'center',
 
-    paddingTop: '0.5rem',
-    paddingRight: '0.75rem',
-    paddingBottom: '0.5rem',
-    paddingLeft: '0.75rem',
+    ...padding('0.5rem', '0.75rem'),
 
     fontSize: '1rem',
     lineHeight: 1.5,
@@ -47,10 +44,7 @@ const NavbarLink = styled(A)(({ active, tab, backgroundContext }, t) => {
       borderTop: '1px solid transparent',
       borderBottom: '1px solid transparent',
 
-      paddingTop: 'calc(0.75rem - 1px)',
-      paddingRight: '1rem',
-      paddingBottom: 'calc(0.75rem - 1px)',
-      paddingLeft: '1rem',
+      ...padding('calc(0.75rem - 1px)', '1rem'),
 
       ...hover({
         textDecoration: 'none',
