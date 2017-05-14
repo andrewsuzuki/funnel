@@ -1,4 +1,4 @@
-import { boxShadowIfEnabled, hover, focus, active, disabled } from '../../mixins'
+import { boxShadowIfEnabled, hover, focus, active, disabled, borderColor } from '../../mixins'
 
 
 export default function stylesLink(t, backgroundContext, props) {
@@ -10,7 +10,7 @@ export default function stylesLink(t, backgroundContext, props) {
 
   const borderAndBg = {
     backgroundColor: 'transparent',
-    borderColor: 'transparent',
+    ...borderColor('transparent'),
   }
 
   const baseStyles = {

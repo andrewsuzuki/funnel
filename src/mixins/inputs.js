@@ -15,6 +15,9 @@ import {
   msExpand,
   placeholder,
   padding,
+  borderWidth,
+  borderStyle,
+  borderColor,
 } from './'
 
 
@@ -39,9 +42,9 @@ const makeBaseInputStyles = (t) => ({
   backgroundImage: 'none',
   backgroundClip: 'padding-box',
 
-  borderStyle: 'solid',
-  borderWidth: t.inputBorderWidth,
-  borderColor: t.inputBorderColor,
+  ...borderWidth(t.inputBorderWidth),
+  ...borderStyle('solid'),
+  ...borderColor(t.inputBorderColor),
 
   // NOTE if not applied, iOS defaults to border radius
   ...borderRadiusIfEnabled(t, t.inputBorderRadiusNormal), // overridden by size
@@ -81,7 +84,7 @@ export function makeInputStyles(props, t) {
     outline: 0,
     color: t.inputColorFocus,
     backgroundColor: t.inputBackgroundColorFocus,
-    borderColor: t.inputBorderColorFocus,
+    ...borderColor(t.inputBorderColorFocus),
     ...boxShadowIfEnabled(t, t.inputBoxShadowFocus),
   }
 
@@ -98,8 +101,8 @@ export function makeInputStyles(props, t) {
     {
       // Brand
       ...props.brand && {
-        borderColor: t[`brand${capitalize(props.brand)}`],
-        ...focus({ borderColor: t[`brand${capitalize(props.brand)}`] }),
+        ...borderColor(t[`brand${capitalize(props.brand)}`]),
+        ...focus({ ...borderColor(t[`brand${capitalize(props.brand)}`]) }),
       },
 
       // Size

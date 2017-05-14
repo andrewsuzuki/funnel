@@ -1,6 +1,6 @@
 import { capitalize } from '../../utils'
 
-import { boxShadowIfEnabled, hover, focus, active, disabled } from '../../mixins'
+import { boxShadowIfEnabled, hover, focus, active, disabled, borderColor } from '../../mixins'
 
 
 export default function stylesBrandOutlined(t, brand, props) {
@@ -11,14 +11,14 @@ export default function stylesBrandOutlined(t, brand, props) {
   const baseStyles = {
     color: buttonThemeValue('Bg'),
     backgroundColor: 'transparent',
-    borderColor: buttonThemeValue('Bg'),
+    ...borderColor(buttonThemeValue('Bg')),
   }
 
   const hoverStyles = {
     textDecoration: 'none',
     color: buttonThemeValue('Color'),
     backgroundColor: buttonThemeValue('Bg'),
-    borderColor: buttonThemeValue('Bg'),
+    ...borderColor(buttonThemeValue('Bg')),
   }
 
   const focusStyles = {
@@ -32,7 +32,7 @@ export default function stylesBrandOutlined(t, brand, props) {
     textDecoration: 'none',
     color: buttonThemeValue('Color'),
     backgroundColor: buttonThemeValue('Bg'),
-    borderColor: buttonThemeValue('Bg'),
+    ...borderColor(buttonThemeValue('Bg')),
   }
 
   const disabledStyles = {

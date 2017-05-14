@@ -1,6 +1,6 @@
 import { styled, propTypeSize } from '../../utils'
 
-import { square, borderRadiusIfEnabled, before, after, hover, focus, active } from '../../mixins'
+import { square, borderRadiusIfEnabled, before, after, hover, focus, active, borderWidth } from '../../mixins'
 
 
 const beforeAndAfterCommonStyles = {
@@ -36,7 +36,7 @@ const Close = styled.button(({ size }, t) => {
     textDecoration: 'none',
     position: 'relative',
     display: 'inline-block',
-    borderWidth: 0,
+    ...borderWidth('0px'),
     fontSize: '1rem',
     verticalAlign: 'top',
     backgroundColor: 'rgba(10, 10, 10, 0.2)',

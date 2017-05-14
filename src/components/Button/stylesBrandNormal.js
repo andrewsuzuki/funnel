@@ -1,6 +1,6 @@
 import { capitalize, darken } from '../../utils'
 
-import { boxShadowIfEnabled, hover, focus, active, disabled } from '../../mixins'
+import { boxShadowIfEnabled, hover, focus, active, disabled, borderColor } from '../../mixins'
 
 
 export default function stylesBrandNormal(t, brand, props) {
@@ -11,13 +11,13 @@ export default function stylesBrandNormal(t, brand, props) {
   const baseStyles = {
     color: buttonThemeValue('Color'),
     backgroundColor: buttonThemeValue('Bg'),
-    borderColor: buttonThemeValue('Border'),
+    ...borderColor(buttonThemeValue('Border')),
   }
 
   const hoverStyles = {
     textDecoration: 'none',
     backgroundColor: darken(buttonThemeValue('Bg'), 10),
-    borderColor: darken(buttonThemeValue('Border'), 12),
+    ...borderColor(darken(buttonThemeValue('Border'), 12)),
   }
 
   const focusStyles = {
@@ -30,7 +30,7 @@ export default function stylesBrandNormal(t, brand, props) {
     outline: 0,
     textDecoration: 'none',
     backgroundColor: darken(buttonThemeValue('Bg'), 10),
-    borderColor: darken(buttonThemeValue('Border'), 12),
+    ...borderColor(darken(buttonThemeValue('Border'), 12)),
     ...boxShadowIfEnabled(t, t.buttonActiveBoxShadow),
   }
 

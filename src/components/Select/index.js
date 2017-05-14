@@ -9,7 +9,7 @@ import {
   connectField,
 } from '../../utils'
 
-import { makeInputStyles, square, after } from '../../mixins'
+import { makeInputStyles, square, after, borderWidth, borderStyle, borderColor } from '../../mixins'
 
 
 const Wrapper = styled.div(({ hasIconRight }, t) => ({
@@ -24,10 +24,10 @@ const Wrapper = styled.div(({ hasIconRight }, t) => ({
       right: 'r/1.125em',
       display: 'd/block',
       ...square(t.selectCaretSize),
-      borderWidth: '1px',
-      borderStyle: 'bordS/solid',
-      borderColor: 'bordC/~selectCaretColor',
-      zIndex: 'z/~zIndices.selectCaret',
+      ...borderWidth('1px'),
+      ...borderStyle('solid'),
+      ...borderColor(t.selectCaretColor),
+      zIndex: t.zIndices.selectCaret,
 
       borderRight: 0,
       borderTop: 0,

@@ -2,7 +2,7 @@ import React from 'react'
 
 import { styled, propTypeIconSize } from '../../utils'
 
-import { square, borderRadiusIfEnabled } from '../../mixins'
+import { square, borderRadiusIfEnabled, borderWidth, borderStyle, borderColor } from '../../mixins'
 
 import { spin } from '../../global/keyframes'
 
@@ -11,7 +11,9 @@ const Spinner = styled.div(({ sizeUnits }, t) => ({
   display: 'inline-block',
   ...square(sizeUnits),
   ...borderRadiusIfEnabled(t, t.borderRadiusInfinite),
-  border: '2px solid #dbdbdb',
+  ...borderWidth('2px'),
+  ...borderStyle('solid'),
+  ...borderColor('#dbdbdb'),
   borderRightColor: 'transparent',
 
   // Animation
