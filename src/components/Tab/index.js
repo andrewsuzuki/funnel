@@ -4,7 +4,7 @@ import merge from 'lodash.merge'
 
 import { styled, propTypeTabType, propTypeHorizontalPosition } from '../../utils'
 
-import { hover, padding } from '../../mixins'
+import { hover, padding, borderWidth, borderStyle, borderColor } from '../../mixins'
 
 import A from '../A'
 import Icon from '../Icon'
@@ -76,23 +76,17 @@ const Link = styled(A)(({ active, isFirst, isLast, tabType }, t) =>
     },
     // type boxed
     tabType === 'boxed' && {
-      borderTopWidth: '1px',
-      borderTopStyle: 'solid',
-      borderTopColor: 'transparent',
-      borderRightWidth: '1px',
-      borderRightStyle: 'solid',
-      borderRightColor: 'transparent',
-      borderBottomWidth: '1px',
-      borderBottomStyle: 'solid',
-      borderBottomColor: 'transparent',
-      borderLeftWidth: '1px',
-      borderLeftStyle: 'solid',
-      borderLeftColor: 'transparent',
+      ...borderWidth('1px'),
+      ...borderStyle('solid'),
+      ...borderColor('transparent'),
 
-      borderTopLeftRadius: t.tabsBoxedBorderRadius,
-      borderTopRightRadius: t.tabsBoxedBorderRadius,
-      borderBottomRightRadius: 0,
-      borderBottomLeftRadius: 0,
+      // round off upper corners to make it look like a manila folder tab
+      ...t.enableRounded && {
+        borderTopLeftRadius: t.tabsBoxedBorderRadius,
+        borderTopRightRadius: t.tabsBoxedBorderRadius,
+        borderBottomRightRadius: 0,
+        borderBottomLeftRadius: 0,
+      },
 
       ...hover({
         borderBottomColor: 'transparent',
@@ -104,51 +98,39 @@ const Link = styled(A)(({ active, isFirst, isLast, tabType }, t) =>
 
       ...active && {
         backgroundColor: t.white,
-        borderTopColor: t.tabsOuterBorderColor,
-        borderRightColor: t.tabsOuterBorderColor,
-        borderBottomColor: 'transparent',
-        borderLeftColor: t.tabsOuterBorderColor,
+        ...borderColor(t.tabsOuterBorderColor, t.tabsOuterBorderColor, 'transparent'),
       },
     },
     // type buttonlike
     tabType === 'buttonlike' && {
-      borderTopWidth: '1px',
-      borderTopStyle: 'solid',
-      borderTopColor: t.tabsOuterBorderColor,
-      borderRightWidth: '1px',
-      borderRightStyle: 'solid',
-      borderRightColor: t.tabsOuterBorderColor,
-      borderBottomWidth: '1px',
-      borderBottomStyle: 'solid',
-      borderBottomColor: t.tabsOuterBorderColor,
-      borderLeftWidth: '1px',
-      borderLeftStyle: 'solid',
-      borderLeftColor: t.tabsOuterBorderColor,
+      ...borderWidth('1px'),
+      ...borderStyle('solid'),
+      ...borderColor(t.tabsOuterBorderColor),
 
       marginBottom: 0,
       position: 'relative',
 
       zIndex: 1,
 
-      ...isFirst && {
-        borderTopLeftRadius: t.tabsButtonlikeBorderRadius,
-        borderTopRightRadius: 0,
-        borderBottomRightRadius: 0,
-        borderBottomLeftRadius: t.tabsButtonlikeBorderRadius,
-      },
+      // round off outer sides of first and last tab-buttons
+      ...t.enableRounded && {
+        ...isFirst && {
+          borderTopLeftRadius: t.tabsButtonlikeBorderRadius,
+          borderTopRightRadius: 0,
+          borderBottomRightRadius: 0,
+          borderBottomLeftRadius: t.tabsButtonlikeBorderRadius,
+        },
 
-      ...isLast && {
-        borderTopLeftRadius: 0,
-        borderTopRightRadius: t.tabsButtonlikeBorderRadius,
-        borderBottomRightRadius: t.tabsButtonlikeBorderRadius,
-        borderBottomLeftRadius: 0,
+        ...isLast && {
+          borderTopLeftRadius: 0,
+          borderTopRightRadius: t.tabsButtonlikeBorderRadius,
+          borderBottomRightRadius: t.tabsButtonlikeBorderRadius,
+          borderBottomLeftRadius: 0,
+        },
       },
 
       ...active && {
-        borderTopColor: t.tabsActiveColor,
-        borderRightColor: t.tabsActiveColor,
-        borderBottomColor: t.tabsActiveColor,
-        borderLeftColor: t.tabsActiveColor,
+        ...borderColor(t.tabsActiveColor),
 
         backgroundColor: t.tabsActiveColor,
         color: t.tabsButtonlikeActiveTextColor,
@@ -161,20 +143,14 @@ const Link = styled(A)(({ active, isFirst, isLast, tabType }, t) =>
       ...hover({
         // not active
         ...!active && {
-          borderTopColor: t.tabsOuterBorderColor,
-          borderRightColor: t.tabsOuterBorderColor,
-          borderBottomColor: t.tabsOuterBorderColor,
-          borderLeftColor: t.tabsOuterBorderColor,
+          ...borderColor(t.tabsOuterBorderColor),
 
           backgroundColor: t.tabsBoxedAndButtonlikeBackgroundColorHover,
         },
 
         // active
         ...active && {
-          borderTopColor: t.tabsActiveHoverColor,
-          borderRightColor: t.tabsActiveHoverColor,
-          borderBottomColor: t.tabsActiveHoverColor,
-          borderLeftColor: t.tabsActiveHoverColor,
+          ...borderColor(t.tabsActiveHoverColor),
 
           backgroundColor: t.tabsActiveHoverColor,
           color: t.tabsButtonlikeActiveTextColor,

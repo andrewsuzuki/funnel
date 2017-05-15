@@ -7,7 +7,7 @@ import {
   backgroundImages,
   backgrounds,
   // borderColor,
-  borderRadius,
+  // borderRadius, // !!! not replaced !!!
   // borderStyle,
   // borderWidth,
   buttons,
@@ -26,7 +26,7 @@ export {
   backgroundImages,
   backgrounds,
   // borderColor,
-  borderRadius,
+  // borderRadius, // !!! not replaced !!!
   // borderStyle,
   // borderWidth,
   buttons,
@@ -45,16 +45,6 @@ export {
 // https://github.com/styled-components/polished/issues/167
 // TODO switch back to polished when v2 arrives
 
-function generateStyles(fourProperties, valuesWithDefaults) {
-  const styles = {}
-  for (let i = 0; i < valuesWithDefaults.length; i += 1) {
-    if (valuesWithDefaults[i]) {
-      styles[fourProperties[i]] = valuesWithDefaults[i]
-    }
-  }
-  return styles
-}
-
 
 function directionalProperty(fourProperties, values) {
   const [
@@ -66,7 +56,15 @@ function directionalProperty(fourProperties, values) {
 
   const valuesWithDefaults = [firstValue, secondValue, thirdValue, fourthValue]
 
-  return generateStyles(fourProperties, valuesWithDefaults)
+  const styles = {}
+
+  for (let i = 0; i < valuesWithDefaults.length; i += 1) {
+    if (valuesWithDefaults[i]) {
+      styles[fourProperties[i]] = valuesWithDefaults[i]
+    }
+  }
+
+  return styles
 }
 
 

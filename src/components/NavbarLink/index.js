@@ -4,7 +4,7 @@ import get from 'lodash.get'
 
 import { styled, connectBackgroundContext } from '../../utils'
 
-import { hover, padding } from '../../mixins'
+import { hover, padding, borderWidth, borderStyle, borderColor } from '../../mixins'
 
 import A from '../A'
 
@@ -41,8 +41,9 @@ const NavbarLink = styled(A)(({ active, tab, backgroundContext }, t) => {
     // Tab styles
 
     ...tab && {
-      borderTop: '1px solid transparent',
-      borderBottom: '1px solid transparent',
+      ...borderWidth('1px', null),
+      ...borderStyle('solid', null),
+      ...borderColor('transparent', null),
 
       ...padding('calc(0.75rem - 1px)', '1rem'),
 
