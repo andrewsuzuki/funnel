@@ -15,6 +15,7 @@ export * from './breakpoints'
 export * from './styleAndTheme'
 export * from './connectBackgroundContext'
 export * from './connectField'
+export { default as paginator } from './paginator'
 
 
 export const modalCloseClassname = 'should-close-modal'

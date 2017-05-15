@@ -5,6 +5,7 @@ import {
   Tabs,
   Tab,
   Icon,
+  Pagination,
 } from '../../../dist'
 
 
@@ -16,6 +17,11 @@ const NuclearTestSite = () =>
       <Tab><Icon name="facebook" />Facebook</Tab>
       <Tab><Icon name="instagram" />Instagram</Tab>
     </Tabs>
+    <Pagination
+      onPageClick={(n) => console.log(`you chose page ${n}!`)}
+      total={4}
+      current={1}
+    />
   </div>
 
 export default NuclearTestSite

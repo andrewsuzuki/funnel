@@ -1,61 +1,84 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { styled } from '../../utils'
+import { styled, paginator, propTypeSize, propTypeHorizontalPosition } from '../../utils'
 
-import { before, padding, margin, makeInputStyles } from '../../mixins'
+import Wrapper from './Wrapper'
+import PageNumbersWrapper from './PageNumbersWrapper'
+import LinkItem from './LinkItem'
+import Ellipsis from './Ellipsis'
 
 
-export const makeBaseItemStyles = ({ active, disabled } = {}, t) => ({
-  ...makeInputStyles({ active, disabled }, t),
-
-  userSelect: 'none',
-  ...padding(null, '0.5em'),
-  ...margin('0.25rem'),
-  justifyContent: 'center', // NOTE ?
-  fontSize: '1em',
-  textAlign: 'center',
+const PreviousNextWrapper = styled.div({
+  flexGrow: 0,
+  flexShrink: 0,
 })
 
 
-export const LinkItem = styled.a(({ active, disabled }, t) => ({
-  ...makeBaseItemStyles({ active, disabled }, t),
-}))
-
-
-LinkItem.propTypes = {
-  active: PropTypes.bool, // has default
-  disabled: PropTypes.bool, // has default
-  onClick: PropTypes.func.isRequired,
+const orderLookup = {
+  left: ['items', 'previous', 'next'],
+  right: ['previous', 'next', 'items'],
+  center: ['previous', 'items', 'next'],
 }
 
-LinkItem.defaultProps = {
-  active: false,
-  disabled: false,
-}
+const Pagination = (props) => {
+  const {
+    onPageClick,
+    total,
+    current,
+    size,
+    showPreviousNext,
+    showPageNumbers,
+    pageNumbersPosition,
+  } = props
 
+  const { previous, next, items } = paginator(total, current)
 
-export const Ellipsis = styled.span((p, t) => ({
-  ...makeBaseItemStyles({}, t),
-  // TODO more
-  ...before({
-    content: '"\\2026"', // &hellip
-  }),
-}))
-
-
-const Pagination = ({ total, current }) => {
-  if (total <= 0) {
-    return null
+  const els = {
+    items: !showPageNumbers || total <= 0 ? null : (
+      <PageNumbersWrapper key="items" position={pageNumbersPosition}>
+        {items.map((propsMaybe, i) =>
+          propsMaybe
+            ? <LinkItem key={`page${propsMaybe.pageNumber}`} onPageClick={onPageClick} {...propsMaybe} />
+          : <Ellipsis key={`ellipsis${i}`} />)}
+      </PageNumbersWrapper>
+    ),
+    previous: !previous || !showPreviousNext ? null : (
+      <PreviousNextWrapper key="previous">
+        <LinkItem onPageClick={onPageClick} {...previous}>Previous Page</LinkItem>
+      </PreviousNextWrapper>
+    ),
+    next: !next || !showPreviousNext ? null : (
+      <PreviousNextWrapper key="next">
+        <LinkItem onPageClick={onPageClick} {...next}>Next Page</LinkItem>
+      </PreviousNextWrapper>
+    ),
   }
 
-  // TODO
-  return null
+  return (
+    <Wrapper size={size}>
+      {orderLookup[pageNumbersPosition].map((id) => els[id])}
+    </Wrapper>
+  )
 }
 
 Pagination.propTypes = {
+  onPageClick: PropTypes.func.isRequired,
+
   total: PropTypes.number.isRequired,
   current: PropTypes.number.isRequired,
+
+  size: propTypeSize.isRequired, // has default
+  showPreviousNext: PropTypes.bool.isRequired, // has default
+  showPageNumbers: PropTypes.bool.isRequired, // has default
+  pageNumbersPosition: propTypeHorizontalPosition.isRequired, // has default
+}
+
+Pagination.defaultProps = {
+  size: 'normal',
+  showPreviousNext: true,
+  showPageNumbers: true,
+  pageNumbersPosition: 'center',
 }
 
 export default Pagination

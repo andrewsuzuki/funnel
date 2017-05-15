@@ -5,7 +5,7 @@
 import memoize from 'lodash.memoize'
 import partial from 'lodash.partial'
 
-import { size, borderRadius } from './polished'
+import { size } from './polished'
 
 
 // Re-exports
@@ -199,6 +199,7 @@ export function smoothFonts() {
 // Border-radius
 
 
+export const borderRadius = makeBasicPropFn('borderRadius')
 export const borderRadiusIfEnabled = wrapEnabler('enableRounded', borderRadius)
 
 
