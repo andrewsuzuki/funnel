@@ -134,10 +134,11 @@ theme.borderRadiusSmall = '0.15rem'
 theme.borderRadiusInfinite = '290486px'
 
 
-// Cursor
+// Misc base values
 
 
 theme.cursorDisabled = 'not-allowed'
+theme.disabledOpacity = 0.65
 
 
 // Link
@@ -155,7 +156,7 @@ theme.linkHoverDecoration = 'underline'
 theme.paragraphMarginBottom = '1rem'
 
 
-// Headings (H1-H6)
+// Component: H1-H6
 
 
 theme.headingFontFamily = theme.baseFontFamily
@@ -183,7 +184,7 @@ theme.h5FontWeight = 700
 theme.h6FontWeight = 700
 
 
-// Section
+// Component: Section
 
 
 theme.sectionBackgroundColor = theme.white
@@ -194,19 +195,13 @@ theme.sectionBackgroundColor = theme.white
 
 theme.inputHeight = '2.25em'
 
-theme.inputPaddingY = 'calc(0.375em - 1px)'
-theme.inputPaddingX = 'calc(0.625em - 1px)'
-theme.inputLineHeight = 1.5
+theme.inputBorderWidth = theme.borderWidth
 
+theme.inputPaddingY = `calc(0.375em - ${theme.inputBorderWidth})`
+theme.inputPaddingX = `calc(0.625em - ${theme.inputBorderWidth})`
 theme.inputPaddingXHasIcon = '2.25rem'
 
-theme.inputFontSizeNormal = theme.fontSizeNormal
-theme.inputFontSizeSmall = theme.fontSizeSmall
-theme.inputFontSizeLarge = theme.fontSizeLarge
-
-theme.inputBorderRadiusNormal = theme.borderRadiusNormal
-theme.inputBorderRadiusSmall = theme.borderRadiusSmall
-theme.inputBorderRadiusLarge = theme.borderRadiusLarge
+theme.inputLineHeight = 1.5
 
 theme.inputBackgroundColor = theme.white
 theme.inputBackgroundColorFocus = theme.inputBackgroundColor
@@ -216,9 +211,7 @@ theme.inputColor = theme.gray
 theme.inputColorFocus = theme.inputColor
 theme.inputColorPlaceholder = theme.grayLight
 
-theme.inputBorderWidth = theme.borderWidth
 theme.inputBorderColor = fade(theme.black, 85)
-// theme.inputBorderColorFocus = lighten(theme.brandPrimary, 25)
 theme.inputBorderColorFocus = fade(theme.black, 60)
 
 theme.inputBoxShadow = `inset 0 1px 1px ${fade(theme.black, 92.5)}`
@@ -226,15 +219,25 @@ theme.inputBoxShadowFocus = `inset 0 1px 1px ${fade(theme.inputBorderColorFocus,
 
 theme.inputTransition = 'border-color ease-in-out 150ms, box-shadow ease-in-out 150ms'
 
+// Size
 
-// Select
+theme.inputFontSizeNormal = theme.fontSizeNormal
+theme.inputFontSizeSmall = theme.fontSizeSmall
+theme.inputFontSizeLarge = theme.fontSizeLarge
+
+theme.inputBorderRadiusNormal = theme.borderRadiusNormal
+theme.inputBorderRadiusSmall = theme.borderRadiusSmall
+theme.inputBorderRadiusLarge = theme.borderRadiusLarge
+
+
+// Component: Select
 
 
 theme.selectCaretColor = theme.inputColor
 theme.selectCaretSize = '0.5em'
 
 
-// Checkable (Checkbox / Radio)
+// Component: Checkable (Checkbox / Radio)
 
 
 theme.checkableMargin = theme.inputPaddingY
@@ -243,7 +246,7 @@ theme.checkableInputMarginY = '0.25em'
 theme.checkableInputMarginX = '0.25em'
 
 
-// Label
+// Component: Label
 
 
 theme.labelMarginBottom = '0.5rem'
@@ -285,6 +288,8 @@ theme.buttonLinkDisabledColor = theme.grayLight
 
 theme.buttonBorderWidth = theme.inputBorderWidth
 
+// Size
+
 theme.buttonBorderRadiusNormal = theme.inputBorderRadiusNormal
 theme.buttonBorderRadiusSmall = theme.inputBorderRadiusSmall
 theme.buttonBorderRadiusLarge = theme.inputBorderRadiusLarge
@@ -292,6 +297,8 @@ theme.buttonBorderRadiusLarge = theme.inputBorderRadiusLarge
 theme.buttonFontSizeNormal = theme.fontSizeNormal
 theme.buttonFontSizeSmall = theme.fontSizeSmall
 theme.buttonFontSizeLarge = theme.fontSizeLarge
+
+// Branding
 
 theme.buttonDefaultColor = theme.grayDark
 theme.buttonDefaultBg = theme.white
@@ -377,13 +384,13 @@ theme.tilePaddingY = '0.75rem'
 theme.tileMarginBottom = '1rem'
 
 
-// Modal
+// Component: Modal
 
 
 theme.modalBackgroundColor = 'rgba(0, 0, 0, 0.86)'
 
 
-// Navbar
+// Component: Navbar
 
 
 theme.navbarHeight = '3.25rem'
@@ -394,7 +401,7 @@ theme.navbarLinkTabColor = theme.grayLight
 theme.navbarLinkTabColorHover = theme.brandPrimary
 
 
-// Tabs
+// Component: Tabs / Tab
 
 
 theme.tabsOuterBorderColor = theme.borderColor
@@ -415,6 +422,33 @@ theme.tabsButtonlikeBorderRadius = theme.borderRadiusNormal
 // You might consider setting this to true if your
 // tabsOuterBorderColor is darker than your tabsBoxedAndButtonlikeBackgroundColorHover
 theme.tabsButtonlikeHoveredShouldOverlapActiveLeft = false
+
+
+// Component: Pagination
+
+
+theme.paginationLinkColor = theme.buttonDefaultColor
+theme.paginationLinkHoverColor = theme.buttonDefaultColor
+theme.paginationLinkBorderColor = theme.buttonDefaultBorder
+theme.paginationLinkHoverBorderColor = darken(theme.buttonDefaultBorder, 10)
+theme.paginationLinkBackgroundColor = theme.buttonDefaultBg
+theme.paginationLinkHoverBackgroundColor = darken(theme.buttonDefaultBg, 5)
+
+theme.paginationLinkDisabledColor = theme.buttonDefaultColor
+theme.paginationLinkDisabledHoverColor = theme.buttonDefaultColor
+theme.paginationLinkDisabledBorderColor = theme.buttonDefaultBorder
+theme.paginationLinkDisabledHoverBorderColor = theme.buttonDefaultBorder
+theme.paginationLinkDisabledBackgroundColor = theme.buttonDefaultBg
+theme.paginationLinkDisabledHoverBackgroundColor = theme.buttonDefaultBg
+theme.paginationLinkDisabledOpacity = theme.disabledOpacity
+theme.paginationLinkDisabledHoverOpacity = theme.disabledOpacity
+
+theme.paginationLinkActiveColor = theme.white
+theme.paginationLinkActiveHoverColor = theme.white
+theme.paginationLinkActiveBorderColor = theme.brandPrimary
+theme.paginationLinkActiveHoverBorderColor = darken(theme.brandPrimary, 10)
+theme.paginationLinkActiveBackgroundColor = theme.paginationLinkActiveBorderColor
+theme.paginationLinkActiveHoverBackgroundColor = theme.paginationLinkActiveHoverBorderColor
 
 
 // Final export

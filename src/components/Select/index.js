@@ -23,6 +23,8 @@ import {
 const Wrapper = styled.div(({ hasIconRight, expanded }, t) => ({
   position: 'relative',
   display: 'inline-block',
+
+  // usually don't want full-width select elements
   width: expanded ? '100%' : 'auto',
 
   // Unstyle the caret on `<select>`s
@@ -62,7 +64,9 @@ Wrapper.propTypes = {
 
 const StyledBaseSelect = styled.select((props, t) => ({
   ...makeInputStyles(props, t),
-  width: props.expanded ? '100%' : 'auto', // override input style maybe (100%)
+
+  // override input style (usually don't want full-width select elements)
+  width: props.expanded ? '100%' : 'auto',
 }))
 
 StyledBaseSelect.propTypes = {

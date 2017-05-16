@@ -4,55 +4,72 @@ import merge from 'lodash.merge'
 
 import { styled } from '../../utils'
 
-import { padding, margin, makeInputStyles, hover } from '../../mixins'
+import { padding, margin, makeInputStyles, hover, borderColor } from '../../mixins'
 
 
 // also used by ./Ellipsis
 export const makeBaseItemStyles = ({ active, disabled } = {}, t) => merge(
+  makeInputStyles({ active, disabled }, t),
   {
-    ...makeInputStyles({ active, disabled }, t),
-
     width: 'auto',
     minWidth: '2.25em',
 
     userSelect: 'none',
     ...padding(null, '0.5em'),
-    ...margin('0.25rem'),
+    ...margin('0.25rem'), // needs vertical margin due to possibility of wrapping
     fontSize: '1em',
     textAlign: 'center',
-
-    // justifyContent: 'center', // NOTE enable after input styles are redone with inline-flex?
 
     flexGrow: 0,
     flexShrink: 0,
 
-    color: t.buttonDefaultColor,
-  }, {
     ...hover({
       textDecoration: 'none',
     }),
   },
-  active && {
-    color: t.white,
-    backgroundColor: t.brandPrimary,
+  // base
+  {
+    color: t.paginationLinkColor,
+    backgroundColor: t.paginationLinkBackgroundColor,
+    ...borderColor(t.paginationLinkBorderColor),
 
     ...hover({
-      color: t.white,
+      color: t.paginationLinkHoverColor,
+      backgroundColor: t.paginationLinkHoverBackgroundColor,
+      ...borderColor(t.paginationLinkHoverBorderColor),
+    }),
+  },
+  active && {
+    color: t.paginationLinkActiveColor,
+    backgroundColor: t.paginationLinkActiveBackgroundColor,
+    ...borderColor(t.paginationLinkActiveBorderColor),
+
+    ...hover({
+      color: t.paginationLinkActiveHoverColor,
+      backgroundColor: t.paginationLinkActiveHoverBackgroundColor,
+      ...borderColor(t.paginationLinkActiveHoverBorderColor),
     }),
   },
   disabled && {
-    opacity: 0.65,
+    color: t.paginationLinkDisabledColor,
+    backgroundColor: t.paginationLinkDisabledBackgroundColor,
+    ...borderColor(t.paginationLinkDisabledBorderColor),
+
+    opacity: t.paginationLinkDisabledOpacity,
 
     ...hover({
-      color: t.buttonDefaultColor,
+      color: t.paginationLinkDisabledHoverColor,
+      backgroundColor: t.paginationLinkDisabledHoverBackgroundColor,
+      ...borderColor(t.paginationLinkDisabledHoverBorderColor),
+
+      opacity: t.paginationLinkDisabledHoverOpacity,
     }),
   },
 )
 
 
-const LinkItemBase = styled.a(({ onClick, active, disabled }, t) => ({
-  ...makeBaseItemStyles({ active, disabled }, t),
-}))
+const LinkItemBase = styled.a(({ onClick, active, disabled }, t) =>
+  makeBaseItemStyles({ active, disabled }, t))
 
 
 const LinkItem = ({ pageNumber, onPageClick, disabled, children, ...restProps }) =>

@@ -17,10 +17,10 @@ import {
   borderWidth,
   borderStyle,
   borderColor,
-} from './'
+} from '../mixins' // i.e. './index'
 
 
-const makeBaseInputStyles = (t) => ({
+export const makeBaseInputStyles = (t) => ({
   display: 'block',
   width: '100%',
 
@@ -58,14 +58,16 @@ const makeBaseInputStyles = (t) => ({
 
   backgroundColor: t.inputBackgroundColor, // overridden by focus and disabled
 
-  // NOTE if not applied, iOS defaults to border radius
   ...borderRadiusIfEnabled(t, t.inputBorderRadiusNormal), // overridden by size
+  // NOTE If border radius is not applied, iOS will default to a
+  // native border radius. Make sure things are boxy.
+  ...!t.enableRounded && { borderRadius: 0 },
 
   ...boxShadowIfEnabled(t, t.inputBoxShadow), // overridden by focus
 })
 
 
-const makeDisabledStyles = (t) => ({
+export const makeDisabledStyles = (t) => ({
   cursor: t.cursorDisabled,
   backgroundColor: t.inputBackgroundColorDisabled,
 
@@ -75,7 +77,7 @@ const makeDisabledStyles = (t) => ({
 })
 
 
-const makeFocusStyles = (t) => ({
+export const makeFocusStyles = (t) => ({
   outline: 0,
   color: t.inputColorFocus,
   backgroundColor: t.inputBackgroundColorFocus,
@@ -83,8 +85,9 @@ const makeFocusStyles = (t) => ({
   ...boxShadowIfEnabled(t, t.inputBoxShadowFocus),
 })
 
+
 // props (all optional): disabled, focus, hover, brand, size, hasIconLeft, hasIconRight
-export function makeInputStyles(props, t) {
+export const makeInputStyles = (props, t) => {
   const disabledStyles = makeDisabledStyles(t)
   const focusStyles = makeFocusStyles(t)
 

@@ -71,7 +71,7 @@ const Icon = styled.span((props, t) => {
     ...flipVertical && { transform: 'scale(1, -1)' },
 
     // Disabled
-    ...disabled && { opacity: 0.65 },
+    ...disabled && { opacity: t.disabledOpacity },
   }
 })
 

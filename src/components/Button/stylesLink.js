@@ -42,7 +42,7 @@ export default function stylesLink(t, backgroundContext, props) {
 
   const disabledStyles = {
     cursor: t.cursorDisabled,
-    opacity: 0.65,
+    opacity: t.disabledOpacity,
     color: t.buttonLinkDisabledColor,
     textDecoration: t.linkDecoration,
     ...boxShadowIfEnabled(t, 'none'),

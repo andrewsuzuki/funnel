@@ -37,7 +37,7 @@ export default function stylesBrandOutlined(t, brand, props) {
 
   const disabledStyles = {
     cursor: t.cursorDisabled,
-    opacity: 0.65,
+    opacity: t.disabledOpacity,
 
     color: buttonThemeValue('Bg'),
     backgroundColor: 'transparent',
