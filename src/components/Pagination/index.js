@@ -2,38 +2,36 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import {
-  styled,
   paginator,
   propTypeSize,
   propTypeHorizontalPosition,
   propTypeElementLike,
+  propTypeBreakpoint,
 } from '../../utils'
 
 import Wrapper from './Wrapper'
+import Splitter from './Splitter'
 import PageNumbersWrapper from './PageNumbersWrapper'
+import PreviousNextWrapper from './PreviousNextWrapper'
 import LinkItem from './LinkItem'
 import Ellipsis from './Ellipsis'
 
 
-const PreviousNextWrapper = styled.div({
-  flexGrow: 0,
-  flexShrink: 0,
-})
-
-
 const orderLookup = {
-  left: ['items', 'previous', 'next'],
-  right: ['previous', 'next', 'items'],
-  center: ['previous', 'items', 'next'],
+  left: [2, 3, 1],
+  right: [1, 2, 3],
+  center: [1, 3, 2],
 }
 
 
 const Pagination = (props) => {
   const {
     onPageClick,
+
     total,
     current,
     delta,
+
     size,
     showPreviousNext,
     showPageNumbers,
@@ -44,41 +42,48 @@ const Pagination = (props) => {
 
     itemComponent,
     ellipsisComponent,
+
+    breakAt,
   } = props
 
   const { previous, next, items } = paginator(total, current, delta)
 
-  const els = {
-    items: !showPageNumbers || total <= 0 ? null : (
-      <PageNumbersWrapper key="items" position={pageNumbersPosition}>
-        {items.map((propsMaybe, i) =>
-          propsMaybe
-          ? React.createElement(itemComponent, {
-            key: `page${propsMaybe.pageNumber}`,
-            onPageClick,
-            ...propsMaybe,
-          })
-          : React.createElement(ellipsisComponent, {
-            key: `ellipsis${i}`,
-          }),
-        )}
-      </PageNumbersWrapper>
-    ),
-    previous: !previous || !showPreviousNext ? null : (
-      <PreviousNextWrapper key="previous">
-        {React.createElement(itemComponent, { onPageClick, ...previous }, previousChildren)}
-      </PreviousNextWrapper>
-    ),
-    next: !next || !showPreviousNext ? null : (
-      <PreviousNextWrapper key="next">
-        {React.createElement(itemComponent, { onPageClick, ...next }, nextChildren)}
-      </PreviousNextWrapper>
-    ),
-  }
+  const [previousOrder, nextOrder, itemsOrder] = orderLookup[pageNumbersPosition]
 
   return (
-    <Wrapper size={size}>
-      {orderLookup[pageNumbersPosition].map((id) => els[id])}
+    <Wrapper size={size} breakAt={breakAt}>
+      {/* Previous */}
+      {!previous || !showPreviousNext ? null : (
+        <PreviousNextWrapper key="previous" order={previousOrder} breakAt={breakAt}>
+          {React.createElement(itemComponent, { onPageClick, ...previous }, previousChildren)}
+        </PreviousNextWrapper>
+      )}
+
+      {/* Next */}
+      {!next || !showPreviousNext ? null : (
+        <PreviousNextWrapper key="next" order={nextOrder} breakAt={breakAt}>
+          {React.createElement(itemComponent, { onPageClick, ...next }, nextChildren)}
+        </PreviousNextWrapper>
+      )}
+
+      <Splitter breakAt={breakAt} />
+
+      {/* Items */}
+      {!showPageNumbers || total <= 0 ? null : (
+        <PageNumbersWrapper key="items" position={pageNumbersPosition} order={itemsOrder} breakAt={breakAt}>
+          {items.map((propsMaybe, i) =>
+            propsMaybe
+            ? React.createElement(itemComponent, {
+              key: `page${propsMaybe.pageNumber}`,
+              onPageClick,
+              ...propsMaybe,
+            })
+            : React.createElement(ellipsisComponent, {
+              key: `ellipsis${i}`,
+            }),
+          )}
+        </PageNumbersWrapper>
+      )}
     </Wrapper>
   )
 }
@@ -100,6 +105,8 @@ Pagination.propTypes = {
 
   itemComponent: propTypeElementLike.isRequired, // has default
   ellipsisComponent: propTypeElementLike.isRequired, // has default
+
+  breakAt: propTypeBreakpoint.isRequired, // has default
 }
 
 Pagination.defaultProps = {
@@ -115,6 +122,8 @@ Pagination.defaultProps = {
 
   itemComponent: LinkItem,
   ellipsisComponent: Ellipsis,
+
+  breakAt: 'tablet',
 }
 
 export default Pagination

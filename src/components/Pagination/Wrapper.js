@@ -1,6 +1,6 @@
-import { styled, propTypeSize } from '../../utils'
+import { styled, propTypeSize, propTypeBreakpoint } from '../../utils'
 
-import { margin } from '../../mixins'
+import { margin, breakpointTo } from '../../mixins'
 
 
 const sizeToThemeFontSizeMap = {
@@ -9,7 +9,7 @@ const sizeToThemeFontSizeMap = {
   large: 'fontSizeLarge',
 }
 
-const Wrapper = styled.div(({ size }, t) => ({
+const Wrapper = styled.div(({ size, breakAt }, t) => ({
   ...margin('-0.25rem'),
 
   display: 'flex',
@@ -20,10 +20,15 @@ const Wrapper = styled.div(({ size }, t) => ({
 
   // size
   fontSize: t[sizeToThemeFontSizeMap[size]],
+
+  ...breakpointTo(t, breakAt, {
+    flexWrap: 'wrap',
+  }),
 }))
 
 Wrapper.propTypes = {
-  size: propTypeSize.isRequired, // has default
+  size: propTypeSize.isRequired,
+  breakAt: propTypeBreakpoint.isRequired,
 }
 
 export default Wrapper

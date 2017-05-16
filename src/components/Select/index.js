@@ -29,8 +29,8 @@ const Wrapper = styled.div(({ hasIconRight }, t) => ({
       ...borderColor(t.selectCaretColor),
       zIndex: t.zIndices.selectCaret,
 
-      borderRight: 0,
-      borderTop: 0,
+      borderRightWidth: 0,
+      borderTopWidth: 0,
       content: '" "',
       pointerEvents: 'none',
       transform: 'rotate(-45deg)',

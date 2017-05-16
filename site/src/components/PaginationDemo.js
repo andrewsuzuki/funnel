@@ -6,6 +6,7 @@ import {
   Control,
   NumberInput,
   Pagination,
+  Select,
 } from '../../../dist'
 
 
@@ -17,6 +18,7 @@ export default class PaginationDemo extends React.Component {
       total: 1,
       current: 1,
       delta: 1,
+      pageNumbersPosition: 'center',
     }
   }
 
@@ -51,6 +53,19 @@ export default class PaginationDemo extends React.Component {
               value={this.state.delta}
               onChange={(e) => { this.setState({ delta: parseInt(e.target.value, 10) }) }}
             />
+          </Control>
+        </Field>
+        <Field horizontal>
+          <Label>Page Numbers Position</Label>
+          <Control>
+            <Select
+              value={this.state.pageNumbersPosition}
+              onChange={(e) => { this.setState({ pageNumbersPosition: e.target.value }) }}
+            >
+              <option>center</option>
+              <option>left</option>
+              <option>right</option>
+            </Select>
           </Control>
         </Field>
         <Pagination
