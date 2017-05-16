@@ -1,7 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { styled, paginator, propTypeSize, propTypeHorizontalPosition } from '../../utils'
+import {
+  styled,
+  paginator,
+  propTypeSize,
+  propTypeHorizontalPosition,
+  propTypeElementLike,
+} from '../../utils'
 
 import Wrapper from './Wrapper'
 import PageNumbersWrapper from './PageNumbersWrapper'
@@ -32,6 +38,12 @@ const Pagination = (props) => {
     showPreviousNext,
     showPageNumbers,
     pageNumbersPosition,
+
+    previousChildren,
+    nextChildren,
+
+    itemComponent,
+    ellipsisComponent,
   } = props
 
   const { previous, next, items } = paginator(total, current, delta)
@@ -41,18 +53,25 @@ const Pagination = (props) => {
       <PageNumbersWrapper key="items" position={pageNumbersPosition}>
         {items.map((propsMaybe, i) =>
           propsMaybe
-            ? <LinkItem key={`page${propsMaybe.pageNumber}`} onPageClick={onPageClick} {...propsMaybe} />
-          : <Ellipsis key={`ellipsis${i}`} />)}
+          ? React.createElement(itemComponent, {
+            key: `page${propsMaybe.pageNumber}`,
+            onPageClick,
+            ...propsMaybe,
+          })
+          : React.createElement(ellipsisComponent, {
+            key: `ellipsis${i}`,
+          }),
+        )}
       </PageNumbersWrapper>
     ),
     previous: !previous || !showPreviousNext ? null : (
       <PreviousNextWrapper key="previous">
-        <LinkItem onPageClick={onPageClick} {...previous}>Previous Page</LinkItem>
+        {React.createElement(itemComponent, { onPageClick, ...previous }, previousChildren)}
       </PreviousNextWrapper>
     ),
     next: !next || !showPreviousNext ? null : (
       <PreviousNextWrapper key="next">
-        <LinkItem onPageClick={onPageClick} {...next}>Next Page</LinkItem>
+        {React.createElement(itemComponent, { onPageClick, ...next }, nextChildren)}
       </PreviousNextWrapper>
     ),
   }
@@ -75,6 +94,12 @@ Pagination.propTypes = {
   showPreviousNext: PropTypes.bool.isRequired, // has default
   showPageNumbers: PropTypes.bool.isRequired, // has default
   pageNumbersPosition: propTypeHorizontalPosition.isRequired, // has default
+
+  previousChildren: PropTypes.node.isRequired, // has default
+  nextChildren: PropTypes.node.isRequired, // has default
+
+  itemComponent: propTypeElementLike.isRequired, // has default
+  ellipsisComponent: propTypeElementLike.isRequired, // has default
 }
 
 Pagination.defaultProps = {
@@ -84,6 +109,12 @@ Pagination.defaultProps = {
   showPreviousNext: true,
   showPageNumbers: true,
   pageNumbersPosition: 'center',
+
+  previousChildren: 'Previous',
+  nextChildren: 'Next Page',
+
+  itemComponent: LinkItem,
+  ellipsisComponent: Ellipsis,
 }
 
 export default Pagination

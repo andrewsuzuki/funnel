@@ -10,6 +10,13 @@ import { breakpointsMapAndMerge, breakpointNameToColumnsPassBreakpointName } fro
 
 
 /**
+ * PropType for valid element-like (since PropTypes.element does not support
+ * functional stateless components nor plain strings)
+ */
+export const propTypeElementLike = PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+
+
+/**
  * PropType for valid breakpoint/device
  */
 export const propTypeBreakpoint = PropTypes.oneOf(valids.validBreakpoints)
