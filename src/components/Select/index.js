@@ -12,17 +12,19 @@ import {
 import { makeInputStyles, square, after, borderWidth, borderStyle, borderColor } from '../../mixins'
 
 
-const Wrapper = styled.div(({ hasIconRight }, t) => ({
+const Wrapper = styled.div(({ hasIconRight, expanded }, t) => ({
   position: 'relative',
+  display: 'inline-block',
+  width: expanded ? '100%' : 'auto',
 
   ...!hasIconRight &&
     // caret
     after({
       position: 'absolute',
       marginTop: '-0.375em',
-      top: 't/50%',
-      right: 'r/1.125em',
-      display: 'd/block',
+      top: '50%',
+      right: '1.125em',
+      display: 'block',
       ...square(t.selectCaretSize),
       ...borderWidth('1px'),
       ...borderStyle('solid'),
@@ -37,11 +39,21 @@ const Wrapper = styled.div(({ hasIconRight }, t) => ({
     }),
 }))
 
+Wrapper.propTypes = {
+  hasIconRight: PropTypes.bool,
+  expanded: PropTypes.bool,
+}
+
 
 const StyledBaseSelect = styled.select((props, t) => ({
   ...makeInputStyles(props, t),
   width: props.expanded ? '100%' : 'auto', // override input style maybe (100%)
 }))
+
+StyledBaseSelect.propTypes = {
+  expanded: PropTypes.bool,
+  // ...all other Select props (brand, size, disabled, focus, hasIconLeft, hasIconRight, fieldMeta)
+}
 
 
 const ActualSelect = connectField(StyledBaseSelect, 'id', false)
@@ -63,7 +75,7 @@ Select.propTypes = {
   focus: PropTypes.bool,
 
   hasIconLeft: PropTypes.bool,
-  hasIconRight: PropTypes.bool,
+  hasIconRight: PropTypes.bool, // always overridden with true
 
   fieldMeta: propTypeFieldMeta,
 }

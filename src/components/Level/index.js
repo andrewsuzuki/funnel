@@ -51,9 +51,9 @@ LevelSpacer.propTypes = {
 
 
 const LevelCenter = styled.div(({ breakpoint: bkpt }, t) => ({
-  // 'fBasis/auto',
-  // 'fGrow/0',
-  // 'fShrink/0',
+  // flexBasis: 'auto',
+  // flexGrow: 0,
+  // flexShrink: 0,
 
   ...breakpoint(t, bkpt, { display: 'flex' }),
 

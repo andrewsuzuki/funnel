@@ -57,7 +57,7 @@ export default class PaginationDemo extends React.Component {
         </Field>
         <Field horizontal>
           <Label>Page Numbers Position</Label>
-          <Control>
+          <Control expanded>
             <Select
               value={this.state.pageNumbersPosition}
               onChange={(e) => { this.setState({ pageNumbersPosition: e.target.value }) }}

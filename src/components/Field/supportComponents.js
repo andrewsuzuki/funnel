@@ -38,7 +38,7 @@ export const HorizontalLeft = styled.div(({ breakpoint: bkpt }, t) =>
   breakpoint(t, bkpt, {
     width: '16%',
 
-    // 'fBasis/0',
+    // flexBasis: 0,
     flexGrow: 1,
     flexShrink: 0,
 

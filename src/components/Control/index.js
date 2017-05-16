@@ -1,19 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import invariant from 'invariant'
+import get from 'lodash.get'
 
 import { styled } from '../../utils'
 
 import AtLeft from '../AtLeft'
 import AtRight from '../AtRight'
 
+import Select from '../Select'
+
 import Icon from '../Icon'
 import ControlSpinner from '../ControlSpinner'
 
 
-const ControlWrapper = styled.div({
+const ControlWrapper = styled.div(({ inlineBlock }) => ({
   position: 'relative',
-})
+
+  ...inlineBlock && {
+    display: 'inline-block',
+  },
+}))
+
+ControlWrapper.propTypes = {
+  inlineBlock: PropTypes.bool,
+}
 
 
 const ControlLeft = styled.div((p, t) => ({
@@ -104,14 +115,23 @@ export default function Control({ loading, expanded, children, ...restProps }) {
   // if loading, set right position to spinner
   const rightFinal = !loading ? parts.right : <ControlRight><ControlSpinner /></ControlRight>
 
+  invariant(
+    typeof get(parts, 'input.props.expanded') === 'undefined',
+    'Set \'expanded\' on Control, not directly on its input',
+  )
+
   const inputFinal = React.cloneElement(parts.input, {
-    expanded, // forward expanded to input (i.e. used by Select to become full-width)
+    // forward expanded to input (i.e. used by Select to become full-width)
+    expanded,
+
     hasIconLeft: parts.left !== null,
     hasIconRight: rightFinal !== null,
   })
 
+  const isSelect = get(parts.input, 'type') === Select
+
   return (
-    <ControlWrapper {...restProps}>
+    <ControlWrapper {...restProps} inlineBlock={isSelect && !expanded}>
       {inputFinal}
       {parts.left}
       {rightFinal}
