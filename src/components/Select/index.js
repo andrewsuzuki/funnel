@@ -9,13 +9,28 @@ import {
   connectField,
 } from '../../utils'
 
-import { makeInputStyles, square, after, borderWidth, borderStyle, borderColor } from '../../mixins'
+import {
+  makeInputStyles,
+  square,
+  after,
+  borderWidth,
+  borderStyle,
+  borderColor,
+  msExpand,
+} from '../../mixins'
 
 
 const Wrapper = styled.div(({ hasIconRight, expanded }, t) => ({
   position: 'relative',
   display: 'inline-block',
   width: expanded ? '100%' : 'auto',
+
+  // Unstyle the caret on `<select>`s
+  appearance: 'none',
+  ...msExpand({
+    backgroundColor: 'transparent',
+    border: 0,
+  }),
 
   ...!hasIconRight &&
     // caret

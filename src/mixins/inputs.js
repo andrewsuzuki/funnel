@@ -12,7 +12,6 @@ import {
   boxShadowIfEnabled,
   disabled,
   focus,
-  msExpand,
   placeholder,
   padding,
   borderWidth,
@@ -24,69 +23,70 @@ import {
 const makeBaseInputStyles = (t) => ({
   display: 'block',
   width: '100%',
-  maxWidth: '100%', // prevent Select from overflowing if options are long
+
+  // prevent Select (or anything else really) from overflowing if options are long
+  maxWidth: '100%',
 
   height: t.inputHeight,
 
-  ...padding(t.inputPaddingY, t.inputPaddingX),
-
-  fontSize: t.inputFontSizeNormal, // overridden by size
-
   lineHeight: t.inputLineHeight,
 
-  color: t.inputColor,
-
-  backgroundColor: t.inputBackgroundColor,
+  ...transitionIfEnabled(t, t.inputTransition),
 
   // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
   backgroundImage: 'none',
   backgroundClip: 'padding-box',
-
-  ...borderWidth(t.inputBorderWidth),
-  ...borderStyle('solid'),
-  ...borderColor(t.inputBorderColor),
-
-  // NOTE if not applied, iOS defaults to border radius
-  ...borderRadiusIfEnabled(t, t.inputBorderRadiusNormal), // overridden by size
-
-  ...transitionIfEnabled(t, t.inputTransition),
-
-  ...boxShadowIfEnabled(t, t.inputBoxShadow),
-
-  // Unstyle the caret on `<select>`s
-  appearance: 'none',
-  ...msExpand({
-    backgroundColor: 'transparent',
-    border: 0,
-  }),
 
   ...placeholder({
     color: t.inputColorPlaceholder,
     // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526
     opacity: 1,
   }),
+
+  ...borderWidth(t.inputBorderWidth),
+  ...borderStyle('solid'),
+
+  // Possibly overridden:
+
+  ...padding(t.inputPaddingY, t.inputPaddingX), // overridden (x only) by hasIcon_
+
+  ...borderColor(t.inputBorderColor), // overridden by brand
+
+  fontSize: t.inputFontSizeNormal, // overridden by size
+
+  color: t.inputColor, // overridden by focus
+
+  backgroundColor: t.inputBackgroundColor, // overridden by focus and disabled
+
+  // NOTE if not applied, iOS defaults to border radius
+  ...borderRadiusIfEnabled(t, t.inputBorderRadiusNormal), // overridden by size
+
+  ...boxShadowIfEnabled(t, t.inputBoxShadow), // overridden by focus
 })
 
 
+const makeDisabledStyles = (t) => ({
+  cursor: t.cursorDisabled,
+  backgroundColor: t.inputBackgroundColorDisabled,
+
+  // iOS fix for unreadable disabled content;
+  // see https://github.com/twbs/bootstrap/issues/11655
+  opacity: 1,
+})
+
+
+const makeFocusStyles = (t) => ({
+  outline: 0,
+  color: t.inputColorFocus,
+  backgroundColor: t.inputBackgroundColorFocus,
+  ...borderColor(t.inputBorderColorFocus), // overridden by brand-focus
+  ...boxShadowIfEnabled(t, t.inputBoxShadowFocus),
+})
+
 // props (all optional): disabled, focus, hover, brand, size, hasIconLeft, hasIconRight
 export function makeInputStyles(props, t) {
-  const disabledStyles = {
-    cursor: t.cursorDisabled,
-    backgroundColor: t.inputBackgroundColorDisabled,
-
-    // iOS fix for unreadable disabled content;
-    // see https://github.com/twbs/bootstrap/issues/11655
-    opacity: 1,
-  }
-
-  // Customize the focus state to imitate native WebKit styles
-  const focusStyles = {
-    outline: 0,
-    color: t.inputColorFocus,
-    backgroundColor: t.inputBackgroundColorFocus,
-    ...borderColor(t.inputBorderColorFocus),
-    ...boxShadowIfEnabled(t, t.inputBoxShadowFocus),
-  }
+  const disabledStyles = makeDisabledStyles(t)
+  const focusStyles = makeFocusStyles(t)
 
   return merge(
     makeBaseInputStyles(t),
