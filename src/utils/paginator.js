@@ -85,12 +85,12 @@ function paginationItems(total, current, delta = 1, skipValue = null) {
 export default function paginator(total, current, delta) {
   invariant(
     total >= 0,
-    'paginator total must be greater than zero',
+    'paginator total must be greater than or equal to zero',
   )
 
   invariant(
-    current >= 1 && current <= total,
-    'paginator current must between 1 and total (inclusive)',
+    current >= 0 && current <= total,
+    'paginator current must between 0 and total (inclusive)',
   )
 
   return {

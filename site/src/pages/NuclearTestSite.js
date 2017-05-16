@@ -1,12 +1,12 @@
 import React from 'react'
-import range from 'lodash.range'
 
 import {
   Tabs,
   Tab,
   Icon,
-  Pagination,
 } from '../../../dist'
+
+import PaginationDemo from '../components/PaginationDemo'
 
 
 const NuclearTestSite = () =>
@@ -16,19 +16,7 @@ const NuclearTestSite = () =>
       <Tab><Icon name="facebook" />Facebook</Tab>
       <Tab><Icon name="instagram" />Instagram</Tab>
     </Tabs>
-    {range(1, 10).map((total) =>
-      range(1, 10).map((current) =>
-        range(1, 4).map((delta) =>
-          current <= total &&
-            <div key={`${total}|${current}|${delta}`}>
-              <h6>{current}/{total}, delta {delta}</h6>
-              <Pagination
-                onPageClick={() => null}
-                total={total}
-                current={current}
-                delta={delta}
-              />
-            </div>)))}
+    <PaginationDemo />
   </div>
 
 export default NuclearTestSite

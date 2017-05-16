@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import merge from 'lodash.merge'
 
 import { styled } from '../../utils'
 
@@ -7,37 +8,46 @@ import { padding, margin, makeInputStyles, hover } from '../../mixins'
 
 
 // also used by ./Ellipsis
-export const makeBaseItemStyles = ({ active, disabled } = {}, t) => ({
-  ...makeInputStyles({ active, disabled }, t),
+export const makeBaseItemStyles = ({ active, disabled } = {}, t) => merge(
+  {
+    ...makeInputStyles({ active, disabled }, t),
 
-  width: 'auto',
-  minWidth: '2.25em',
+    width: 'auto',
+    minWidth: '2.25em',
 
-  userSelect: 'none',
-  ...padding(null, '0.5em'),
-  ...margin('0.25rem'),
-  fontSize: '1em',
-  textAlign: 'center',
+    userSelect: 'none',
+    ...padding(null, '0.5em'),
+    ...margin('0.25rem'),
+    fontSize: '1em',
+    textAlign: 'center',
 
-  // justifyContent: 'center', // NOTE enable after input styles are redone with inline-flex?
+    // justifyContent: 'center', // NOTE enable after input styles are redone with inline-flex?
 
-  flexGrow: 0,
-  flexShrink: 0,
+    flexGrow: 0,
+    flexShrink: 0,
 
-  ...hover({
-    textDecoration: 'none',
-  }),
-
-  ...active && {
+    color: t.buttonDefaultColor,
+  }, {
+    ...hover({
+      textDecoration: 'none',
+    }),
+  },
+  active && {
     color: t.white,
     backgroundColor: t.brandPrimary,
 
     ...hover({
-      textDecoration: 'none',
       color: t.white,
     }),
   },
-})
+  disabled && {
+    opacity: 0.65,
+
+    ...hover({
+      color: t.buttonDefaultColor,
+    }),
+  },
+)
 
 
 const LinkItemBase = styled.a(({ onClick, active, disabled }, t) => ({
