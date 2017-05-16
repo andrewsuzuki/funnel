@@ -9,16 +9,16 @@ export default function stylesBrandOutlined(t, brand, props) {
   const buttonThemeValue = (f) => t[`button${brandCap}${f}`]
 
   const baseStyles = {
-    color: buttonThemeValue('Bg'),
+    color: buttonThemeValue('BackgroundColor'),
     backgroundColor: 'transparent',
-    ...borderColor(buttonThemeValue('Bg')),
+    ...borderColor(buttonThemeValue('BackgroundColor')),
   }
 
   const hoverStyles = {
     textDecoration: 'none',
     color: buttonThemeValue('Color'),
-    backgroundColor: buttonThemeValue('Bg'),
-    ...borderColor(buttonThemeValue('Bg')),
+    backgroundColor: buttonThemeValue('BackgroundColor'),
+    ...borderColor(buttonThemeValue('BackgroundColor')),
   }
 
   const focusStyles = {
@@ -31,15 +31,15 @@ export default function stylesBrandOutlined(t, brand, props) {
     outline: 0,
     textDecoration: 'none',
     color: buttonThemeValue('Color'),
-    backgroundColor: buttonThemeValue('Bg'),
-    ...borderColor(buttonThemeValue('Bg')),
+    backgroundColor: buttonThemeValue('BackgroundColor'),
+    ...borderColor(buttonThemeValue('BackgroundColor')),
   }
 
   const disabledStyles = {
     cursor: t.cursorDisabled,
     opacity: t.disabledOpacity,
 
-    color: buttonThemeValue('Bg'),
+    color: buttonThemeValue('BackgroundColor'),
     backgroundColor: 'transparent',
     ...boxShadowIfEnabled(t, 'none'),
   }

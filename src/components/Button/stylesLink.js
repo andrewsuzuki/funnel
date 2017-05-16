@@ -8,13 +8,13 @@ export default function stylesLink(t, backgroundContext, props) {
     && { color: backgroundContext.linkColor }
   )
 
-  const borderAndBg = {
+  const borderAndBackgroundColor = {
     backgroundColor: 'transparent',
     ...borderColor('transparent'),
   }
 
   const baseStyles = {
-    ...borderAndBg,
+    ...borderAndBackgroundColor,
     color: t.linkColor,
     textDecoration: t.linkDecoration,
     ...boxShadowIfEnabled(t, 'none'),
@@ -23,7 +23,7 @@ export default function stylesLink(t, backgroundContext, props) {
   }
 
   const hoverStyles = {
-    ...borderAndBg,
+    ...borderAndBackgroundColor,
     color: t.linkHoverColor,
     textDecoration: t.linkHoverDecoration,
 
@@ -31,7 +31,7 @@ export default function stylesLink(t, backgroundContext, props) {
   }
 
   const activeStyles = {
-    ...borderAndBg,
+    ...borderAndBackgroundColor,
     ...boxShadowIfEnabled(t, 'none'),
   }
 

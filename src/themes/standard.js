@@ -301,34 +301,34 @@ theme.buttonFontSizeLarge = theme.fontSizeLarge
 // Branding
 
 theme.buttonDefaultColor = theme.grayDark
-theme.buttonDefaultBg = theme.white
-theme.buttonDefaultBorder = theme.grayLighter
-theme.buttonDefaultFocusBoxShadow = `0 0 0 2px ${fade(theme.buttonDefaultBorder, 50)}`
+theme.buttonDefaultBackgroundColor = theme.white
+theme.buttonDefaultBorderColor = theme.grayLighter
+theme.buttonDefaultFocusBoxShadow = `0 0 0 2px ${fade(theme.buttonDefaultBorderColor, 50)}`
 
 theme.buttonPrimaryColor = theme.white
-theme.buttonPrimaryBg = theme.brandPrimary
-theme.buttonPrimaryBorder = theme.buttonPrimaryBg
-theme.buttonPrimaryFocusBoxShadow = `0 0 0 2px ${fade(theme.buttonPrimaryBorder, 50)}`
+theme.buttonPrimaryBackgroundColor = theme.brandPrimary
+theme.buttonPrimaryBorderColor = theme.buttonPrimaryBackgroundColor
+theme.buttonPrimaryFocusBoxShadow = `0 0 0 2px ${fade(theme.buttonPrimaryBorderColor, 50)}`
 
 theme.buttonInfoColor = theme.white
-theme.buttonInfoBg = theme.brandInfo
-theme.buttonInfoBorder = theme.buttonInfoBg
-theme.buttonInfoFocusBoxShadow = `0 0 0 2px ${fade(theme.buttonInfoBorder, 50)}`
+theme.buttonInfoBackgroundColor = theme.brandInfo
+theme.buttonInfoBorderColor = theme.buttonInfoBackgroundColor
+theme.buttonInfoFocusBoxShadow = `0 0 0 2px ${fade(theme.buttonInfoBorderColor, 50)}`
 
 theme.buttonSuccessColor = theme.white
-theme.buttonSuccessBg = theme.brandSuccess
-theme.buttonSuccessBorder = theme.buttonSuccessBg
-theme.buttonSuccessFocusBoxShadow = `0 0 0 2px ${fade(theme.buttonSuccessBorder, 50)}`
+theme.buttonSuccessBackgroundColor = theme.brandSuccess
+theme.buttonSuccessBorderColor = theme.buttonSuccessBackgroundColor
+theme.buttonSuccessFocusBoxShadow = `0 0 0 2px ${fade(theme.buttonSuccessBorderColor, 50)}`
 
 theme.buttonWarningColor = theme.white
-theme.buttonWarningBg = theme.brandWarning
-theme.buttonWarningBorder = theme.buttonWarningBg
-theme.buttonWarningFocusBoxShadow = `0 0 0 2px ${fade(theme.buttonWarningBorder, 50)}`
+theme.buttonWarningBackgroundColor = theme.brandWarning
+theme.buttonWarningBorderColor = theme.buttonWarningBackgroundColor
+theme.buttonWarningFocusBoxShadow = `0 0 0 2px ${fade(theme.buttonWarningBorderColor, 50)}`
 
 theme.buttonDangerColor = theme.white
-theme.buttonDangerBg = theme.brandDanger
-theme.buttonDangerBorder = theme.buttonDangerBg
-theme.buttonDangerFocusBoxShadow = `0 0 0 2px ${fade(theme.buttonDangerBorder, 50)}`
+theme.buttonDangerBackgroundColor = theme.brandDanger
+theme.buttonDangerBorderColor = theme.buttonDangerBackgroundColor
+theme.buttonDangerFocusBoxShadow = `0 0 0 2px ${fade(theme.buttonDangerBorderColor, 50)}`
 
 
 // Component: Close
@@ -431,15 +431,15 @@ theme.paginationLinkColor = theme.buttonDefaultColor
 theme.paginationLinkHoverColor = theme.buttonDefaultColor
 theme.paginationLinkBorderColor = theme.buttonDefaultBorder
 theme.paginationLinkHoverBorderColor = darken(theme.buttonDefaultBorder, 10)
-theme.paginationLinkBackgroundColor = theme.buttonDefaultBg
-theme.paginationLinkHoverBackgroundColor = darken(theme.buttonDefaultBg, 5)
+theme.paginationLinkBackgroundColor = theme.buttonDefaultBackgroundColor
+theme.paginationLinkHoverBackgroundColor = darken(theme.buttonDefaultBackgroundColor, 5)
 
 theme.paginationLinkDisabledColor = theme.buttonDefaultColor
 theme.paginationLinkDisabledHoverColor = theme.buttonDefaultColor
 theme.paginationLinkDisabledBorderColor = theme.buttonDefaultBorder
 theme.paginationLinkDisabledHoverBorderColor = theme.buttonDefaultBorder
-theme.paginationLinkDisabledBackgroundColor = theme.buttonDefaultBg
-theme.paginationLinkDisabledHoverBackgroundColor = theme.buttonDefaultBg
+theme.paginationLinkDisabledBackgroundColor = theme.buttonDefaultBackgroundColor
+theme.paginationLinkDisabledHoverBackgroundColor = theme.buttonDefaultBackgroundColor
 theme.paginationLinkDisabledOpacity = theme.disabledOpacity
 theme.paginationLinkDisabledHoverOpacity = theme.disabledOpacity
 

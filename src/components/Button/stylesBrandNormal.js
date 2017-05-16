@@ -10,14 +10,14 @@ export default function stylesBrandNormal(t, brand, props) {
 
   const baseStyles = {
     color: buttonThemeValue('Color'),
-    backgroundColor: buttonThemeValue('Bg'),
-    ...borderColor(buttonThemeValue('Border')),
+    backgroundColor: buttonThemeValue('BackgroundColor'),
+    ...borderColor(buttonThemeValue('BorderColor')),
   }
 
   const hoverStyles = {
     textDecoration: 'none',
-    backgroundColor: darken(buttonThemeValue('Bg'), 10),
-    ...borderColor(darken(buttonThemeValue('Border'), 12)),
+    backgroundColor: darken(buttonThemeValue('BackgroundColor'), 10),
+    ...borderColor(darken(buttonThemeValue('BorderColor'), 12)),
   }
 
   const focusStyles = {
@@ -29,8 +29,8 @@ export default function stylesBrandNormal(t, brand, props) {
   const activeStyles = {
     outline: 0,
     textDecoration: 'none',
-    backgroundColor: darken(buttonThemeValue('Bg'), 10),
-    ...borderColor(darken(buttonThemeValue('Border'), 12)),
+    backgroundColor: darken(buttonThemeValue('BackgroundColor'), 10),
+    ...borderColor(darken(buttonThemeValue('BorderColor'), 12)),
     ...boxShadowIfEnabled(t, t.buttonActiveBoxShadow),
   }
 
@@ -39,7 +39,7 @@ export default function stylesBrandNormal(t, brand, props) {
     opacity: t.disabledOpacity,
 
     color: buttonThemeValue('Color'),
-    backgroundColor: buttonThemeValue('Bg'),
+    backgroundColor: buttonThemeValue('BackgroundColor'),
     ...boxShadowIfEnabled(t, 'none'),
   }
 

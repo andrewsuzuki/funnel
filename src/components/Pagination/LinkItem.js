@@ -9,7 +9,7 @@ import { padding, margin, makeInputStyles, hover, borderColor } from '../../mixi
 
 // also used by ./Ellipsis
 export const makeBaseItemStyles = ({ active, disabled } = {}, t) => merge(
-  makeInputStyles({ active, disabled }, t),
+  makeInputStyles({}, t),
   {
     width: 'auto',
     minWidth: '2.25em',
