@@ -3,13 +3,15 @@ import range from 'lodash.range'
 
 
 /**
- * Make a list of page numbers and possibly one or two nulls to denote skips (ellipses)
+ * Make a list of page numbers and possibly one or two skipValues (default null)
+ * to denote skips (i.e. ellipses)
  * @param  {Number} total       (must be a positive integer or zero)
  * @param  {Number} current     (must be an integer between zero and total)
  * @param  {Number} [delta=1]   how many items to show on each side of current page
- * @return {Array<Number|null>} array with page numbers and nulls denoting skips (ellipses)
+ * @param  {any}    [skipValue=null] value to denote skips of two or more page numbers
+ * @return {Array<Number|skipValue>} array with page numbers and nulls denoting skips (ellipses)
  */
-function paginationItems(total, current, delta = 1) {
+function paginationItems(total, current, delta = 1, skipValue = null) {
   if (total <= 0) {
     return []
   }
@@ -40,9 +42,9 @@ function paginationItems(total, current, delta = 1) {
     return rangeRaw
   }
 
-  // Reduce a "range" with at least one ellipsis/skip (null)
-  return rangeRaw.reduce((acc, n) => {
-    // Straights -- include this page number?
+  // Reduce a "range" with at least one skip (null)
+  const resultWithNulls = rangeRaw.reduce((acc, n) => {
+    // Straights -- test if they include this page number
 
     const inOuterStraight = n <= firstStraightLimit || n >= lastStraightLimit
     const inNormalStraight = n >= leftmost && n <= rightmost
@@ -66,6 +68,14 @@ function paginationItems(total, current, delta = 1) {
     // Skip this page number
     return acc
   }, [])
+
+  // If the skipValue is null, then return as is (default behavior)
+  if (skipValue === null) {
+    return resultWithNulls
+  }
+
+  // Otherwise, map the nulls to the given skip value (such as '...')
+  return resultWithNulls.map((x) => (x === null ? skipValue : x))
 }
 
 
