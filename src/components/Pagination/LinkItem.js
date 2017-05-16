@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { styled } from '../../utils'
 
-import { padding, margin, makeInputStyles } from '../../mixins'
+import { padding, margin, makeInputStyles, hover } from '../../mixins'
 
 
 // also used by ./Ellipsis
@@ -23,6 +23,20 @@ export const makeBaseItemStyles = ({ active, disabled } = {}, t) => ({
 
   flexGrow: 0,
   flexShrink: 0,
+
+  ...hover({
+    textDecoration: 'none',
+  }),
+
+  ...active && {
+    color: t.white,
+    backgroundColor: t.brandPrimary,
+
+    ...hover({
+      textDecoration: 'none',
+      color: t.white,
+    }),
+  },
 })
 
 

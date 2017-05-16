@@ -1,7 +1,7 @@
 import React from 'react'
+import range from 'lodash.range'
 
 import {
-  H2,
   Tabs,
   Tab,
   Icon,
@@ -11,17 +11,24 @@ import {
 
 const NuclearTestSite = () =>
   <div>
-    <H2>Nuclear Test Site</H2>
     <Tabs size="large" type="buttonlike">
       <Tab active><Icon name="github" />Github</Tab>
       <Tab><Icon name="facebook" />Facebook</Tab>
       <Tab><Icon name="instagram" />Instagram</Tab>
     </Tabs>
-    <Pagination
-      onPageClick={(n) => console.log(`you chose page ${n}!`)}
-      total={4}
-      current={1}
-    />
+    {range(1, 10).map((total) =>
+      range(1, 10).map((current) =>
+        range(1, 4).map((delta) =>
+          current <= total &&
+            <div key={`${total}|${current}|${delta}`}>
+              <h6>{current}/{total}, delta {delta}</h6>
+              <Pagination
+                onPageClick={() => null}
+                total={total}
+                current={current}
+                delta={delta}
+              />
+            </div>)))}
   </div>
 
 export default NuclearTestSite

@@ -1,6 +1,6 @@
 import { styled } from '../../utils'
 
-import { before, padding, margin } from '../../mixins'
+import { before, padding, margin, borderColor } from '../../mixins'
 
 import { makeBaseItemStyles } from './LinkItem'
 
@@ -16,6 +16,8 @@ const Ellipsis = styled.span((p, t) => ({
 
   flexGrow: 0,
   flexShrink: 0,
+
+  ...borderColor('transparent'),
 
   ...before({
     content: '"\\2026"', // &hellip

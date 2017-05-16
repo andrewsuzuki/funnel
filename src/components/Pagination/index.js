@@ -21,18 +21,20 @@ const orderLookup = {
   center: ['previous', 'items', 'next'],
 }
 
+
 const Pagination = (props) => {
   const {
     onPageClick,
     total,
     current,
+    delta,
     size,
     showPreviousNext,
     showPageNumbers,
     pageNumbersPosition,
   } = props
 
-  const { previous, next, items } = paginator(total, current)
+  const { previous, next, items } = paginator(total, current, delta)
 
   const els = {
     items: !showPageNumbers || total <= 0 ? null : (
@@ -67,6 +69,7 @@ Pagination.propTypes = {
 
   total: PropTypes.number.isRequired,
   current: PropTypes.number.isRequired,
+  delta: PropTypes.number.isRequired,
 
   size: propTypeSize.isRequired, // has default
   showPreviousNext: PropTypes.bool.isRequired, // has default
@@ -75,6 +78,8 @@ Pagination.propTypes = {
 }
 
 Pagination.defaultProps = {
+  delta: 1,
+
   size: 'normal',
   showPreviousNext: true,
   showPageNumbers: true,
