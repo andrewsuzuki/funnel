@@ -23,7 +23,7 @@ export default function stylesBrandNormal(t, brand, props) {
   const focusStyles = {
     outline: 0,
     textDecoration: 'none',
-    ...boxShadowIfEnabled(t, t.buttonFocusBoxShadow),
+    ...boxShadowIfEnabled(t, buttonThemeValue('FocusBoxShadow')),
   }
 
   const activeStyles = {

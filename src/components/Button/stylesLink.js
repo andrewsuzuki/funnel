@@ -1,3 +1,5 @@
+import { darken } from '../../utils'
+
 import { boxShadowIfEnabled, hover, focus, active, disabled, borderColor } from '../../mixins'
 
 
@@ -31,6 +33,7 @@ export default function stylesLink(t, backgroundContext, props) {
   }
 
   const activeStyles = {
+    color: darken(t.linkColor, 15),
     ...borderAndBackgroundColor,
     ...boxShadowIfEnabled(t, 'none'),
   }

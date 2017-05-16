@@ -28,7 +28,8 @@ const StyledButton = styled.button((props, t) => {
       return partial(stylesLink, t, backgroundContext)
     }
 
-    return partial(outlined ? stylesBrandOutlined : stylesBrandNormal, t, brand)
+    // since normal default button is already outline-y just default to normal if brand=default
+    return partial(outlined && brand !== 'default' ? stylesBrandOutlined : stylesBrandNormal, t, brand)
   })()({ focus, active, disabled })
 
   const sizing = stylesSize(t, size)

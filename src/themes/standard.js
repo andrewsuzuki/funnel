@@ -14,7 +14,7 @@ const theme = {}
 
 
 theme.enableRounded = true
-theme.enableShadows = false
+theme.enableShadows = true
 theme.enableTransitions = true
 
 
@@ -279,7 +279,6 @@ theme.buttonPaddingY = theme.inputPaddingY
 theme.buttonPaddingX = theme.inputPaddingX
 
 theme.buttonFontWeight = theme.fontWeightNormal
-theme.buttonBoxShadow = 'inset 0 1px 0 rgba(255,255,255,0.15), 0 1px 1px rgba(0,0,0,.075)'
 theme.buttonFocusBoxShadow = `0 0 0 2px ${fade(theme.brandPrimary, 75)}`
 theme.buttonActiveBoxShadow = 'inset 0 3px 5px rgba(0,0,0,0.125)'
 theme.buttonTransition = 'all .2s ease-in-out'
