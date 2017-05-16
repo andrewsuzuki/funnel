@@ -23,6 +23,15 @@ export const propTypeBreakpoint = PropTypes.oneOf(valids.validBreakpoints)
 
 
 /**
+ * PropType for valid breakpoint/device, or array of breakpoints
+ */
+export const propTypeBreakpointOrArrayOfBreakpoints = PropTypes.oneOfType(
+  propTypeBreakpoint,
+  PropTypes.arrayOf(propTypeBreakpoint),
+)
+
+
+/**
  * PropType for valid size
  */
 export const propTypeSize = PropTypes.oneOf(valids.validSizes)
