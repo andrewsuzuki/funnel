@@ -50,7 +50,7 @@ export default function stylesBrandNormal(t, brand, props) {
     ...props.active && activeStyles,
     ...props.disabled && disabledStyles,
 
-    ...hover(hoverStyles),
+    ...!props.disabled && hover(hoverStyles),
     ...focus(focusStyles),
     ...active(activeStyles),
     ...disabled(disabledStyles),
