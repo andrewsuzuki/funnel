@@ -27,13 +27,6 @@ const Wrapper = styled.div(({ hasIconRight, expanded }, t) => ({
   // usually don't want full-width select elements
   width: expanded ? '100%' : 'auto',
 
-  // Unstyle the caret on `<select>`s
-  appearance: 'none',
-  ...msExpand({
-    backgroundColor: 'transparent',
-    border: 0,
-  }),
-
   ...!hasIconRight &&
     // caret
     after({
@@ -67,6 +60,13 @@ const StyledBaseSelect = styled.select((props, t) => ({
 
   // override input style (usually don't want full-width select elements)
   width: props.expanded ? '100%' : 'auto',
+
+  // Unstyle the caret on `<select>`s
+  appearance: 'none',
+  ...msExpand({
+    backgroundColor: 'transparent',
+    border: 0,
+  }),
 }))
 
 StyledBaseSelect.propTypes = {
