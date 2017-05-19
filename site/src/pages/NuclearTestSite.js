@@ -7,7 +7,7 @@ import {
 } from '../../../dist'
 
 import PaginationDemo from '../components/PaginationDemo'
-import ButtonDemo from '../components/ButtonDemo'
+import NavbarDemo from '../components/NavbarDemo'
 
 
 const NuclearTestSite = () =>
@@ -20,7 +20,7 @@ const NuclearTestSite = () =>
     <hr />
     <PaginationDemo />
     <hr />
-    <ButtonDemo />
+    <NavbarDemo />
   </div>
 
 export default NuclearTestSite

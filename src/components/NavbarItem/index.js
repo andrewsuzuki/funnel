@@ -2,22 +2,10 @@ import PropTypes from 'prop-types'
 
 import { styled } from '../../utils'
 
-import { padding } from '../../mixins'
+import navbarItemStyles from './navbarItemStyles'
 
 
-const NavbarItem = styled.div({
-  flexGrow: 0,
-  flexShrink: 0,
-
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-
-  ...padding('0.5rem', '0.75rem'),
-
-  fontSize: '1rem',
-  lineHeight: 1.5,
-})
+const NavbarItem = styled.div(navbarItemStyles)
 
 NavbarItem.propTypes = {
   children: PropTypes.node,

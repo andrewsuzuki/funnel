@@ -6,6 +6,9 @@ import AtRight from '../AtRight'
 import AtCenter from '../AtCenter'
 
 
+/**
+ * Ensure only positional children (left, right, center) and separate them
+ */
 const partMapper = (children) =>
   React.Children.toArray(children).reduce((acc, child) => {
     if (child.type === AtLeft) {
@@ -36,7 +39,7 @@ const partMapper = (children) =>
       'Navbar children must be of types AtLeft, AtRight, or AtCenter',
     )
 
-    // not reachable
+    // not reachable do to forced invariant above
     return acc
   }, { left: null, right: null, center: null })
 

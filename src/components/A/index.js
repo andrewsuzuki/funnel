@@ -3,7 +3,7 @@
  */
 
 import PropTypes from 'prop-types'
-import { compose } from 'glamor'
+import merge from 'lodash.merge'
 
 import {
   styled,
@@ -27,7 +27,7 @@ export const stylesHover = (t) => ({
 
 
 const A = connectBackgroundContext(styled.a(({ backgroundContext, inheritColor }, t) =>
-  compose(
+  merge(
     {
       ...stylesBase(t),
       ...hover(stylesHover(t)),

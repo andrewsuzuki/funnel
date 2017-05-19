@@ -12,11 +12,22 @@ import { getDisplayName } from './helpers'
 class BackgroundContextInner extends React.PureComponent {
   getChildContext() {
     const {
+      shouldInherit,
+
       theme,
+
       backgroundColor,
       textColor: textColorGiven,
       linkColor: linkColorGiven,
     } = this.props
+
+    const { background: parentBackground } = this.context
+
+    // If we should inherit any parent background context and it is available,
+    // then just return it as-is
+    if (shouldInherit && parentBackground) {
+      return parentBackground
+    }
 
     const backgroundColorIsLight = isLight(backgroundColor)
 
@@ -46,6 +57,8 @@ class BackgroundContextInner extends React.PureComponent {
 }
 
 BackgroundContextInner.propTypes = {
+  shouldInherit: PropTypes.bool,
+
   theme: PropTypes.object,
 
   children: PropTypes.node,
@@ -56,6 +69,10 @@ BackgroundContextInner.propTypes = {
 }
 
 BackgroundContextInner.childContextTypes = {
+  background: propTypeBackgroundContext,
+}
+
+BackgroundContextInner.contextTypes = {
   background: propTypeBackgroundContext,
 }
 
