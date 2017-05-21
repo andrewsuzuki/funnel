@@ -1,7 +1,7 @@
 import { padding } from '../../mixins'
 
 
-const navbarItemStyles = ({
+const navbarItemStyles = {
   flexGrow: 0,
   flexShrink: 0,
 
@@ -13,6 +13,6 @@ const navbarItemStyles = ({
 
   fontSize: '1rem',
   lineHeight: 1.5,
-})
+}
 
 export default navbarItemStyles

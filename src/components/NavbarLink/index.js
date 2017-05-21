@@ -12,12 +12,11 @@ import navbarItemStyles from '../NavbarItem/navbarItemStyles'
 
 
 const NavbarLink = styled(A)(({ active, tab, backgroundContext }, t) => {
-  const isLight = get(backgroundContext, 'backgroundColorIsLight')
-
-  const linkColor = isLight ? t.navbarLinkColor : t.white
-  const linkColorHover = isLight ? t.navbarLinkColorHover : t.white
+  const linkColor = get(backgroundContext, 'linkColor', t.navbarLinkColor)
+  const linkColorHover = linkColor
 
   return merge(
+    {},
     navbarItemStyles,
     {
       color: linkColor,

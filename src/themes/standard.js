@@ -95,6 +95,79 @@ theme.baseBackgroundColor = theme.white
 theme.baseTextColor = theme.grayDark
 
 
+// Link
+
+
+theme.linkColor = theme.brandPrimary
+theme.linkDecoration = 'none'
+theme.linkHoverColor = darken(theme.brandPrimary, 15)
+theme.linkActiveColor = darken(theme.brandPrimary, 25)
+theme.linkHoverDecoration = 'underline'
+
+
+// Background Contexts
+
+
+theme.backgroundContexts = {
+  default: {
+    backgroundColor: theme.transparent,
+    textColor: theme.white,
+    linkColor: theme.linkColor,
+    linkHoverColor: theme.linkHoverColor,
+    linkActiveColor: theme.linkActiveColor,
+  },
+  light: {
+    backgroundColor: theme.white,
+    textColor: theme.gray,
+    linkColor: theme.linkColor,
+    linkHoverColor: theme.linkHoverColor,
+    linkActiveColor: theme.linkActiveColor,
+  },
+  dark: {
+    backgroundColor: theme.grayDark,
+    textColor: theme.white,
+    linkColor: theme.linkColor,
+    linkHoverColor: theme.linkHoverColor,
+    linkActiveColor: theme.linkActiveColor,
+  },
+  primary: {
+    backgroundColor: theme.brandPrimary,
+    textColor: theme.white,
+    linkColor: theme.white,
+    linkHoverColor: theme.white,
+    linkActiveColor: theme.white,
+  },
+  success: {
+    backgroundColor: theme.brandSuccess,
+    textColor: theme.white,
+    linkColor: theme.white,
+    linkHoverColor: theme.white,
+    linkActiveColor: theme.white,
+  },
+  info: {
+    backgroundColor: theme.brandInfo,
+    textColor: theme.white,
+    linkColor: theme.white,
+    linkHoverColor: theme.white,
+    linkActiveColor: theme.white,
+  },
+  warning: {
+    backgroundColor: theme.brandWarning,
+    textColor: theme.white,
+    linkColor: theme.white,
+    linkHoverColor: theme.white,
+    linkActiveColor: theme.white,
+  },
+  danger: {
+    backgroundColor: theme.brandDanger,
+    textColor: theme.white,
+    linkColor: theme.white,
+    linkHoverColor: theme.white,
+    linkActiveColor: theme.white,
+  },
+}
+
+
 // Root ::selection
 
 
@@ -139,15 +212,6 @@ theme.borderRadiusInfinite = '290486px'
 
 theme.cursorDisabled = 'not-allowed'
 theme.disabledOpacity = 0.65
-
-
-// Link
-
-
-theme.linkColor = theme.brandPrimary
-theme.linkDecoration = 'none'
-theme.linkHoverColor = darken(theme.brandPrimary, 15)
-theme.linkHoverDecoration = 'underline'
 
 
 // Paragraph

@@ -7,8 +7,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import color from 'color'
 import { withTheme } from 'glamorous'
+import memoize from 'lodash.memoize'
+import merge from 'lodash.merge'
 
-import { styled, propTypeBrandOrDefaultOrLightOrDark, BackgroundContext } from '../../utils'
+import { styled, propTypeBrandOrDefaultOrLightOrDark, BackgroundContext, connectBackgroundContext } from '../../utils'
 
 
 const generateGradientColor = (baseColor, rotate, saturate, darken) =>
@@ -20,71 +22,54 @@ const generateGradientColor = (baseColor, rotate, saturate, darken) =>
     .string()
 
 
-const boldGradientStyle = (baseColor) => {
+const boldGradientStyle = memoize((baseColor) => {
   const gradientTopLeft = generateGradientColor(baseColor, -10, 0.1, 0.1)
   const gradientBottomRight = generateGradientColor(baseColor, 10, 0.05, 0.05)
 
   return `linear-gradient(141deg, ${gradientTopLeft} 0%, \
 ${baseColor} 71%, ${gradientBottomRight} 100%)`
-}
-
-
-const normalBrandMap = {
-  default: ['transparent', 'baseTextColor', 'linkColor'],
-  light: ['grayLightest', 'baseTextColor', 'linkColor'],
-  dark: ['grayDark', 'white', 'linkColor'],
-  primary: ['brandPrimary', 'white', 'grayLight'],
-  success: ['brandSuccess', 'white', 'grayLight'],
-  info: ['brandInfo', 'white', 'grayLight'],
-  warning: ['brandWarning', 'white', 'grayLight'],
-  danger: ['brandDanger', 'white', 'grayLight'],
-}
-
-
-const boldBrandMap = {
-  ...normalBrandMap,
-  dark: ['gray', 'white', 'linkColor'], // tweak 'dark' background color (lighter)
-}
-
-
-const BrandBackgroundDiv = styled.div(({ bold, brand }, t) => {
-  const [themeBackgroundColor, themeColor] = bold
-    ? boldBrandMap[brand]
-    : normalBrandMap[brand]
-
-  return {
-    color: t[themeColor],
-    ...(bold
-      ? { backgroundImage: boldGradientStyle(t[themeBackgroundColor]) }
-      : { backgroundColor: t[themeBackgroundColor] }),
-  }
 })
 
-const BrandBackground = withTheme(({ bold, brand, theme, ...restProps }) => {
-  const [themeBackgroundColor, themeColor, themeLinkColor] = bold
-    ? boldBrandMap[brand]
-    : normalBrandMap[brand]
+
+const BrandBackgroundDiv = connectBackgroundContext(styled.div(({ backgroundContext, bold }) => {
+  const { backgroundColor, textColor } = backgroundContext
+
+  return {
+    color: textColor,
+    ...(bold
+      ? { backgroundImage: boldGradientStyle(backgroundColor) }
+      : { backgroundColor }),
+  }
+}))
+
+const BrandBackground = withTheme((props) => {
+  const { makeBackgroundContexts, bold, brand, theme, children, ...restProps } = props
+
+  const backgroundContextProps = {
+    ...brand === 'default' && {
+      preferInheritBackground: true,
+    },
+    ...(makeBackgroundContexts ? makeBackgroundContexts(theme) : theme.backgroundContexts)[brand],
+  }
 
   return (
-    <BackgroundContext
-      backgroundColor={theme[themeBackgroundColor]}
-      textColor={theme[themeColor]}
-      linkColor={theme[themeLinkColor]}
-    >
-      <BrandBackgroundDiv {...{ bold, brand, ...restProps }} />
+    <BackgroundContext {...backgroundContextProps}>
+      <BrandBackgroundDiv bold={bold} {...restProps}>{children}</BrandBackgroundDiv>
     </BackgroundContext>
   )
 })
 
 BrandBackground.propTypes = {
-  brand: propTypeBrandOrDefaultOrLightOrDark.isRequired, // has default
+  makeBackgroundContexts: PropTypes.func,
   bold: PropTypes.bool.isRequired, // has default
+  brand: propTypeBrandOrDefaultOrLightOrDark.isRequired, // has default
+  theme: PropTypes.object,
   children: PropTypes.node,
 }
 
 BrandBackground.defaultProps = {
-  brand: 'default',
   bold: false,
+  brand: 'default',
 }
 
 export default BrandBackground

@@ -8,7 +8,7 @@ export * from './components'
 // Mixins
 //
 
-export { default as mixins } from './mixins'
+export * as mixins from './mixins'
 export {
   mediaWidthRange,
   breakpoint,
@@ -35,7 +35,7 @@ export { injectAllGlobal } from './global'
 // Utils
 //
 
-export { default as utils } from './utils'
+export * as utils from './utils'
 export {
   styled,
   OtepProvider,

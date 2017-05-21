@@ -4,7 +4,7 @@ import { withTheme } from 'glamorous'
 
 import { propTypeBackgroundContext } from './propTypes'
 
-import { isLight } from './color'
+// import { isLight } from './color'
 
 import { getDisplayName } from './helpers'
 
@@ -12,36 +12,40 @@ import { getDisplayName } from './helpers'
 class BackgroundContextInner extends React.PureComponent {
   getChildContext() {
     const {
-      shouldInherit,
+      preferInheritBackground,
+      mustInheritBackground,
 
-      theme,
+      // theme,
 
       backgroundColor,
-      textColor: textColorGiven,
-      linkColor: linkColorGiven,
+      textColor,
+      linkColor,
+      linkHoverColor,
+      linkActiveColor,
     } = this.props
 
     const { background: parentBackground } = this.context
 
-    // If we should inherit any parent background context and it is available,
-    // then just return it as-is
-    if (shouldInherit && parentBackground) {
-      return parentBackground
+    // If we *must* inherit parent background, then return it.
+    // Otherwise, return nothing at all
+    if (mustInheritBackground) {
+      return !parentBackground ? {} : { background: parentBackground }
     }
 
-    const backgroundColorIsLight = isLight(backgroundColor)
+    // If we *prefer* to inherit any parent background context and it is available,
+    // then just return it as-is
+    if (preferInheritBackground && parentBackground) {
+      return { background: parentBackground }
+    }
 
-    const textColorAuto = backgroundColorIsLight ? theme.baseTextColor : theme.white
-
-    const linkColor = linkColorGiven || null
-
+    // NOTE make sure changes to schema are also made
+    // to the background context prop type
     const background = {
       backgroundColor,
-      backgroundColorIsLight,
+      textColor,
       linkColor,
-      textColorAuto,
-      textColorGiven,
-      textColor: textColorGiven || textColorAuto,
+      linkHoverColor,
+      linkActiveColor,
     }
 
     return {
@@ -52,20 +56,24 @@ class BackgroundContextInner extends React.PureComponent {
   render() {
     const { children } = this.props
 
+    // If there is a child, make sure it is an only child. Otherwise, null
     return children ? React.Children.only(children) : null
   }
 }
 
 BackgroundContextInner.propTypes = {
-  shouldInherit: PropTypes.bool,
+  preferInheritBackground: PropTypes.bool,
+  mustInheritBackground: PropTypes.bool,
 
   theme: PropTypes.object,
 
   children: PropTypes.node,
 
-  backgroundColor: PropTypes.string.isRequired,
-  textColor: PropTypes.string.isRequired,
+  backgroundColor: PropTypes.string,
+  textColor: PropTypes.string,
   linkColor: PropTypes.string,
+  linkHoverColor: PropTypes.string,
+  linkActiveColor: PropTypes.string,
 }
 
 BackgroundContextInner.childContextTypes = {
