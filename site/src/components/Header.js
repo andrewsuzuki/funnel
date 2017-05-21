@@ -20,9 +20,9 @@ const AndrewGithubLinkIcon = () =>
 
 
 const Header = () =>
-  <Hero bold brand="primary">
+  <Hero brand="primary">
     <AtTop>
-      <Navbar brand="light">
+      <Navbar brand="dark">
         <AtRight>
           {['Home', 'About', 'Test'].map((n, i) =>
             <NavbarLink key={i} href="#" tab>{n}</NavbarLink>)}

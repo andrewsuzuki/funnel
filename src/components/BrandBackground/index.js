@@ -31,14 +31,18 @@ ${baseColor} 71%, ${gradientBottomRight} 100%)`
 })
 
 
-const BrandBackgroundDiv = connectBackgroundContext(styled.div(({ backgroundContext, bold }) => {
+const BrandBackgroundDiv = connectBackgroundContext(styled.div((props) => {
+  const { forceBackground, backgroundContext, bold } = props
+
   const { backgroundColor, textColor } = backgroundContext
+
+  const background = bold
+    ? { backgroundImage: boldGradientStyle(backgroundColor) }
+    : { backgroundColor }
 
   return {
     color: textColor,
-    ...(bold
-      ? { backgroundImage: boldGradientStyle(backgroundColor) }
-      : { backgroundColor }),
+    ...((forceBackground && { background: forceBackground }) || background),
   }
 }))
 
@@ -54,7 +58,13 @@ const BrandBackground = withTheme((props) => {
 
   return (
     <BackgroundContext {...backgroundContextProps}>
-      <BrandBackgroundDiv bold={bold} {...restProps}>{children}</BrandBackgroundDiv>
+      <BrandBackgroundDiv
+        bold={bold}
+        forceBackground={brand === 'default' && 'transparent'}
+        {...restProps}
+      >
+        {children}
+      </BrandBackgroundDiv>
     </BackgroundContext>
   )
 })
