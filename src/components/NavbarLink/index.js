@@ -13,7 +13,8 @@ import navbarItemStyles from '../NavbarItem/navbarItemStyles'
 
 const NavbarLink = styled(A)(({ active, tab, backgroundContext }, t) => {
   const linkColor = get(backgroundContext, 'linkColor', t.navbarLinkColor)
-  const linkColorHover = linkColor
+  const linkHoverColor = get(backgroundContext, 'linkHoverColor', t.navbarLinkHoverColor)
+  const linkActiveColor = get(backgroundContext, 'linkActiveColor', t.navbarLinkActiveColor)
 
   return merge(
     {},
@@ -21,12 +22,12 @@ const NavbarLink = styled(A)(({ active, tab, backgroundContext }, t) => {
     {
       color: linkColor,
 
-      ...hover({
-        color: linkColorHover,
+      ...!active && hover({
+        color: linkHoverColor,
       }),
 
       ...active && {
-        color: linkColorHover,
+        color: linkActiveColor,
       },
     }, {
       // Tab styles

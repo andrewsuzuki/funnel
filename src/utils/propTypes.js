@@ -160,9 +160,9 @@ export const propTypeFieldContext = PropTypes.shape({
 
 
 export const propTypeBackgroundContext = PropTypes.shape({
-  backgroundColor: PropTypes.string.isRequired,
-  textColor: PropTypes.string.isRequired,
-  linkColor: PropTypes.string.isRequired,
-  linkHoverColor: PropTypes.string.isRequired,
-  linkActiveColor: PropTypes.string.isRequired,
+  backgroundColor: PropTypes.string,
+  textColor: PropTypes.string,
+  linkColor: PropTypes.string,
+  linkHoverColor: PropTypes.string,
+  linkActiveColor: PropTypes.string,
 })

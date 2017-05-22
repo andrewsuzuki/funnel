@@ -19,16 +19,16 @@ export default function NavbarDemo() {
         utils.validBrandsOrDefaultOrLightOrDark.map((brand) =>
           <Navbar key={`${brand}${bold ? 'bold' : 'notbold'}`} brand={brand} bold={bold}>
             <AtLeft>
-              <NavbarItem>Hallo</NavbarItem>
-              <NavbarItem>Hallo</NavbarItem>
-              <NavbarItem>Hallo</NavbarItem>
+              <NavbarItem>a</NavbarItem>
+              <NavbarItem>a</NavbarItem>
+              <NavbarItem>a</NavbarItem>
             </AtLeft>
             <AtCenter>
               {brand}
             </AtCenter>
             <AtRight>
-              <NavbarLink href="#">Hallo</NavbarLink>
-              <NavbarLink tab href="#">Hallo</NavbarLink>
+              <NavbarLink href="#">a</NavbarLink>
+              <NavbarLink tab href="#">a</NavbarLink>
             </AtRight>
           </Navbar>,
         ))}

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withTheme } from 'glamorous'
+import get from 'lodash.get'
 
 import { propTypeBackgroundContext } from './propTypes'
 
@@ -11,46 +12,42 @@ import { getDisplayName } from './helpers'
 
 class BackgroundContextInner extends React.PureComponent {
   getChildContext() {
-    const {
-      preferInheritBackground,
-      mustInheritBackground,
-
-      // theme,
-
-      backgroundColor,
-      textColor,
-      linkColor,
-      linkHoverColor,
-      linkActiveColor,
-    } = this.props
+    const { preferInheritBackground, mustInheritBackground } = this.props
 
     const { background: parentBackground } = this.context
 
-    // If we *must* inherit parent background, then return it.
-    // Otherwise, return nothing at all
-    if (mustInheritBackground) {
-      return !parentBackground ? {} : { background: parentBackground }
+    // If we *must* inherit parent background, but it isn't available,
+    // then don't supply any context at all.
+    if (mustInheritBackground && !parentBackground) {
+      return {}
     }
 
-    // If we *prefer* to inherit any parent background context and it is available,
-    // then just return it as-is
-    if (preferInheritBackground && parentBackground) {
-      return { background: parentBackground }
+    const am = (k) => {
+      const directValue = this.props[k]
+
+      if (directValue) {
+        return directValue
+      }
+
+      const parentValue = (mustInheritBackground || preferInheritBackground)
+        && get(parentBackground, k)
+
+      if (parentValue) {
+        return parentValue
+      }
+
+      return null
     }
 
-    // NOTE make sure changes to schema are also made
-    // to the background context prop type
-    const background = {
-      backgroundColor,
-      textColor,
-      linkColor,
-      linkHoverColor,
-      linkActiveColor,
-    }
+    const background = [
+      'backgroundColor',
+      'textColor',
+      'linkColor',
+      'linkHoverColor',
+      'linkActiveColor',
+    ].reduce((acc, k) => ({ ...acc, [k]: am(k) }), {})
 
-    return {
-      background,
-    }
+    return { background }
   }
 
   render() {

@@ -50,9 +50,6 @@ const BrandBackground = withTheme((props) => {
   const { makeBackgroundContexts, bold, brand, theme, children, ...restProps } = props
 
   const backgroundContextProps = {
-    ...brand === 'default' && {
-      preferInheritBackground: true,
-    },
     ...(makeBackgroundContexts ? makeBackgroundContexts(theme) : theme.backgroundContexts)[brand],
   }
 
