@@ -53,7 +53,7 @@
   },
   "dependencies": {
     "color": "^1.0.3",
-    "glamor": "^2.20.25",
+    "glamor": "2.20.37",
     "glamorous": "^3.13.3",
     "invariant": "^2.2.2",
     "lodash.get": "^4.4.2",
