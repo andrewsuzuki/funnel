@@ -14,7 +14,7 @@ import invariant from 'invariant'
 import { withTheme } from 'glamorous'
 
 import { styled, propTypeBreakpoint } from '../../utils'
-import { breakpoint, breakpointMax, breakpointOnly } from '../../mixins'
+import { breakpoint, breakpointTo, breakpointOnly } from '../../mixins'
 
 import AtBottom from '../AtBottom'
 
@@ -22,7 +22,7 @@ import AtBottom from '../AtBottom'
 const breakpointTypeLookup = {
   only: breakpointOnly,
   above: breakpoint,
-  below: breakpointMax,
+  below: breakpointTo,
 }
 
 const handleCustomMinHeight = (theme, minHeight) => {

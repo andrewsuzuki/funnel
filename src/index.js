@@ -39,6 +39,8 @@ export * as utils from './utils'
 export {
   styled,
   OtepProvider,
+  loadFont,
+  loadKeyframes,
   propTypeBrand,
   propTypeInputType,
 } from './utils'
