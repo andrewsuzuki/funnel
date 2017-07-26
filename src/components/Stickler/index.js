@@ -11,20 +11,40 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import invariant from 'invariant'
+import { withTheme } from 'glamorous'
 
-import { styled } from '../../utils'
+import { styled, propTypeBreakpoint } from '../../utils'
+import { breakpoint, breakpointTo, breakpointOnly } from '../../mixins'
 
 import AtBottom from '../AtBottom'
 
 
-const Wrapper = styled.div(({ minHeight, absoluteCover }) => ({
+const breakpointTypeLookup = {
+  only: breakpointOnly,
+  above: breakpoint,
+  to: breakpointTo,
+}
+
+const handleCustomMinHeight = (theme, minHeight) => {
+  if (typeof minHeight === 'string') {
+    return { minHeight }
+  }
+
+  // minHeight is now an list of objects specifying minHeight values at different breakpoints
+
+  return Object.assign({}, ...minHeight.map(({ breakpoint: bkpt, type, value }) =>
+    breakpointTypeLookup[type](theme, bkpt, { minHeight: value })))
+}
+
+
+const Wrapper = withTheme(styled.div(({ theme, minHeight, absoluteCover }) => ({
   display: 'flex',
   flexDirection: 'column',
-  ...minHeight ? { minHeight } : {
+  ...minHeight ? handleCustomMinHeight(theme, minHeight) : {
     ...!absoluteCover && { minHeight: '100vh' },
     ...absoluteCover && { position: 'absolute', height: '100%', width: '100%' },
   },
-}))
+})))
 
 const SticklerTop = styled.div({
   flex: 1,
@@ -56,7 +76,15 @@ const Stickler = ({ minHeight, absoluteCover, children }) => {
 }
 
 Stickler.propTypes = {
-  minHeight: PropTypes.string, // customize the minHeight (takes precedence over absoluteCover)
+  // customize the minHeight (takes precedence over absoluteCover)
+  minHeight: PropTypes.oneOfType(
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.shape({
+      breakpoint: propTypeBreakpoint.isRequired,
+      type: PropTypes.oneOf(['only', 'above', 'below']).isRequired,
+      value: PropTypes.string.isRequired,
+    })),
+  ),
   absoluteCover: PropTypes.bool, // h/w: 100%, postition: absolute (instead of minHeight: 100vh)
   children: PropTypes.node,
 }
