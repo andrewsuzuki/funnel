@@ -77,14 +77,14 @@ const Stickler = ({ minHeight, absoluteCover, children }) => {
 
 Stickler.propTypes = {
   // customize the minHeight (takes precedence over absoluteCover)
-  minHeight: PropTypes.oneOfType(
+  minHeight: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.shape({
       breakpoint: propTypeBreakpoint.isRequired,
       type: PropTypes.oneOf(['only', 'above', 'below']).isRequired,
       value: PropTypes.string.isRequired,
     })),
-  ),
+  ]),
   absoluteCover: PropTypes.bool, // h/w: 100%, postition: absolute (instead of minHeight: 100vh)
   children: PropTypes.node,
 }
