@@ -17,11 +17,13 @@ import { styled } from '../../utils'
 import AtBottom from '../AtBottom'
 
 
-const Wrapper = styled.div(({ absoluteCover }) => ({
+const Wrapper = styled.div(({ minHeight, absoluteCover }) => ({
   display: 'flex',
   flexDirection: 'column',
-  ...!absoluteCover && { minHeight: '100vh' },
-  ...absoluteCover && { position: 'absolute', height: '100%', width: '100%' },
+  ...minHeight ? { minHeight } : {
+    ...!absoluteCover && { minHeight: '100vh' },
+    ...absoluteCover && { position: 'absolute', height: '100%', width: '100%' },
+  },
 }))
 
 const SticklerTop = styled.div({
@@ -31,7 +33,7 @@ const SticklerTop = styled.div({
 const SticklerBottom = styled.div()
 
 
-const Stickler = ({ absoluteCover, children }) => {
+const Stickler = ({ minHeight, absoluteCover, children }) => {
   const { bottom, rest } = React.Children.toArray(children).reduce(({ bottom, rest }, child) => {
     if (child.type === AtBottom) {
       invariant(
@@ -46,7 +48,7 @@ const Stickler = ({ absoluteCover, children }) => {
   }, { bottom: null, rest: [] })
 
   return (
-    <Wrapper absoluteCover={absoluteCover}>
+    <Wrapper minHeight={minHeight} absoluteCover={absoluteCover}>
       <SticklerTop>{rest}</SticklerTop>
       {bottom && <SticklerBottom>{bottom}</SticklerBottom>}
     </Wrapper>
@@ -54,7 +56,8 @@ const Stickler = ({ absoluteCover, children }) => {
 }
 
 Stickler.propTypes = {
-  absoluteCover: PropTypes.bool,
+  minHeight: PropTypes.string, // customize the minHeight (takes precedence over absoluteCover)
+  absoluteCover: PropTypes.bool, // h/w: 100%, postition: absolute (instead of minHeight: 100vh)
   children: PropTypes.node,
 }
 
