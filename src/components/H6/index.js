@@ -2,6 +2,7 @@ import { styled } from '../../utils'
 
 
 export const styles = (t) => ({
+  fontFamily: t.headingFontFamily,
   fontSize: t.h6FontSize,
   fontWeight: t.h6FontWeight,
   marginBottom: t.h6MarginBottom,
